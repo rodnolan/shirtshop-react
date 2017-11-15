@@ -12,15 +12,14 @@ div {
   height: 100%;
 }
 
-#content {
+.main-column {
   height: 100%;
 }
-#statusbar {
-  position: fixed;
-  bottom: 0;
+
+.content-row {
+  height: 20%;
 }
 
-/* This height still isn't working - SN */
-#shirt {
-  height: 50%;
+.shirt-row {
+  height: 60%;
 }
