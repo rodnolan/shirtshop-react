@@ -2211,7 +2211,7 @@ moment.locale('fr');
 
 This will only work for locales that have been explicitly imported before.
 
-### `npm run build` fails to minify
+### `npm run build` fails to minify Rod
 
 Some third-party packages don't compile their code to ES5 before publishing to npm. This often causes problems in the ecosystem because neither browsers (except for most modern versions) nor some tools currently support all ES6 features. We recommend to publish code on npm as ES5 at least for a few more years.
 
