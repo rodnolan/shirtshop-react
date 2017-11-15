@@ -7,3 +7,20 @@ body {
 div {
   border: 1px solid black;
 }
+
+.container-fluid {
+  height: 100%;
+}
+
+#content {
+  height: 100%;
+}
+#statusbar {
+  position: fixed;
+  bottom: 0;
+}
+
+/* This height still isn't working - SN */
+#shirt {
+  height: 50%;
+}
