@@ -6,15 +6,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <div id="wrapper">Wrapper
-            <div id="shirtlist">shirtlist</div>
-            <div id="content">content
-              <div id="shopbar">shopbar</div>
-              <div id="shirt">shirt</div>
-              <div id="picker">picker</div>
-              <div id="statusbar">statusbar</div>
+          <div classID ="wrapper">Wrapper
+            <div classID ="shirtlist">shirtlist</div>
+            <div classID ="content">content
+              <div classID ="shopbar">shopbar</div>
+              <div classID ="shirt">shirt</div>
+              <div classID ="picker">picker</div>
+              <div classID ="statusbar">statusbar</div>
           </div>
-          <div id="configbar">configbar</div>
+          <div classID="configbar">configbar</div>
         </div>
       </div>
     );
