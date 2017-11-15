@@ -6,16 +6,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <div classID ="wrapper">Wrapper
-            <div classID ="shirtlist">shirtlist</div>
-            <div classID ="content">content
-              <div classID ="shopbar">shopbar</div>
-              <div classID ="shirt">shirt</div>
-              <div classID ="picker">picker</div>
-              <div classID ="statusbar">statusbar</div>
+      {/* Wrapping the entire wrapper in a row class for bootstrap. Might be redundant. */}
+          <div className="row">
+            {/* <div classID ="wrapper">Wrapper */}
+              <div className = "col-xs-12 col-sm-6 col-md-3" classID ="shirtlist">shirtlist</div>
+              <div className = "col-xs-12 col-sm-6 col-md-6" classID ="content">content
+                <div classID ="shopbar">shopbar</div>
+                <div classID ="shirt">shirt</div>
+                <div classID ="picker">picker</div>
+                <div classID ="statusbar">statusbar</div>
+            </div>
+            <div className = "col-xs-12 col-sm-6 col-md-3" classID="configbar">configbar</div>
+          {/* </div> */}
           </div>
-          <div classID="configbar">configbar</div>
-        </div>
       </div>
     );
   }
