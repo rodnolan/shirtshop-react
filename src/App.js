@@ -11,7 +11,7 @@ class App extends Component {
           <div className="row">
               <div className = "col-xs-12 col-sm-3 col-md-3" classID ="shirtlist">
                 <div className = "row">
-                  <button type="button" className="btn btn-lg col-12" classID="shirt-list">Shirt1,etc.</button>
+                  <button type="button" className="btn btn-block" classID="shirt-list">Shirt1,etc.</button>
                 </div>
               </div>
               <div className = "col-xs-12 col-sm-6 col-md-6" classID ="content">
@@ -20,9 +20,9 @@ class App extends Component {
                     <button type="button" className="btn btn-md col-4" classID="shop-cancel">Cancel</button>
                     <button type="button" className="btn btn-md col-4" classID="shop-cart">Cart</button>
                   </div>
-                  <div className = "row" classID ="shirt">shirt</div>
+                  <div className = "row" classID ="shirt">shirt 50% content 100%</div>
                   <div className = "row" classID ="picker">
-                    <button type="button" className="btn btn-lg col-12" classID="btn-picker">Dynamic Buttons</button>
+                    <button type="button" className="btn btn-block" classID="btn-picker">Dynamic Buttons</button>
                   </div>
                   <div className = "row" classID ="statusbar">
                     <div className="col-3" classID="status-color">status-color</div>                 
@@ -33,10 +33,10 @@ class App extends Component {
             </div>
             <div className = "col-xs-12 col-sm-3 col-md-3" classID="configbar">
               <div className = "row">
-                <button type="button" className="btn btn-lg col-12" classID="config-color">Color</button>
-                <button type="button" className="btn btn-lg col-12" classID="config-style">Style</button>
-                <button type="button" className="btn btn-lg col-12" classID="config-size">Size</button>
-                <button type="button" className="btn btn-lg col-12" classID="config-caption">Caption</button>
+                <button type="button" className="btn btn-block" classID="config-color">Color</button>
+                <button type="button" className="btn btn-block" classID="config-style">Style</button>
+                <button type="button" className="btn btn-block" classID="config-size">Size</button>
+                <button type="button" className="btn btn-block" classID="config-caption">Caption</button>
               </div>
             </div>
           </div>
