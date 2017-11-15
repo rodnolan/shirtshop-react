@@ -6,19 +6,41 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      {/* Wrapping the entire wrapper in a row class for bootstrap. Might be redundant. */}
+      {/* Wrapper became container for Bootstrap purposes. */}
+        <div className ="container-fluid">
           <div className="row">
-            {/* <div classID ="wrapper">Wrapper */}
-              <div className = "col-xs-12 col-sm-6 col-md-3" classID ="shirtlist">shirtlist</div>
-              <div className = "col-xs-12 col-sm-6 col-md-6" classID ="content">content
-                <div classID ="shopbar">shopbar</div>
-                <div classID ="shirt">shirt</div>
-                <div classID ="picker">picker</div>
-                <div classID ="statusbar">statusbar</div>
+              <div className = "col-xs-12 col-sm-3 col-md-3" classID ="shirtlist">
+                <div className = "row">
+                  <button type="button" className="btn btn-lg col-12" classID="shirt-list">Shirt1,etc.</button>
+                </div>
+              </div>
+              <div className = "col-xs-12 col-sm-6 col-md-6" classID ="content">
+                  <div className = "row" classID ="shopbar">
+                    <button type="button" className="btn btn-md col-4" classID="shop-save">Save</button>
+                    <button type="button" className="btn btn-md col-4" classID="shop-cancel">Cancel</button>
+                    <button type="button" className="btn btn-md col-4" classID="shop-cart">Cart</button>
+                  </div>
+                  <div className = "row" classID ="shirt">shirt</div>
+                  <div className = "row" classID ="picker">
+                    <button type="button" className="btn btn-lg col-12" classID="btn-picker">Dynamic Buttons</button>
+                  </div>
+                  <div className = "row" classID ="statusbar">
+                    <div className="col-3" classID="status-color">status-color</div>                 
+                    <div className="col-3" classID="status-style">status-style</div>
+                    <div className="col-3" classID="status-size">status-size</div>
+                    <div className="col-3" classID="status-cost">status-cost</div>
+                  </div>
             </div>
-            <div className = "col-xs-12 col-sm-6 col-md-3" classID="configbar">configbar</div>
-          {/* </div> */}
+            <div className = "col-xs-12 col-sm-3 col-md-3" classID="configbar">
+              <div className = "row">
+                <button type="button" className="btn btn-lg col-12" classID="config-color">Color</button>
+                <button type="button" className="btn btn-lg col-12" classID="config-style">Style</button>
+                <button type="button" className="btn btn-lg col-12" classID="config-size">Size</button>
+                <button type="button" className="btn btn-lg col-12" classID="config-caption">Caption</button>
+              </div>
+            </div>
           </div>
+        </div> 
       </div>
     );
   }
