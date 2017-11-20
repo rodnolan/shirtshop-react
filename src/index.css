@@ -12,12 +12,16 @@ div {
   border: 1px solid black;
 }
 
+nav {
+  height: 10%;
+}
+
 .container-fluid {
   height: 100%;
 }
 
 .main-column {
-  height: 100%;
+  height: 90%;
 }
 
 /* .content-row {
