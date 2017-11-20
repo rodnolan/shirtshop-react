@@ -35,7 +35,7 @@ class App extends Component {
 
                   </div> */}
               </div>
-            <div className = "col" classID="configbar">
+            <div className = "col flex-column" classID="configbar">
               <div className="row">
                 <div className = "col">
                   <button type="button" className="btn btn-block" classID="config-color">Color</button>
