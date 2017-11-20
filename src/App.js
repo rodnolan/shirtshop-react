@@ -5,11 +5,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <nav className="navbar">
-          navbar
-        </nav>
       {/* Wrapper became container for Bootstrap purposes. */}
         <div className ="container-fluid">
+          <nav className="navbar">
+            navbar
+          </nav>
           <div className="row main-column">
               <div className = "col-xs-12 col-sm-3 col-md-3" classID ="statuslist">
                 <div className="row">
