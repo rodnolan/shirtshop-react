@@ -1,21 +1,29 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './App.css';
+import React from 'react'
 
-class App extends Component {
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom'
+
+import ShirtList from './components/ShirtList/ShirtList';
+import Cart from './components/Cart/Cart';
+import Config from './components/Config/Config';
+import NavBar from './components/NavBar/NavBar';
+
+class ShirtShop extends React.Component {
   render() {
     return (
-      <div className="App">
-        <div className ="container-fluid">
-          <nav className="navbar">
-            <Link to="config">Config</Link>
-            <Link to="cart">Cart</Link>
-          </nav>
-          {this.props.children}
-        </div> 
-      </div>
-    );
+      <Router>
+        <div>
+          <NavBar />
+          <hr/>
+          <Route exact path="/" component={ShirtList}/>
+          <Route path="/config" component={Config}/>
+          <Route path="/cart" component={Cart}/>
+        </div>
+      </Router>
+    )
   }
 }
 
-export default App;
+export default ShirtShop
