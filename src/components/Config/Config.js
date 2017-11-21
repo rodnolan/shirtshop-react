@@ -24,10 +24,10 @@ class Config extends Component {
             <div className = "row shirt-row" classID ="shirt">shirt area</div>
           </div>
           <div className = "col-12 col-sm-12 col-md-3" classID="configbar">
-            <button type="button" className="btn btn-block col-3 col-sm-3 col-md-12" classID="config-color">Color</button>
-            <button type="button" className="btn btn-block col-3 col-sm-3 col-md-12" classID="config-style">Style</button>
-            <button type="button" className="btn btn-block col-3 col-sm-3 col-md-12" classID="config-size">Size</button>
-            <button type="button" className="btn btn-block col-3 col-sm-3 col-md-12" classID="config-caption">Caption</button>
+            <button type="button" className="col-3 col-sm-3 col-md-12" classID="config-color">Color</button>
+            <button type="button" className="col-3 col-sm-3 col-md-12" classID="config-style">Style</button>
+            <button type="button" className="col-3 col-sm-3 col-md-12" classID="config-size">Size</button>
+            <button type="button" className="col-3 col-sm-3 col-md-12" classID="config-caption">Caption</button>
           </div>
         </div>
       </div>
