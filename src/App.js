@@ -14,7 +14,7 @@ class ShirtShop extends React.Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="container-fluid">
           <NavBar />
           <hr/>
           <Route exact path="/" component={ShirtList}/>
