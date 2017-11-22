@@ -1,6 +1,7 @@
-html, #root, .App {
+html {
   height: 100%;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -8,7 +9,7 @@ body {
   height:100%;
 }
 
-div {
+div, button {
   border: 1px solid black;
 }
 
@@ -24,10 +25,7 @@ nav {
   height: 90%;
 }
 
-/* .content-row {
-  height: 20%;
+/* This solves the overflow on the horizontal plane */
+.row {
+  margin: 0;
 }
-
-.shirt-row {
-  height: 80%;
-} */
