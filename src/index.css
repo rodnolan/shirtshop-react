@@ -1,4 +1,4 @@
-html {
+html, body {
   height: 100%;
 }
 
@@ -6,13 +6,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  height:100%;
 }
 
 div, button {
   border: 1px solid black;
 }
 
+/* This is containing along with the .main-column within the .container-fluid */
 nav {
   height: 10%;
 }
@@ -21,11 +21,16 @@ nav {
   height: 100%;
 }
 
+/* This is containing along with the nav within the .container-fluid */
 .main-column {
-  height: 90%;
+  height: 80%;
 }
 
 /* This solves the overflow on the horizontal plane */
 .row {
   margin: 0;
+}
+
+#root {
+  height: 100%;
 }

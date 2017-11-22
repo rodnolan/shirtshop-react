@@ -4,9 +4,8 @@ import './Config.css';
 class Config extends Component {
   render() {
     return (
-      <div>
-        <p className="Config">Config</p>
         <div className="main-column row">
+          {/* <p className="Config">Config</p> */}
           <div className = "col-12 col-sm-12 col-md-3" classID ="statuslist">
             <div className="row">
               <div className="col-3 col-sm-3 col-md-12" classID="status-color">status-color</div>
@@ -31,7 +30,6 @@ class Config extends Component {
             <button type="button" className="col-3 col-sm-3 col-md-12 btn-md" classID="config-caption"><i class="fa fa-font" aria-hidden="true"></i>Caption</button>
           </div>
         </div>
-      </div>
     );
   }
 }
