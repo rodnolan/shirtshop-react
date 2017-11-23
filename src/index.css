@@ -19,6 +19,7 @@ nav {
 
 .container-fluid {
   height: 100%;
+  margin: 0;
 }
 
 /* This is containing along with the nav within the .container-fluid */
@@ -29,6 +30,11 @@ nav {
 /* This solves the overflow on the horizontal plane */
 .row {
   margin: 0;
+}
+
+/* I've been able to get the shirt area to not exceed it's container, but it's not perfect yet. Same issue as the container not filling the whole screen. */
+.shirt-row {
+  height: 90%;
 }
 
 #root {
