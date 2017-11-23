@@ -15,17 +15,44 @@ class ShirtList extends React.Component {
     }
   }
   render = (props) => (
-        <div>
-            <p className="ShirtList">shirt list</p>
-            <p>Here are your saved shirts</p>
-            <ul>
-                { this.state.shirts.map(this.renderShirtItem) }
-            </ul>
+//Grid implementation from bootstrap
+    <div className="container">
+        <div className="row text-center text-lg-left">
+            <div className="col-lg-3 col-md-4 col-xs-6">
+            <a href="#" className="d-block mb-4 h-100">
+                <img className="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="" />
+            </a>
+            </div>
+            <div className="col-lg-3 col-md-4 col-xs-6">
+            <a href="#" className="d-block mb-4 h-100">
+                <img className="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="" />
+            </a>
+            </div>
+            <div className="col-lg-3 col-md-4 col-xs-6">
+            <a href="#" className="d-block mb-4 h-100">
+                <img className="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="" />
+            </a>
+            </div>
+            <div className="col-lg-3 col-md-4 col-xs-6">
+            <a href="#" className="d-block mb-4 h-100">
+                <img className="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="" />
+            </a>
+            </div>
         </div>
+    </div>    
+
+        // Removed temporarily until I can get the static grid working - SN
+        // <div>
+        //     <p className="ShirtList">shirt list</p>
+        //     <p>Here are your saved shirts</p>
+        //     <ul>
+        //         { this.state.shirts.map(this.renderShirtItem) }
+        //     </ul>
+        // </div> 
     )
-    renderShirtItem (item) {
+    /* renderShirtItem (item) {
         return (<li> <ShirtListRow shirt={item} /> </li>)
-    }
+    } */
 }
 
 export default ShirtList;

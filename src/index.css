@@ -5,7 +5,6 @@ html, body {
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }
 
 div, button {
@@ -13,18 +12,27 @@ div, button {
 }
 
 /* This is containing along with the .main-column within the .container-fluid */
-nav {
+/* nav {
   height: 10%;
-}
+} */
 
+/* This helps to solve our container problems */
+/* .col-md-3 {
+  display: flex;
+} */
 .container-fluid {
   height: 100%;
   margin: 0;
+  /* Testing to see if this solves our problem of height, but nothing yet. Definitely a better application */
+  /* padding-right:0;
+  padding-left:0;
+  margin-right:auto;
+  margin-left:auto; */
 }
 
 /* This is containing along with the nav within the .container-fluid */
 .main-column {
-  height: 80%;
+  height: 90%;
 }
 
 /* This solves the overflow on the horizontal plane */
@@ -32,9 +40,12 @@ nav {
   margin: 0;
 }
 
-/* I've been able to get the shirt area to not exceed it's container, but it's not perfect yet. Same issue as the container not filling the whole screen. */
+.content-row {
+  height: 15%;
+}
+
 .shirt-row {
-  height: 90%;
+  height: 85%;
 }
 
 #root {
