@@ -33,22 +33,18 @@ class Config extends Component {
     const newShirt=new ShirtModel(-1, "L", true, "this is an awesome caption", "red");
     return (
         <div className="main-column row">
-          <div className="col-12 col-sm-12 col-md-3" classID="statuslist">
-            <div className="row">
-              <StatusBar shirt={newShirt} />
-            </div>
-          </div>
+          <StatusBar shirt={newShirt} />
+
           <div className="col-12 col-sm-12 col-md-6" classID="content">
-            <div className="row content-row" classID="shopbar">
-              <ShopBar
-                saveHandler={this.saveHandler}
-                cancelHandler={this.cancelHandler} 
-                addToCartHandler={this.addToCartHandler} />
-            </div>
+            <ShopBar
+              saveHandler={this.saveHandler}
+              cancelHandler={this.cancelHandler} 
+              addToCartHandler={this.addToCartHandler} />
             <div className="row shirt-row" classID="shirt">
               <Shirt shirt={newShirt} />
             </div>
           </div>
+
           <div className="col-12 col-sm-12 col-md-3" classID="configbar">
             <ConfigButtonBar
               colorHandler={this.colorHandler}
@@ -56,6 +52,7 @@ class Config extends Component {
               captionHandler={this.captionHandler}
               styleHandler={this.styleHandler} />
           </div>
+
         </div>
     );
   }
