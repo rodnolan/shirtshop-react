@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
 import './Config.css';
 import Shirt from '../../components/Shirt/Shirt';
+import StatusBar from '../../components/StatusBar/StatusBar';
 import ShirtModel from '../../model/ShirtModel';
+import ConfigButtonBar from './ConfigButtonBar';
 
 
 class Config extends Component {
+  colorHandler() {
+    console.log("colorHandler");
+  }
+  sizeHandler() {
+    console.log("sizeHandler");
+  }
+  captionHandler() {
+    console.log("captionHandler");
+  }
+  styleHandler() {
+    console.log("styleHandler");
+  }
+
+
   render() {
+    const newShirt = new ShirtModel(-1, "L", true, "this is an awesome caption", "red");
     return (
         <div className="main-column row">
           <div className = "col-12 col-sm-12 col-md-3" classID ="statuslist">
             <div className="row">
-              <div className="col-3 col-sm-3 col-md-12" classID="status-color">status-color</div>
-              <div className="col-3 col-sm-3 col-md-12" classID="status-style">status-style</div>
-              <div className="col-3 col-sm-3 col-md-12" classID="status-size">status-size</div>
-              <div className="col-3 col-sm-3 col-md-12" classID="status-cost">status-cost</div>
+              <StatusBar shirt={newShirt} />
             </div>
           </div>
           <div className = "col-12 col-sm-12 col-md-6" classID ="content">
@@ -24,14 +38,15 @@ class Config extends Component {
               <button type="button" className="btn btn-md col-4" classID="shop-cart"><i className="fa fa-cart-plus" aria-hidden="true">Cart</i></button>
             </div>
             <div className = "row shirt-row" classID ="shirt">
-              <Shirt shirt={new ShirtModel(-1, "", false, "", "")} />
+              <Shirt shirt={newShirt} />
             </div>
           </div>
           <div className = "col-12 col-sm-12 col-md-3" classID="configbar">
-            <button type="button" className="col-3 col-sm-3 col-md-12 btn-md" classID="config-color"><i className="fa fa-adjust" aria-hidden="true"></i>Color</button>
-            <button type="button" className="col-3 col-sm-3 col-md-12 btn-md" classID="config-style"><i className="fa fa-shirtsinbulk" aria-hidden="true"></i>Style</button>
-            <button type="button" className="col-3 col-sm-3 col-md-12 btn-md" classID="config-size"><i className="fa fa-arrows-v" aria-hidden="true"></i>Size</button>
-            <button type="button" className="col-3 col-sm-3 col-md-12 btn-md" classID="config-caption"><i className="fa fa-font" aria-hidden="true"></i>Caption</button>
+            <ConfigButtonBar
+              colorHandler={this.colorHandler}
+              sizeHandler={this.sizeHandler}
+              captionHandler={this.captionHandler}
+              styleHandler={this.styleHandler} />
           </div>
         </div>
     );
