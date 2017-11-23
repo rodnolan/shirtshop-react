@@ -13,7 +13,7 @@ export default class ShirtModel {
         this.caption = caption;
         this.color = color;
 
-        let price = 10;
+        let price = 0;
         switch (size) {
             case 'S' :
                 price = 10;
@@ -23,6 +23,9 @@ export default class ShirtModel {
             break;
             case 'L' :
                 price = 12;
+            break;
+            default:
+                price = 0;
             break;
         }
         this.price = price;
@@ -40,6 +43,9 @@ export default class ShirtModel {
             break;
             case 'L' :
                 size = 'large';
+            break;
+            default: 
+                size = '';
             break;
         }
         return gender + ', ' + size + ', ' + this.color + ', $'+this.price;
