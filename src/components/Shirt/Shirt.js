@@ -31,7 +31,17 @@ const styles = {
     maxWidth: '100%',
     margin: '0 auto',
     padding: 50,
+    position: 'relative'
   },
+  captionContainer: {
+    backgroundColor: 'rgba(238, 238, 238, 0.3)',
+    backgroundAlpha: '.5',
+    position: 'relative',
+    top: '-65%',
+    left: '37.5%',
+    width: '25%',
+    textAlign: 'center'
+  }
 }
 
 class Shirt extends Component {
@@ -43,6 +53,7 @@ class Shirt extends Component {
     return (
       <div style={styles.shirtContainer}>
         <img src={imagePath} alt="shirt" style={styles.shirtImage} />
+        <div style={styles.captionContainer}>{this.props.shirt.caption}</div>
       </div>
     );
   }
