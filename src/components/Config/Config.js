@@ -8,16 +8,17 @@ import ConfigButtonBar from './ConfigButtonBar';
 
 class Config extends Component {
   colorHandler() {
-    console.log("colorHandler");
+    alert("colorHandler");
+
   }
   sizeHandler() {
-    console.log("sizeHandler");
+    alert("sizeHandler");
   }
   captionHandler() {
-    console.log("captionHandler");
+    alert("captionHandler");
   }
   styleHandler() {
-    console.log("styleHandler");
+    alert("styleHandler");
   }
 
 
