@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './Config.css';
+import Shirt from '../../components/Shirt/Shirt';
+import ShirtModel from '../../model/ShirtModel';
+
 
 class Config extends Component {
   render() {
     return (
         <div className="main-column row">
-          {/* <p className="Config">Config</p> */}
           <div className = "col-12 col-sm-12 col-md-3" classID ="statuslist">
             <div className="row">
               <div className="col-3 col-sm-3 col-md-12" classID="status-color">status-color</div>
@@ -21,7 +23,9 @@ class Config extends Component {
               <button type="button" className="btn btn-md col-4" classID="shop-cancel"><i className="fa fa-ban" aria-hidden="true">Cancel</i></button>
               <button type="button" className="btn btn-md col-4" classID="shop-cart"><i className="fa fa-cart-plus" aria-hidden="true">Cart</i></button>
             </div>
-            <div className = "row shirt-row" classID ="shirt">shirt area</div>
+            <div className = "row shirt-row" classID ="shirt">
+              <Shirt shirt={new ShirtModel(-1, "", false, "", "")} />
+            </div>
           </div>
           <div className = "col-12 col-sm-12 col-md-3" classID="configbar">
             <button type="button" className="col-3 col-sm-3 col-md-12 btn-md" classID="config-color"><i className="fa fa-adjust" aria-hidden="true"></i>Color</button>
