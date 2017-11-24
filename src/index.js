@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './carousel.css';
 import ShirtShop from './App';
 import registerServiceWorker from './registerServiceWorker';
 
