@@ -48,6 +48,10 @@ div, button {
   height: 85%;
 }
 
+.myshirt {
+  align-content: center;
+}
+
 #root {
   height: 100%;
 }
