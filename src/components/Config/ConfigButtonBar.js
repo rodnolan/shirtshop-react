@@ -8,7 +8,6 @@ class ConfigButtonBar extends Component {
       <button
         type="button"
         className="cnfgBarBtn col-3 col-sm-3 col-md-12 btn btn-primary"
-        classID="config-color"
         onClick={this.props.colorHandler}
       >
         <i className="fa fa-adjust" aria-hidden="true" /> Color
@@ -16,7 +15,6 @@ class ConfigButtonBar extends Component {
       <button
         type="button"
         className="cnfgBarBtn col-3 col-sm-3 col-md-12 btn btn-primary"
-        classID="config-style"
         onClick={this.props.styleHandler}
       >
         <i className="fa fa-shirtsinbulk" aria-hidden="true" /> Style
@@ -24,7 +22,6 @@ class ConfigButtonBar extends Component {
       <button
         type="button"
         className="cnfgBarBtn col-3 col-sm-3 col-md-12 btn btn-primary"
-        classID="config-size"
         onClick={this.props.sizeHandler}
       >
         <i className="fa fa-arrows-v" aria-hidden="true" /> Size
@@ -32,7 +29,6 @@ class ConfigButtonBar extends Component {
       <button
         type="button"
         className="cnfgBarBtn col-3 col-sm-3 col-md-12 btn btn-primary"
-        classID="config-caption"
         onClick={this.props.captionHandler}
       >
         <i className="fa fa-font" aria-hidden="true" /> Caption
