@@ -6,17 +6,17 @@ import ShirtModel from '../../model/ShirtModel';
 const options = {
   men: {
     placeholder: require('../../images/m-blank.png'),
-    white :      require('../../images/m-white.png'),
-    black:       require('../../images/m-black.png'),
-    red:         require('../../images/m-red.png'),
-    blue:        require('../../images/m-blue.png')
+    white: require('../../images/m-white.png'),
+    black: require('../../images/m-black.png'),
+    red: require('../../images/m-red.png'),
+    blue: require('../../images/m-blue.png')
   },
   women: {
     placeholder: require('../../images/w-blank.png'),
-    white :      require('../../images/w-white.png'),
-    black:       require('../../images/w-black.png'),
-    red:         require('../../images/w-red.png'),
-    blue:        require('../../images/w-blue.png')
+    white: require('../../images/w-white.png'),
+    black: require('../../images/w-black.png'),
+    red: require('../../images/w-red.png'),
+    blue: require('../../images/w-blue.png')
   }
 };
 
@@ -42,12 +42,13 @@ const styles = {
     width: '25%',
     textAlign: 'center'
   }
-}
+};
 
 class Shirt extends Component {
   render() {
     let gender = this.props.shirt.isMens ? 'men' : 'women';
-    let color = this.props.shirt.color === '' ? 'placeholder' : this.props.shirt.color;
+    let color =
+      this.props.shirt.color === '' ? 'placeholder' : this.props.shirt.color;
     let imagePath = options[gender][color];
 
     return (
@@ -61,9 +62,9 @@ class Shirt extends Component {
 
 Shirt.propTypes = {
   shirt: PropTypes.instanceOf(ShirtModel)
-}
+};
 Shirt.defaultProps = {
   shirt: null
-}
+};
 
 export default Shirt;
