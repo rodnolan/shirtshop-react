@@ -48,7 +48,6 @@ class ShirtShop extends React.Component {
         <div>
           <NavBar />
           <hr/>
-          {/* <Route exact path="/" component={ShirtList}/> */}
           <Route exact path="/" render={() => <ShirtList shirts={this.state.shirts} />} />
           <Route path="/config" component={Config}/>
           <Route path="/cart" component={Cart}/>
