@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ShirtListRow.css';
-import ShirtModel from './../../model/ShirtModel'
+// import ShirtModel from './../../model/ShirtModel' //Commented this row to prevent warnings on the console.
 
 class ShirtListRow extends Component {
   render = (props) => {
