@@ -19,18 +19,26 @@ class Cart extends Component {
         {id: 4, price: '12', size: 'L', color: 'black', style: 'mens', caption: 'my shirt four'},
         {id: 5, price: '10', size: 'S', color: 'red', style: 'mens', caption: 'my shirt one'}
       ],
+      // cartItems: this.props.cartItems, //This doesn't work either through the router component. Returns undefined. Part of GitHub Issue #20
       
+      //Imports the regions for the form, including countries, provinces and states (called "unitedstates" to avoid confusion)
       regions: regions
-      //Ideally, this will import from an external file, region.js
       
     }  
   }
 
-  // This function will take the items in the cart (the quantity, etc.), the form submission and send it to the storage.
+  // This function will take the items in the cart (the quantity, etc.), the form submission and send it to the storage. GitHub Issue #14
   completeOrder(){
+    let permanentOrders = [] //This sets up the box that will ultimately be sent to the permanent storage
+    //Order will be made up of:
+    //  1. a randomly generated OrderID
+    //  2. details of the order as an array of objects that will be stored, including the total cost.
+    //  3. the shipping details, including when the order was completed, perhaps by formatted date stamp
+
 
   }
 
+//This is an example from Wes Bos's React Course. Leaving as an example, but this should probably go into the app.
   // addFish(fish) {
   //   //update our state
   //   const fishes = {...this.state.fishes};
@@ -42,6 +50,7 @@ class Cart extends Component {
   // }
 
   render() {
+    // const {cartItems} = this.props; <-- Was attempting to get the props, but there is an error having to do with the router.
     return (
       <div className="row">
         <div className="col">
@@ -69,11 +78,14 @@ class Cart extends Component {
             <tfoot>
               <tr>
                 <td colSpan="3">Subtotal</td>
+                {/* This total amount should be calculated based on sum [[item price] * qty] */}
                 <td colSpan="2">$12.00</td>
               </tr>
             </tfoot>
             <tbody>
-              {/* Each row should be sent to a separate constructor. I've put in a static one for now. Even though this is the id of the static details right now, it will actually be the ID of the cart item that is auto-generated */} 
+              {/* Each row should be sent to a separate constructor. I've put in a static one for now. GitHub Issue #16
+            
+              Even though this is the id of the static details right now, it will actually be the ID of the cart item that is auto-generated. GitHub Issue #19 */} 
               {/* {console.log(this.state.regions.unitedstates.al)} */}
               {console.log(this.state.cartItems[0])}
               {(this.state.cartItems).map((cartItem, i) => (
@@ -82,7 +94,6 @@ class Cart extends Component {
                   {this.state.cartItems[i].id}
                 </td>
                 <td className ="cartDesc">
-                  {/* <ShirtListRow />  Ideally, this construction would be exactly the same as the list row, but the data would be pulled from the order items, not the ShirtList. This will be looped over as many times as is in the "Cart" or "Order". Just beside this we need to build in a Quantity and a Total and a Cancel */}
                   {this.state.cartItems[i].size}
                   {this.state.cartItems[i].color}
                   {this.state.cartItems[i].price}
@@ -97,6 +108,7 @@ class Cart extends Component {
                   <h4>$12.00</h4>
                 </td>
                 <td className = "cartCancel">
+                  {/* This button will update the currentCartItems to remove the item by ID from the state. GitHub Issue #21 */}
                   <button className="btn btn-danger"><i className="fa fa-times" aria-hidden="true"></i></button>
                 </td>
               </tr>
