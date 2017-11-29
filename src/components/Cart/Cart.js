@@ -1,7 +1,7 @@
 // Just a thought: Perhaps this "page" should be broken up into two separate components.
 import React, { Component } from 'react';
 import './Cart.css';
-import countries from './countries'; 
+// import countries from './countries'; 
 //import ShirtListRow from './../ShirtListRow'; //For some reason I'm getting an error that it cannot find this component when I try to import it.
 
 class Cart extends Component {
@@ -12,17 +12,22 @@ class Cart extends Component {
 
     // Set the initial state
     this.state = {
+
+// **** These are working fine, unless Rod needs to change them. ****
+    // The entries of the form are also being updated to state, such as firstname: "Shanta", etc.      
+      // Sets the defaul country to "usa"
       country: "usa",
-      // The cart items are yet to be completed orders and will be brought down from the App itself once the storage piece is worked out. The orders are going to represent completed orders that are sent to the storage.
-      orders: {},
+      region: "",
 
-      // cartItems: this.props.cartItems, //GitHub Issue #20: CLOSED. Pass state down through router with render() and then use here as props.
+      // Imports the countries from the countries.js file and assigns it to the countries variable.
+      countries: countries,
+      regions: regions,
 
-      countries: countries
-
-      //Temporary storage for testing purposes. Triggered by the onclick event of the ship it button.
-      // shippingData: {}
+// **** These are temporary areas for testing purposes. Anything that works and is permanent goes above this line. ****
       
+      // The cart items are yet to be completed orders and will be brought down from the App itself once the storage piece is worked out. The orderDetails are going to represent completed orders that are sent to the storage. For now it's static for testing.
+      orderDetails: { }
+
     }  
   }
 
@@ -41,7 +46,11 @@ class Cart extends Component {
   }
 
   removeCartItem() {
-    //This will remove an item from the list and update the state.cartItems in App.js
+    // This will remove an item from the list and update the state.cartItems in App.js when clicking the "cancel" or remove button on each item. Ideally, this will also update the state in the App.js and trigger a re-render. Maybe we should do an "Are you sure you want to remove this? y/n".
+  }
+
+  updateCart() {
+    // check with Rod about what this is supposed to do... Might be redundant now.
   }
 
   //form stuff.  Github Issue #14 - This currently works for a single field. Going 
@@ -51,11 +60,15 @@ class Cart extends Component {
     this.setState({[field]: val});
     console.log('Field: ' + field);
     console.log('Value: ' + val);
+
+    if (field === 'country') {
+      this.setState({'region': ''});
+    }
   }
 
   render() {
     // const {cartItems} = this.props; <-- Was attempting to get the props, but there is an error having to do with the router.
-    let regions = this.state.countries[this.state.country].regions;
+    let regionsForSelectedCountry = regions[this.state.country];
 
     return (
       <div className="row">
@@ -74,16 +87,16 @@ class Cart extends Component {
                   <h6>Quantity</h6>
                 </th>
                 <th>
-                  <h6>Total</h6>
+                  <h6>Subtotal</h6>
                 </th>
                 <th>
-                  <h6>Cancel</h6>
+                  <h6>Remove</h6>
                 </th>
               </tr>
             </thead>
             <tfoot>
               <tr>
-                <th colSpan="3" scope="row">Subtotal</th>
+                <th colSpan="3" scope="row">Total</th>
                 {/* This total amount should be calculated based on sum [[item price] * qty] */}
                 <th colSpan="2">$Some calculated</th>
               </tr>
@@ -104,7 +117,6 @@ class Cart extends Component {
                   {this.props.cartItems[i].price}
                   {this.props.cartItems[i].style}
                   {this.props.cartItems[i].caption}
-
                 </td>
                 <td className = "cartQty">
                   <h5>3</h5>
@@ -141,28 +153,26 @@ class Cart extends Component {
             <div className="form-group">
               <label htmlFor="country">Country</label>
               {/* <input type="text" className="form-control col-form-label" id="country"  placeholder="Country" /> */}
-              <select className="form-control col-5"  value={this.state[this.id]} onChange={this.updateShippingInfo} id="country"> 
-              {
-                // Object.keys(this.state.countries)
-                  // .map((country, i) => 
-                      // (
-                        // <option value={country.name}>{country.name}</option>
-                      // )
-                  // )
-              }
-
-              </select>
-
-              <label htmlFor="provState">Province or State</label> {/* This entire list needs to change based on the conditional. For now, I've just put in the provinces. */}
-              <select className="form-control col-5" value={this.state[this.id]} onChange={this.updateShippingInfo} id="province"> 
-                {/* Currently gives Ontario only */}
-                {/* <option>{this.state.provinces.on}</option> */}
-                {/* <option>Select Your Province</option> */}
-                {Object.keys(regions).map((region, i) => (
-                    <option>{region}</option>
+              <select className="form-control col-5"  value={this.state.country} onChange={this.updateShippingInfo} id="country"> 
+                <option value="">Select a country</option>
+                {
+                  countries.map(
+                    (country) => <option value={country.id}>{country.name}</option>
                   )
-                )}
+                }
               </select>
+              <p>The id for the selected country is {this.state.country}</p>
+
+              <label htmlFor="provState">{this.state.country === 'canada' ? "Province" : "State"}</label> 
+              <select className="form-control col-5" value={this.state.region} onChange={this.updateShippingInfo} id="region"> 
+                <option value="">Select a {this.state.country === 'canada' ? "province" : "state"}</option>
+                {
+                  regionsForSelectedCountry.map(
+                    (region) => <option value={region}>{region}</option>
+                  )
+                }
+              </select>
+              <p>The selected region is {this.state.region}</p>
             </div>
             <div className="form-group">
               {/* The postal or zip code needs to be conditional upon the country to determine postal vs. zip */}
@@ -181,8 +191,90 @@ class Cart extends Component {
 
 export default Cart;
 
-//         <input
-//           type="text"
-//           value={this.state.name}
-//           onChange={this.handleNameChange}
-//         />
+const countries = [
+  {
+    id: "canada",
+    name: "Canada"
+  },
+  {
+    id: "usa",
+    name: "USA"
+  }
+];
+
+const regions = {
+  canada: [
+    "Alberta",
+    "British Columbia",
+    "Manitoba",
+    "New Brunswick",
+    "Newfoundland and Labrador",
+    "Nova Scotia",
+    "Nunavut",
+    "Northwest Territories",
+    "Ontario",
+    "Prince Edward Island",
+    "Quebec",
+    "Saskatchewan",
+    "Yukon"
+  ],
+  usa: [ 
+    "Alabama",
+    "Alaska",
+    "Arizona",
+    "Arkansas",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "District of Columbia",
+    "Delaware",
+    "Florida",
+    "Georgia",
+    "Hawaii",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Iowa",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Maine",
+    "Maryland",
+    "Massachusetts",
+    "Michigan",
+    "Minnesota",
+    "Mississippi",
+    "Missouri",
+    "Montana",
+    "Nebraska",
+    "Nevada",
+    "New Hampshire",
+    "New Jersey",
+    "New Mexico",
+    "New York",
+    "North Carolina",
+    "North Dakota",
+    "Ohio",
+    "Oklahoma",
+    "Oregon",
+    "Pennsylvania",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
+    "Tennessee",
+    "Texas",
+    "Utah",
+    "Vermont",
+    "Virginia",
+    "Washington",
+    "West Virginia",
+    "Wisconsin",
+    "Wyoming",
+    "American Samoa",
+    "Guam",
+    "Northern Mariana Islands",
+    "Puerto Rico",
+    "United States Minor Outlying Islands",
+    "Virgin Islands"
+  ]
+}
