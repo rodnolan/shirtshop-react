@@ -15,16 +15,9 @@ class Cart extends Component {
       country: "usa",
       // The cart items are yet to be completed orders and will be brought down from the App itself once the storage piece is worked out. The orders are going to represent completed orders that are sent to the storage.
       orders: {},
-      cartItems: [
-        {id: 1, price: '10', size: 'S', color: 'red', style: 'mens', caption: 'my shirt one'},
-        {id: 2, price: '11', size: 'M', color: 'blue', style: 'womens', caption: 'my shirt two'},
-        {id: 3, price: '12', size: 'L', color: 'white', style: 'womens', caption: 'my shirt three'},
-        {id: 4, price: '12', size: 'L', color: 'black', style: 'mens', caption: 'my shirt four'},
-        {id: 5, price: '10', size: 'S', color: 'red', style: 'mens', caption: 'my shirt one'}
-      ],
 
-      currentCartItems: [],
-      // cartItems: this.props.cartItems, //This doesn't work either through the router component. Returns undefined. Part of GitHub Issue #20
+      // cartItems: this.props.cartItems, //GitHub Issue #20: CLOSED. Pass state down through router with render() and then use here as props.
+
       countries: countries
 
       //Temporary storage for testing purposes. Triggered by the onclick event of the ship it button.
@@ -47,6 +40,10 @@ class Cart extends Component {
     //  3. the shipping details, including when the order was completed, perhaps by formatted date stamp
   }
 
+  removeCartItem() {
+    //This will remove an item from the list and update the state.cartItems in App.js
+  }
+
   //form stuff.  Github Issue #14 - This currently works for a single field. Going 
   updateShippingInfo = (event) => {
     let field = event.target.id;
@@ -64,31 +61,31 @@ class Cart extends Component {
       <div className="row">
         <div className="col">
           <h1 className="orderItems">Your Order</h1> {/* We should also include on the right the order number. Either that or upon completion of the order*/}
-          <table className="orderTable">
+          <table className="table table-striped table-hover table-sm table-sm">
             <thead>
               <tr>
                 <th>
-                  <h3>Item No.</h3>
+                  <h6>Item No.</h6>
                 </th>
                 <th>
-                  <h3>Description</h3>
+                  <h6>Description</h6>
                 </th>
                 <th>
-                  <h3>Quantity</h3>
+                  <h6>Quantity</h6>
                 </th>
                 <th>
-                  <h3>Total</h3>
+                  <h6>Total</h6>
                 </th>
                 <th>
-                  <h3>Cancel</h3>
+                  <h6>Cancel</h6>
                 </th>
               </tr>
             </thead>
             <tfoot>
               <tr>
-                <td colSpan="3">Subtotal</td>
+                <th colSpan="3" scope="row">Subtotal</th>
                 {/* This total amount should be calculated based on sum [[item price] * qty] */}
-                <td colSpan="2">$12.00</td>
+                <th colSpan="2">$Some calculated</th>
               </tr>
             </tfoot>
             <tbody>
@@ -96,24 +93,24 @@ class Cart extends Component {
             
               Even though this is the id of the static details right now, it will actually be the ID of the cart item that is auto-generated. GitHub Issue #19 */} 
              
-              {(this.state.cartItems).map((cartItem, i) => (
+              {(this.props.cartItems).map((cartItem, i) => (
               <tr className = "cartRow" > 
-                <td className="cartID" key={this.state.cartItems[i].id}>
-                  {this.state.cartItems[i].id}
-                </td>
+                <th className="cartID" scope="row" key={this.props.cartItems[i].id}>
+                  {this.props.cartItems[i].id}
+                </th>
                 <td className ="cartDesc">
-                  {this.state.cartItems[i].size}
-                  {this.state.cartItems[i].color}
-                  {this.state.cartItems[i].price}
-                  {this.state.cartItems[i].style}
-                  {this.state.cartItems[i].caption}
+                  {this.props.cartItems[i].size}
+                  {this.props.cartItems[i].color}
+                  {this.props.cartItems[i].price}
+                  {this.props.cartItems[i].style}
+                  {this.props.cartItems[i].caption}
 
                 </td>
                 <td className = "cartQty">
-                  <h4>3</h4>
+                  <h5>3</h5>
                 </td>
                 <td className = "cartCost">
-                  <h4>$12.00</h4>
+                  <h5>$12.00</h5>
                 </td>
                 <td className = "cartCancel">
                   {/* This button will update the currentCartItems to remove the item by ID from the state. GitHub Issue #21 */}
@@ -146,11 +143,11 @@ class Cart extends Component {
               {/* <input type="text" className="form-control col-form-label" id="country"  placeholder="Country" /> */}
               <select className="form-control col-5"  value={this.state[this.id]} onChange={this.updateShippingInfo} id="country"> 
               {
-                Object.keys(this.state.countries)
+                // Object.keys(this.state.countries)
                   // .map((country, i) => 
-                      (
-                        <option value={country.name}>{country.name}</option>
-                      )
+                      // (
+                        // <option value={country.name}>{country.name}</option>
+                      // )
                   // )
               }
 

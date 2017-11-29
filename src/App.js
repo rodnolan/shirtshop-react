@@ -14,7 +14,12 @@ class ShirtShop extends React.Component {
   constructor(){
     super();
     this.state = {
+      shirts: [],
       cartItems: [
+        {id: 1, price: '10', size: 'S', color: 'red', style: 'mens', caption: 'my shirt one'},
+        {id: 2, price: '11', size: 'M', color: 'blue', style: 'womens', caption: 'my shirt two'},
+        {id: 3, price: '12', size: 'L', color: 'white', style: 'womens', caption: 'my shirt three'},
+        {id: 4, price: '12', size: 'L', color: 'black', style: 'mens', caption: 'my shirt four'},
         {id: 5, price: '10', size: 'S', color: 'red', style: 'mens', caption: 'my shirt one'}
       ], //This will be populated by the "addToCart" function, triggered in the Config.js file and then sent to the Cart.js file for completion of order.
 
@@ -50,15 +55,24 @@ class ShirtShop extends React.Component {
         <div className="container-fluid">
           <NavBar />
           <hr/>
-          <Route exact path="/" component={ShirtList}/>
+          <Route
+            exact
+            path="/"
+            render={() => <ShirtList shirts={this.state.shirts} />}
+          />
           {/* Having trouble passing down props to the child components here as part of the router. Part of GitHub Issue #20 */}
-          <Route path="/config" component={Config} addToCart ={this.addToCart}/> {/*{addToCart()={this.state.addToCart()}} need to pass this down via props and a onClick event, something like onClick(e) => (e)... . Do I need to pass the return "item"? Double check*/}
-          <Route path="/cart" component={Cart } cartItems={this.state.cartItems}/>  
-          {/*{cartItems={this.state.cartItems}} need to pass this down via props AND add the key. Double check*/}
+          <Route 
+            path="/config" 
+            render={() => <Config addToCart ={this.state.addToCart} />} 
+          /> 
+          <Route 
+            path="/cart" 
+            render={() => <Cart cartItems={this.state.cartItems} />} 
+          />
         </div>
       </Router>
     )
   }
 }
 
-export default ShirtShop
+export default ShirtShop;
