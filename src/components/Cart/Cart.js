@@ -1,3 +1,4 @@
+// Just a thought: Perhaps this "page" should be broken up into two separate components.
 import React, { Component } from 'react';
 import './Cart.css';
 import regions from './regions' //This doesn't seem to want to import. 
@@ -7,9 +8,11 @@ class Cart extends Component {
   constructor(){
     super();
     this.completeOrder = this.completeOrder.bind(this);
+    this.shippingInfo = this.shippingInfo.bind(this);
 
     // Set the initial state
     this.state = {
+      testname: '',
       // The cart items are yet to be completed orders and will be brought down from the App itself once the storage piece is worked out. The orders are going to represent completed orders that are sent to the storage.
       orders: {},
       cartItems: [
@@ -19,35 +22,38 @@ class Cart extends Component {
         {id: 4, price: '12', size: 'L', color: 'black', style: 'mens', caption: 'my shirt four'},
         {id: 5, price: '10', size: 'S', color: 'red', style: 'mens', caption: 'my shirt one'}
       ],
+
+      currentCartItems: [],
       // cartItems: this.props.cartItems, //This doesn't work either through the router component. Returns undefined. Part of GitHub Issue #20
       
-      //Imports the regions for the form, including countries, provinces and states (called "unitedstates" to avoid confusion)
-      regions: regions
+      //Imports the regions for the form, including countries, provinces and states (called "unitedstates" to avoid confusion. This is good. Don't touch this.)
+      regions: regions,
+
+      //Temporary storage for testing purposes. Triggered by the onclick event of the ship it button.
+      shippingInfo: {}
       
     }  
   }
 
+  //This intermediary data will take the items from the App.js cartItems state and assign it to a temporary item here. GitHub Issue #18
+  componentWillMount(){
+    this.setState({currentCartItems: this.state.cartItems});
+  }
+
   // This function will take the items in the cart (the quantity, etc.), the form submission and send it to the storage. GitHub Issue #14
   completeOrder(){
-    let permanentOrders = [] //This sets up the box that will ultimately be sent to the permanent storage
+    //let permanentOrders = [] //This sets up the box that will ultimately be sent to the permanent storage. For now, we'll store it in state to get it working.
     //Order will be made up of:
     //  1. a randomly generated OrderID
     //  2. details of the order as an array of objects that will be stored, including the total cost.
     //  3. the shipping details, including when the order was completed, perhaps by formatted date stamp
-
-
   }
 
-//This is an example from Wes Bos's React Course. Leaving as an example, but this should probably go into the app.
-  // addFish(fish) {
-  //   //update our state
-  //   const fishes = {...this.state.fishes};
-  //   //add in our new fish
-  //   const timestamp = Date.now();
-  //   fishes[`fish-${timestamp}`] = fish;
-  //   //set state
-  //   this.setState({fishes: fishes});
-  // }
+  shippingInfo = (event) => {
+    this.setState({testname: event.target.value});
+      //this.setState({shippingInfo: blah}): //form stuff.  Github Issue #14
+    console.log(this.state.testname);
+  }
 
   render() {
     // const {cartItems} = this.props; <-- Was attempting to get the props, but there is an error having to do with the router.
@@ -86,8 +92,7 @@ class Cart extends Component {
               {/* Each row should be sent to a separate constructor. I've put in a static one for now. GitHub Issue #16
             
               Even though this is the id of the static details right now, it will actually be the ID of the cart item that is auto-generated. GitHub Issue #19 */} 
-              {/* {console.log(this.state.regions.unitedstates.al)} */}
-              {console.log(this.state.cartItems[0])}
+             
               {(this.state.cartItems).map((cartItem, i) => (
               <tr className = "cartRow" > 
                 <td className="cartID" key={this.state.cartItems[i].id}>
@@ -116,21 +121,33 @@ class Cart extends Component {
           )}
             </tbody>
           </table>
-          <form className="form-ship">
+          <h2 classID="shipHeader">Shipping Details</h2>
+          <form className="form-ship form-horizontal"> {/* form-horizontal from Bootstrap is a decent choice, provided that we add some padding both on the inside of the form container, as well as on the elements. Maybe on the .form-control, which is applied to each of the form elements*/}
+              <div className="form-group">
+                <label htmlFor="firstName">First Name: </label><input type="text" value={this.state.testname} onChange={this.shippingInfo} className="form-control col-form-label col-4" classID="firstName"  placeholder="First Name" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="lastName">Last Name: </label><input type="text" className="form-control col-form-label col-4" classID="lastName"  placeholder="Last Name" />
+              </div>
             <div className="form-group">
-              <label htmlFor="firstName">First Name</label><input type="text" className="form-control col-form-label" classID="firstName"  placeholder="First Name" />
-              <label htmlFor="lastName">Email address</label><input type="text" className="form-control col-form-label" classID="lastName"  placeholder="Last Name" />
               <label htmlFor="email">Email address</label><input type="email" className="form-control col-form-label" classID="email"  placeholder="Email" />
+            </div>
+            <div className="form-group">
               <label htmlFor="address">Address</label><input type="text" className="form-control col-form-label" classID="cddress"  placeholder="Street Address" />
+            </div>
+            <div className="form-group">
+                <label htmlFor="city"></label>City<input type="text" className="form-control col-form-label col-6" classID="city"  placeholder="City" />
+            </div>
+            <div className="form-group">
               <label htmlFor="country">Country</label>
               {/* <input type="text" className="form-control col-form-label" classID="country"  placeholder="Country" /> */}
-              <select className="form-control"  classID="countrySelector"> 
+              <select className="form-control col-5"  classID="countrySelector"> 
                 {/* <option selected value="default">Select Your Country</option> */} {/* This should be the default & disabled, but it stops the form from working. */}
                 <option value={this.state.regions.countries.canada}>{this.state.regions.countries.canada}</option>
                 <option value={this.state.regions.countries.usa}>{this.state.regions.countries.usa}</option>
               </select>
               <label htmlFor="provState">Province or State</label> {/* This entire list needs to change based on the conditional. For now, I've just put in the provinces. */}
-              <select className="form-control" classID="provinceSelector"> 
+              <select className="form-control col-5" classID="provinceSelector"> 
                 {/* Currently gives Ontario only */}
                 {/* <option>{this.state.provinces.on}</option> */}
                 {/* <option>Select Your Province</option> */}
@@ -139,19 +156,21 @@ class Cart extends Component {
                   )
                 )}
               </select>
-              <select className="form-control" classID="unitedStateSelector"> {/* Need to have this autogenerate*/}
+              <select className="form-control col-5" classID="unitedStateSelector"> {/* Need to have this autogenerate*/}
                 {/* <option value="" >Select Your State</option> */}
                 {Object.keys(this.state.regions.unitedstates).map((unitedstate, i) => (
                     <option>{this.state.regions.unitedstates[unitedstate]}</option>
                   )
                 )}
               </select>
-
-              <label htmlFor="city"></label>City<input type="text" className="form-control col-form-label" classID="city"  placeholder="City" />
+            </div>
+            <div className="form-group">
               {/* The postal or zip code needs to be conditional upon the country to determine postal vs. zip */}
-              <label htmlFor="postZip">Postal or Zip Code</label><input type="text" className="form-control col-form-label" classID="postZip"  placeholder="Postal or Zip Code" />
+              <label htmlFor="postZip">Postal or Zip Code</label><input type="text" className="form-control col-form-label col-4" classID="postZip"  placeholder="Postal or Zip Code" />
+            </div>
+            <div className="form-group">
               <label htmlFor="specialInstructions">Special Instructions</label><textarea className="form-control col-form-label" classID="specialInstructions" rows="3" placeholder="Anything we should know about?"></textarea>
-              <button type="submit" className="btn btn-primary">Ship It!</button>
+              <button type="submit" className="btn btn-primary" >Ship It!</button>
             </div>
           </form>
         </div>
@@ -161,3 +180,9 @@ class Cart extends Component {
 }
 
 export default Cart;
+
+//         <input
+//           type="text"
+//           value={this.state.name}
+//           onChange={this.handleNameChange}
+//         />

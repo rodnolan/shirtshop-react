@@ -22,12 +22,27 @@ class ShirtShop extends React.Component {
     this.addToCart = this.addToCart.bind(this);
   }
 
-  // This is pretty "pseudo code" at the moment. Need to check if it works. Just wanted to get it down.
+  // Need to check if it works. Just wanted to get it down. Hook it into the Config "Add To Cart" button. GitHub Issue #22.
   addToCart(item) {
-    let currentCart = this.state.cartItems
-    currentCart.push(item)
-    this.setState.cartItems = currentCart
+    //Set temporary item for the state to be modified. Don't update the state directly.
+    let cartItemsTemp = {...this.state.cartItems};
+    //Add new item to the cart, using timestamp as our key for now. 
+    const timestamp = Date.now();
+    cartItemsTemp[`item-${timestamp}`] = item; 
+    // currentCart.push(item)
+    this.setState({cartItems: cartItemsTemp});
   }
+
+  //This is an example from Wes Bos's React Course. Leaving as an example, but this should probably go into the app.
+  // addFish(fish) {
+  //   //update our state
+  //   const fishes = {...this.state.fishes};
+  //   //add in our new fish
+  //   const timestamp = Date.now();
+  //   fishes[`fish-${timestamp}`] = fish;
+  //   //set state
+  //   this.setState({fishes: fishes});
+  // }
 
   render() {
     return (
