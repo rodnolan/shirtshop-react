@@ -1,4 +1,9 @@
 p.Cart {
-    color: darkcyan;
-    background-color: lightblue;
+  color: darkcyan;
+  background-color: lightblue;
+}
+
+/* Provides some space between the table and the form */
+table {
+  margin-bottom: 30px;
 }

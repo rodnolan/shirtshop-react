@@ -1,0 +1,146 @@
+Cart.js:22 Uncaught TypeError: Cannot read property 'cartItems' of undefined
+    at new Cart (Cart.js:22)
+    at constructClassInstance (react-dom.development.js:6342)
+    at updateClassComponent (react-dom.development.js:7868)
+    at beginWork (react-dom.development.js:8253)
+    at performUnitOfWork (react-dom.development.js:10244)
+    at workLoop (react-dom.development.js:10308)
+    at HTMLUnknownElement.callCallback (react-dom.development.js:540)
+    at Object.invokeGuardedCallbackDev (react-dom.development.js:579)
+    at invokeGuardedCallback (react-dom.development.js:436)
+    at renderRoot (react-dom.development.js:10386)
+    at performWorkOnRoot (react-dom.development.js:11000)
+    at performWork (react-dom.development.js:10952)
+    at requestWork (react-dom.development.js:10861)
+    at scheduleWorkImpl (react-dom.development.js:10744)
+    at scheduleWork (react-dom.development.js:10706)
+    at scheduleTopLevelUpdate (react-dom.development.js:11177)
+    at Object.updateContainer (react-dom.development.js:11215)
+    at react-dom.development.js:15232
+    at Object.unbatchedUpdates (react-dom.development.js:11086)
+    at renderSubtreeIntoContainer (react-dom.development.js:15231)
+    at Object.render (react-dom.development.js:15296)
+    at Object../src/index.js (index.js:8)
+    at __webpack_require__ (bootstrap e28c050a558ab9c61b3e:678)
+    at fn (bootstrap e28c050a558ab9c61b3e:88)
+    at Object.0 (registerServiceWorker.js:108)
+    at __webpack_require__ (bootstrap e28c050a558ab9c61b3e:678)
+    at ./node_modules/ansi-regex/index.js.module.exports (bootstrap e28c050a558ab9c61b3e:724)
+    at bundle.js:728
+Cart @ Cart.js:22
+constructClassInstance @ react-dom.development.js:6342
+updateClassComponent @ react-dom.development.js:7868
+beginWork @ react-dom.development.js:8253
+performUnitOfWork @ react-dom.development.js:10244
+workLoop @ react-dom.development.js:10308
+callCallback @ react-dom.development.js:540
+invokeGuardedCallbackDev @ react-dom.development.js:579
+invokeGuardedCallback @ react-dom.development.js:436
+renderRoot @ react-dom.development.js:10386
+performWorkOnRoot @ react-dom.development.js:11000
+performWork @ react-dom.development.js:10952
+requestWork @ react-dom.development.js:10861
+scheduleWorkImpl @ react-dom.development.js:10744
+scheduleWork @ react-dom.development.js:10706
+scheduleTopLevelUpdate @ react-dom.development.js:11177
+updateContainer @ react-dom.development.js:11215
+(anonymous) @ react-dom.development.js:15232
+unbatchedUpdates @ react-dom.development.js:11086
+renderSubtreeIntoContainer @ react-dom.development.js:15231
+render @ react-dom.development.js:15296
+./src/index.js @ index.js:8
+__webpack_require__ @ bootstrap e28c050a558ab9c61b3e:678
+fn @ bootstrap e28c050a558ab9c61b3e:88
+0 @ registerServiceWorker.js:108
+__webpack_require__ @ bootstrap e28c050a558ab9c61b3e:678
+./node_modules/ansi-regex/index.js.module.exports @ bootstrap e28c050a558ab9c61b3e:724
+(anonymous) @ bundle.js:728
+index.js:2177 The above error occurred in the <Cart> component:
+    in Cart (created by Route)
+    in Route (at App.js:40)
+    in div (at App.js:35)
+    in Router (created by BrowserRouter)
+    in BrowserRouter (at App.js:34)
+    in ShirtShop (at index.js:8)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://fb.me/react-error-boundaries to learn more about error boundaries.
+__stack_frame_overlay_proxy_console__ @ index.js:2177
+logCapturedError @ react-dom.development.js:9769
+captureError @ react-dom.development.js:10560
+renderRoot @ react-dom.development.js:10411
+performWorkOnRoot @ react-dom.development.js:11000
+performWork @ react-dom.development.js:10952
+requestWork @ react-dom.development.js:10861
+scheduleWorkImpl @ react-dom.development.js:10744
+scheduleWork @ react-dom.development.js:10706
+scheduleTopLevelUpdate @ react-dom.development.js:11177
+updateContainer @ react-dom.development.js:11215
+(anonymous) @ react-dom.development.js:15232
+unbatchedUpdates @ react-dom.development.js:11086
+renderSubtreeIntoContainer @ react-dom.development.js:15231
+render @ react-dom.development.js:15296
+./src/index.js @ index.js:8
+__webpack_require__ @ bootstrap e28c050a558ab9c61b3e:678
+fn @ bootstrap e28c050a558ab9c61b3e:88
+0 @ registerServiceWorker.js:108
+__webpack_require__ @ bootstrap e28c050a558ab9c61b3e:678
+./node_modules/ansi-regex/index.js.module.exports @ bootstrap e28c050a558ab9c61b3e:724
+(anonymous) @ bundle.js:728
+Cart.js:22 Uncaught TypeError: Cannot read property 'cartItems' of undefined
+    at new Cart (Cart.js:22)
+    at constructClassInstance (react-dom.development.js:6342)
+    at updateClassComponent (react-dom.development.js:7868)
+    at beginWork (react-dom.development.js:8253)
+    at performUnitOfWork (react-dom.development.js:10244)
+    at workLoop (react-dom.development.js:10308)
+    at HTMLUnknownElement.callCallback (react-dom.development.js:540)
+    at Object.invokeGuardedCallbackDev (react-dom.development.js:579)
+    at invokeGuardedCallback (react-dom.development.js:436)
+    at renderRoot (react-dom.development.js:10386)
+    at performWorkOnRoot (react-dom.development.js:11000)
+    at performWork (react-dom.development.js:10952)
+    at requestWork (react-dom.development.js:10861)
+    at scheduleWorkImpl (react-dom.development.js:10744)
+    at scheduleWork (react-dom.development.js:10706)
+    at scheduleTopLevelUpdate (react-dom.development.js:11177)
+    at Object.updateContainer (react-dom.development.js:11215)
+    at react-dom.development.js:15232
+    at Object.unbatchedUpdates (react-dom.development.js:11086)
+    at renderSubtreeIntoContainer (react-dom.development.js:15231)
+    at Object.render (react-dom.development.js:15296)
+    at Object../src/index.js (index.js:8)
+    at __webpack_require__ (bootstrap e28c050a558ab9c61b3e:678)
+    at fn (bootstrap e28c050a558ab9c61b3e:88)
+    at Object.0 (registerServiceWorker.js:108)
+    at __webpack_require__ (bootstrap e28c050a558ab9c61b3e:678)
+    at ./node_modules/ansi-regex/index.js.module.exports (bootstrap e28c050a558ab9c61b3e:724)
+    at bundle.js:728
+Cart @ Cart.js:22
+constructClassInstance @ react-dom.development.js:6342
+updateClassComponent @ react-dom.development.js:7868
+beginWork @ react-dom.development.js:8253
+performUnitOfWork @ react-dom.development.js:10244
+workLoop @ react-dom.development.js:10308
+callCallback @ react-dom.development.js:540
+invokeGuardedCallbackDev @ react-dom.development.js:579
+invokeGuardedCallback @ react-dom.development.js:436
+renderRoot @ react-dom.development.js:10386
+performWorkOnRoot @ react-dom.development.js:11000
+performWork @ react-dom.development.js:10952
+requestWork @ react-dom.development.js:10861
+scheduleWorkImpl @ react-dom.development.js:10744
+scheduleWork @ react-dom.development.js:10706
+scheduleTopLevelUpdate @ react-dom.development.js:11177
+updateContainer @ react-dom.development.js:11215
+(anonymous) @ react-dom.development.js:15232
+unbatchedUpdates @ react-dom.development.js:11086
+renderSubtreeIntoContainer @ react-dom.development.js:15231
+render @ react-dom.development.js:15296
+./src/index.js @ index.js:8
+__webpack_require__ @ bootstrap e28c050a558ab9c61b3e:678
+fn @ bootstrap e28c050a558ab9c61b3e:88
+0 @ registerServiceWorker.js:108
+__webpack_require__ @ bootstrap e28c050a558ab9c61b3e:678
+./node_modules/ansi-regex/index.js.module.exports @ bootstrap e28c050a558ab9c61b3e:724
+(anonymous) @ bundle.js:728

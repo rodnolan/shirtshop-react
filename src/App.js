@@ -59,7 +59,11 @@ class ShirtShop extends React.Component {
             path="/"
             render={() => <ShirtList shirts={this.state.shirts} />}
           />
-          <Route path="/config" component={Config} />
+          {/* Having trouble passing down props to the child components here as part of the router. Part of GitHub Issue #20 */}
+          <Route
+            path="/config"
+            render={() => <Config addToCart={this.state.addToCart} />}
+          />
           <Route
             path="/cart"
             render={() => <Cart cartItems={this.state.cartItems} />}
