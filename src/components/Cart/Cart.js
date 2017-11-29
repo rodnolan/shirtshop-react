@@ -3,19 +3,14 @@ import './Cart.css';
 
 class Cart extends Component {
   render() {
+    return <div>{this.props.cartItems.map(this.renderCartItem)}</div>;
+  }
+
+  renderCartItem(item) {
     return (
-      <div>
-        <h2 className="Cart">cart</h2>
-        <p>we haven't given much thought to this component yet but...</p>
-        <ul>
-          <li>
-            list of items with quantity and sub total and a remove from cart
-            button
-          </li>
-          <li>total</li>
-          <li>shipping address</li>
-          <li>purchase button</li>
-        </ul>
+      <div key={item.id}>
+        {item.id} | {item.shirt.color} | {item.shirt.size} | {item.quantity} |{' '}
+        {item.subTotal}
       </div>
     );
   }

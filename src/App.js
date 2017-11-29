@@ -8,12 +8,14 @@ import Config from './components/Config/Config';
 import NavBar from './components/NavBar/NavBar';
 import store from 'store';
 import ShirtModel from './model/ShirtModel';
+import LineItemModel from './model/LineItemModel';
 
 class ShirtShop extends React.Component {
   constructor() {
     super();
     this.state = {
-      shirts: []
+      shirts: [],
+      cartItems: []
     };
   }
 
@@ -36,6 +38,14 @@ class ShirtShop extends React.Component {
     let storedShirts = store.get('shirts');
     this.setState({ shirts: storedShirts });
     console.log(storedShirts.length + ' shirts found in storage');
+
+    this.setState({
+      cartItems: [
+        new LineItemModel(1, sampleData[0], 4),
+        new LineItemModel(2, sampleData[4], 3),
+        new LineItemModel(3, sampleData[2], 1)
+      ]
+    });
   };
 
   render() {
@@ -50,7 +60,10 @@ class ShirtShop extends React.Component {
             render={() => <ShirtList shirts={this.state.shirts} />}
           />
           <Route path="/config" component={Config} />
-          <Route path="/cart" component={Cart} />
+          <Route
+            path="/cart"
+            render={() => <Cart cartItems={this.state.cartItems} />}
+          />
         </div>
       </Router>
     );
