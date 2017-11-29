@@ -147,11 +147,11 @@ class Cart extends Component {
               <select className="form-control col-5"  value={this.state[this.id]} onChange={this.updateShippingInfo} id="country"> 
               {
                 Object.keys(this.state.countries)
-                  .map((country, i) => 
+                  // .map((country, i) => 
                       (
                         <option value={country.name}>{country.name}</option>
                       )
-                  )
+                  // )
               }
 
               </select>
