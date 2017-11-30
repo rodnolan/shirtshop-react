@@ -9,7 +9,6 @@ class Cart extends Component {
     super();
     // this.completeOrder = this.completeOrder.bind(this);
     this.updateShippingInfo = this.updateShippingInfo.bind(this);
-    // this.renderCartItem = this.renderCartItem.bind(this);
 
     // Set the initial state
     this.state = {
@@ -30,11 +29,6 @@ class Cart extends Component {
     };
   }
 
-  //This intermediary data will take the items from the App.js cartItems state and assign it to a temporary item here. GitHub Issue #18. UPDATE November 29: This may not be needed at all. Going to read directly from App.state.
-  // componentWillMount(){
-  //   this.setState({currentCartItems: this.state.cartItems});
-  // }
-
   // This function will take the items in the cart (the quantity, etc.), the form submission and send it to the storage. GitHub Issue #14
   completeOrder() {
     //let permanentOrders = [] //This sets up the box that will ultimately be sent to the permanent storage. For now, we'll store it in state to get it working.
@@ -47,16 +41,6 @@ class Cart extends Component {
   removeCartItem() {
     // This will remove an item from the list and update the state.cartItems in App.js when clicking the "cancel" or remove button on each item. Ideally, this will also update the state in the App.js and trigger a re-render. Maybe we should do an "Are you sure you want to remove this? y/n".
   }
-
-  // TODO: SN - Add this piece into the current file.
-  // renderCartItem(item) {
-  //   return (
-  //     <div key={item.id}>
-  //       {item.id} | {item.shirt.color} | {item.shirt.size} | {item.quantity} |{' '}
-  //       {item.subTotal}
-  //       {/* <div>{this.props.cartItems.map(this.renderCartItem)}</div>; */}
-  //     </div>
-  // )}
 
   //form stuff.  Github Issue #14
   updateShippingInfo = event => {
@@ -73,6 +57,13 @@ class Cart extends Component {
 
   render() {
     let regionsForSelectedCountry = regions[this.state.country];
+    // Solves Issue #18 of the Total. Other items in issue #18 were solved through props.
+    let total = 0;
+    if (this.props.cartItems.length > 0) {
+      total = this.props.cartItems
+        .map(lim => lim.subTotal)
+        .reduce((previous, current) => previous + current);
+    }
 
     return (
       <div className="row">
@@ -105,42 +96,28 @@ class Cart extends Component {
                   Total
                 </th>
                 {/* This total amount should be calculated based on sum [[item price] * qty] */}
-                <th colSpan="2">$Some calculated</th>
+                <th colSpan="2">{total}</th>
               </tr>
             </tfoot>
+
             <tbody>
               {/* Each row should be sent to a separate constructor. I've put in a static one for now. GitHub Issue #16
             
               Even though this is the id of the static details right now, it will actually be the ID of the cart item that is auto-generated. GitHub Issue #19 */}
 
-              {this.props.cartItems.map((cartItem, i) => (
-                <tr className="cartRow">
-                  <th
-                    className="cartID"
-                    scope="row"
-                    // key={this.props.cartItems[i].id} //SN's old implementation
-                    key={cartItem.id} // RN's new implementation
-                  >
-                    {this.props.cartItems[i].id}
+              {this.props.cartItems.map(cartItem => (
+                <tr className="cartRow" key={cartItem.id}>
+                  <th className="cartID" scope="row">
+                    {cartItem.id}
                   </th>
                   <td className="cartDesc">
-                    {/* SN's old implementation */}
-                    {/* {this.props.cartItems[i].size}
-                    {this.props.cartItems[i].color}
-                    {this.props.cartItems[i].price}
-                    {this.props.cartItems[i].style}
-                    {this.props.cartItems[i].caption} */}
-                    <div key={cartItem.id}>
-                      {cartItem.id} | {cartItem.shirt.color} |{' '}
-                      {cartItem.shirt.size} | {cartItem.quantity} |{' '}
-                      {cartItem.subTotal}
-                    </div>
+                    {/* {cartItem.getDescription()} */}
                   </td>
                   <td className="cartQty">
-                    <h5>3</h5>
+                    <h5>{cartItem.quantity}</h5>
                   </td>
                   <td className="cartCost">
-                    <h5>$12.00</h5>
+                    <h5>{cartItem.subTotal}</h5>
                   </td>
                   <td className="cartCancel">
                     {/* This button will update the currentCartItems to remove the item by ID from the state. GitHub Issue #21 */}
@@ -152,9 +129,10 @@ class Cart extends Component {
               ))}
             </tbody>
           </table>
+
+          {/*  SHIPPING FORM - Most likely will be put in a separate component.*/}
           <h2 classID="shipHeader">Shipping Details</h2>
           <form className="form-ship form-horizontal">
-            {' '}
             {/* form-horizontal from Bootstrap is a decent choice, provided that we add some padding both on the inside of the form container, as well as on the elements. Maybe on the .form-control, which is applied to each of the form elements*/}
             <div className="form-group col">
               <label htmlFor="firstName">First Name: </label>
@@ -367,3 +345,13 @@ const regions = {
     'Virgin Islands'
   ]
 };
+
+// let total = [1, 2, 3, 4, 5].reduce(function (previous, current, index) {
+//   var val = previous + current;
+//   console.log("The previous value is " + previous +
+//             "; the current value is " + current +
+//             ", and the current iteration is " + (index + 1));
+//   return val;
+// }, 0);
+
+// console.log("The loop is done, and the final value is " + total + ".");
