@@ -68,12 +68,12 @@ class Cart extends Component {
   render() {
     //   return <div>{this.props.cartItems.map(this.renderCartItem)}</div>;
     // }
-
     // renderCartItem(item) {
     //   return (
     //     <div key={item.id}>
     //       {item.id} | {item.shirt.color} | {item.shirt.size} | {item.quantity} |{' '}
     //       {item.subTotal}
+
     //   // const {cartItems} = this.props; <-- Was attempting to get the props, but there is an error having to do with the router.
     let regionsForSelectedCountry = regions[this.state.country];
 
