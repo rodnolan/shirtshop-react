@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = () => (
-  <nav className="navbar">
+  <nav className="row navbar">
     <Link to="/">
       <button className="btn btn-primary">Home</button>
     </Link>
