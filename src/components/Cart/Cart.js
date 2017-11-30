@@ -7,8 +7,9 @@ import './Cart.css';
 class Cart extends Component {
   constructor() {
     super();
-    this.completeOrder = this.completeOrder.bind(this);
+    // this.completeOrder = this.completeOrder.bind(this);
     this.updateShippingInfo = this.updateShippingInfo.bind(this);
+    // this.renderCartItem = this.renderCartItem.bind(this);
 
     // Set the initial state
     this.state = {
@@ -47,11 +48,17 @@ class Cart extends Component {
     // This will remove an item from the list and update the state.cartItems in App.js when clicking the "cancel" or remove button on each item. Ideally, this will also update the state in the App.js and trigger a re-render. Maybe we should do an "Are you sure you want to remove this? y/n".
   }
 
-  updateCart() {
-    // check with Rod about what this is supposed to do... Might be redundant now.
-  }
+  // TODO: SN - Add this piece into the current file.
+  // renderCartItem(item) {
+  //   return (
+  //     <div key={item.id}>
+  //       {item.id} | {item.shirt.color} | {item.shirt.size} | {item.quantity} |{' '}
+  //       {item.subTotal}
+  //       {/* <div>{this.props.cartItems.map(this.renderCartItem)}</div>; */}
+  //     </div>
+  // )}
 
-  //form stuff.  Github Issue #14 - This currently works for a single field. Going
+  //form stuff.  Github Issue #14
   updateShippingInfo = event => {
     let field = event.target.id;
     let val = event.target.value;
@@ -64,23 +71,13 @@ class Cart extends Component {
     }
   };
 
-  //TODO: SN - Add this piece into the current file.
   render() {
-    //   return <div>{this.props.cartItems.map(this.renderCartItem)}</div>;
-    // }
-    // renderCartItem(item) {
-    //   return (
-    //     <div key={item.id}>
-    //       {item.id} | {item.shirt.color} | {item.shirt.size} | {item.quantity} |{' '}
-    //       {item.subTotal}
-
-    //   // const {cartItems} = this.props; <-- Was attempting to get the props, but there is an error having to do with the router.
     let regionsForSelectedCountry = regions[this.state.country];
 
     return (
       <div className="row">
         <div className="col">
-          <h1 className="orderItems">Your Order</h1>{' '}
+          <h1 className="orderItems">Your Order</h1>
           {/* We should also include on the right the order number. Either that or upon completion of the order*/}
           <table className="table table-striped table-hover table-sm table-sm">
             <thead>
@@ -121,16 +118,23 @@ class Cart extends Component {
                   <th
                     className="cartID"
                     scope="row"
-                    key={this.props.cartItems[i].id}
+                    // key={this.props.cartItems[i].id} //SN's old implementation
+                    key={cartItem.id} // RN's new implementation
                   >
                     {this.props.cartItems[i].id}
                   </th>
                   <td className="cartDesc">
-                    {this.props.cartItems[i].size}
+                    {/* SN's old implementation */}
+                    {/* {this.props.cartItems[i].size}
                     {this.props.cartItems[i].color}
                     {this.props.cartItems[i].price}
                     {this.props.cartItems[i].style}
-                    {this.props.cartItems[i].caption}
+                    {this.props.cartItems[i].caption} */}
+                    <div key={cartItem.id}>
+                      {cartItem.id} | {cartItem.shirt.color} |{' '}
+                      {cartItem.shirt.size} | {cartItem.quantity} |{' '}
+                      {cartItem.subTotal}
+                    </div>
                   </td>
                   <td className="cartQty">
                     <h5>3</h5>
