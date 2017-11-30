@@ -95,16 +95,11 @@ class Cart extends Component {
                 <th colSpan="3" scope="row">
                   Total
                 </th>
-                {/* This total amount should be calculated based on sum [[item price] * qty] */}
                 <th colSpan="2">{total}</th>
               </tr>
             </tfoot>
 
             <tbody>
-              {/* Each row should be sent to a separate constructor. I've put in a static one for now. GitHub Issue #16
-            
-              Even though this is the id of the static details right now, it will actually be the ID of the cart item that is auto-generated. GitHub Issue #19 */}
-
               {this.props.cartItems.map(cartItem => (
                 <tr className="cartRow" key={cartItem.id}>
                   <th className="cartID" scope="row">
@@ -113,8 +108,14 @@ class Cart extends Component {
                   <td className="cartDesc">
                     {/* {cartItem.getDescription()} */}
                   </td>
-                  <td className="cartQty">
-                    <h5>{cartItem.quantity}</h5>
+                  <td className="cartQty ">
+                    <button className="btn vcenter">
+                      <i class="fa fa-plus-circle" aria-hidden="true" />
+                    </button>
+                    <h5 className="vcenter">{cartItem.quantity}</h5>
+                    <button className="btn vcenter">
+                      <i class="fa fa-minus-circle" aria-hidden="true" />
+                    </button>
                   </td>
                   <td className="cartCost">
                     <h5>{cartItem.subTotal}</h5>
@@ -122,7 +123,7 @@ class Cart extends Component {
                   <td className="cartCancel">
                     {/* This button will update the currentCartItems to remove the item by ID from the state. GitHub Issue #21 */}
                     <button className="btn btn-danger">
-                      <i className="fa fa-times" aria-hidden="true" />
+                      <i className="fa fa-trash" aria-hidden="true" />
                     </button>
                   </td>
                 </tr>
