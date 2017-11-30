@@ -8,7 +8,9 @@ class Cart extends Component {
   constructor() {
     super();
     // this.completeOrder = this.completeOrder.bind(this);
-    this.updateShippingInfo = this.updateShippingInfo.bind(this);
+    // this.updateShippingInfo = this.updateShippingInfo.bind(this);
+    this.renderTable = this.renderTable.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
     // Set the initial state
     this.state = {
@@ -38,22 +40,64 @@ class Cart extends Component {
     //  3. the shipping details, including when the order was completed, perhaps by formatted date stamp
   }
 
-  removeCartItem() {
-    // This will remove an item from the list and update the state.cartItems in App.js when clicking the "cancel" or remove button on each item. Ideally, this will also update the state in the App.js and trigger a re-render. Maybe we should do an "Are you sure you want to remove this? y/n".
+  handleChange(e, key) {
+    const item = this.props.cartItems[key];
+    console.log(item);
+    // take a copy of that fish and update it with the new data
+    const updatedItem = {
+      ...item,
+      quantity: item.quantity + 1
+    };
+    console.log(updatedItem.quantity);
+    this.props.updateItem(key, updatedItem);
+  }
+
+  renderTable(key) {
+    const cartItem = this.props.cartItems[key];
+    return (
+      <tr className="cartRow" key={key}>
+        <th className="cartID" scope="row">
+          {cartItem.id}
+        </th>
+        <td className="cartDesc">{/* {cartItem.getDescription()} */}</td>
+        <td className="cartQty ">
+          {/* <button onClick={(e) => this.props.incItemQty(cartItem.id)} className="btn vcenter"> */}
+          <button
+            onClick={e => this.handleChange(e, key)}
+            className="btn vcenter"
+          >
+            <i className="fa fa-plus-circle" aria-hidden="true" />
+          </button>
+          <h5 className="vcenter">{cartItem.quantity}</h5>
+          <button className="btn vcenter">
+            <i className="fa fa-minus-circle" aria-hidden="true" />
+          </button>
+        </td>
+        <td className="cartCost">
+          <h5>{cartItem.subTotal}</h5>
+        </td>
+        <td className="cartCancel">
+          {/* This button will update the currentCartItems to remove the item by ID from the state. GitHub Issue #21 */}
+          <button className="btn btn-danger">
+            <i className="fa fa-trash" aria-hidden="true" />
+          </button>
+        </td>
+      </tr>
+    );
   }
 
   //form stuff.  Github Issue #14
-  updateShippingInfo = event => {
-    let field = event.target.id;
-    let val = event.target.value;
-    this.setState({ [field]: val });
-    console.log('Field: ' + field);
-    console.log('Value: ' + val);
+  // updateShippingInfo = event => {
+  //   let field = event.target.id;
+  //   let val = event.target.value;
+  //   this.setState({ [field]: val });
+  //   console.log('Field: ' + field);
+  //   console.log('Value: ' + val);
 
-    if (field === 'country') {
-      this.setState({ region: '' });
-    }
-  };
+  //   if (field === 'country') {
+  //     this.setState({ region: '' });
+  //   }
+  // };
 
   render() {
     let regionsForSelectedCountry = regions[this.state.country];
@@ -98,36 +142,8 @@ class Cart extends Component {
                 <th colSpan="2">{total}</th>
               </tr>
             </tfoot>
-
             <tbody>
-              {this.props.cartItems.map(cartItem => (
-                <tr className="cartRow" key={cartItem.id}>
-                  <th className="cartID" scope="row">
-                    {cartItem.id}
-                  </th>
-                  <td className="cartDesc">
-                    {/* {cartItem.getDescription()} */}
-                  </td>
-                  <td className="cartQty ">
-                    <button className="btn vcenter">
-                      <i class="fa fa-plus-circle" aria-hidden="true" />
-                    </button>
-                    <h5 className="vcenter">{cartItem.quantity}</h5>
-                    <button className="btn vcenter">
-                      <i class="fa fa-minus-circle" aria-hidden="true" />
-                    </button>
-                  </td>
-                  <td className="cartCost">
-                    <h5>{cartItem.subTotal}</h5>
-                  </td>
-                  <td className="cartCancel">
-                    {/* This button will update the currentCartItems to remove the item by ID from the state. GitHub Issue #21 */}
-                    <button className="btn btn-danger">
-                      <i className="fa fa-trash" aria-hidden="true" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {Object.keys(this.props.cartItems).map(this.renderTable)}
             </tbody>
           </table>
 

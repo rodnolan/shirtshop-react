@@ -13,6 +13,8 @@ import LineItemModel from './model/LineItemModel';
 class ShirtShop extends React.Component {
   constructor() {
     super();
+    // this.incItemQty = this.incItemQty.bind(this);
+    this.updateItem = this.updateItem.bind(this);
     this.state = {
       shirts: [],
       cartItems: []
@@ -24,27 +26,49 @@ class ShirtShop extends React.Component {
     // this should trigger a re-render because it's being called from component *DID* Mount, not componentWillMount
     this.createSampleData();
   }
+  //Increments the quantity of the item by 1 when btn is clicked
+  // incItemQty(itemID){
+  //   console.log(itemID);
+  //   console.log("clicked");
+  //   let itemIndex = this.state.cartItems.findIndex((elem) => elem.id === itemID);
+  //   let cartItemToUpdate = this.state.cartItems[itemIndex];
+  //   cartItemToUpdate[itemIndex].quantity++;
+  // }
+
+  updateItem(key, updatedItem) {
+    const cartItems = { ...this.state.cartItems };
+    cartItems[key] = updatedItem;
+    this.setState({ cartItems });
+  }
 
   createSampleData = () => {
     console.log('App::createSampleData');
-    let sampleData = [
-      new ShirtModel(1, 'S', true, 'my shirt one', 'red'),
-      new ShirtModel(2, 'M', false, 'my shirt two', 'blue'),
-      new ShirtModel(3, 'L', false, 'my shirt three', 'black'),
-      new ShirtModel(4, 'L', true, 'my shirt four', 'white'),
-      new ShirtModel(5, 'S', false, 'my shirt five', 'black')
-    ];
+    // let sampleData = [
+    //   new ShirtModel(1, 'S', true, 'my shirt one', 'red'),
+    //   new ShirtModel(2, 'M', false, 'my shirt two', 'blue'),
+    //   new ShirtModel(3, 'L', false, 'my shirt three', 'black'),
+    //   new ShirtModel(4, 'L', true, 'my shirt four', 'white'),
+    //   new ShirtModel(5, 'S', false, 'my shirt five', 'black')
+    // ];
+
+    let sampleData = {
+      '123': new ShirtModel(1, 'S', true, 'my shirt one', 'red'),
+      '124': new ShirtModel(2, 'M', false, 'my shirt two', 'blue'),
+      '125': new ShirtModel(3, 'L', false, 'my shirt three', 'black'),
+      '126': new ShirtModel(4, 'L', true, 'my shirt four', 'white'),
+      '127': new ShirtModel(5, 'S', false, 'my shirt five', 'black')
+    };
     store.set('shirts', sampleData);
     let storedShirts = store.get('shirts');
     this.setState({ shirts: storedShirts });
     console.log(storedShirts.length + ' shirts found in storage');
 
     this.setState({
-      cartItems: [
-        new LineItemModel(1, sampleData[0], 4),
-        new LineItemModel(2, sampleData[4], 3),
-        new LineItemModel(3, sampleData[2], 1)
-      ]
+      cartItems: {
+        'my-1': new LineItemModel(1, sampleData['123'], 4),
+        'my-2': new LineItemModel(2, sampleData['124'], 3),
+        'my-3': new LineItemModel(3, sampleData['125'], 1)
+      }
     });
   };
 
@@ -66,7 +90,12 @@ class ShirtShop extends React.Component {
           />
           <Route
             path="/cart"
-            render={() => <Cart cartItems={this.state.cartItems} />}
+            render={() => (
+              <Cart
+                cartItems={this.state.cartItems}
+                updateItem={this.updateItem}
+              />
+            )}
           />
         </div>
       </Router>
