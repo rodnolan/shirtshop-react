@@ -9,6 +9,7 @@ import NavBar from './components/NavBar/NavBar';
 import store from 'store';
 import ShirtModel, { SIZES, STYLES, LOGOS, COLORS } from './model/ShirtModel';
 import LineItemModel from './model/LineItemModel';
+import { guid } from './utils/utils';
 
 export class ShirtShop extends React.Component {
   constructor() {
@@ -28,17 +29,23 @@ export class ShirtShop extends React.Component {
   createSampleData = () => {
     console.log('App::createSampleData');
     let sampleShirts = [
-      new ShirtModel(1, SIZES.SMALL, STYLES.MEN, LOGOS.COOL, COLORS.BLUE),
-      new ShirtModel(2, SIZES.MEDIUM, STYLES.WOMEN, LOGOS.WORRIED, COLORS.RED),
-      new ShirtModel(3, SIZES.LARGE, STYLES.MEN, LOGOS.COOL, COLORS.BLACK),
+      new ShirtModel(guid(), SIZES.SMALL, STYLES.MEN, LOGOS.COOL, COLORS.BLUE),
       new ShirtModel(
-        4,
+        guid(),
+        SIZES.MEDIUM,
+        STYLES.WOMEN,
+        LOGOS.WORRIED,
+        COLORS.RED
+      ),
+      new ShirtModel(guid(), SIZES.LARGE, STYLES.MEN, LOGOS.COOL, COLORS.BLACK),
+      new ShirtModel(
+        guid(),
         SIZES.SMALL,
         STYLES.WOMEN,
         LOGOS.LAUGHING,
         COLORS.WHITE
       ),
-      new ShirtModel(5, SIZES.MEDIUM, STYLES.MEN, LOGOS.COOL, COLORS.BLACK)
+      new ShirtModel(guid(), SIZES.MEDIUM, STYLES.MEN, LOGOS.COOL, COLORS.BLACK)
     ];
     store.set('shirts', sampleShirts);
     let storedShirts = store.get('shirts');
