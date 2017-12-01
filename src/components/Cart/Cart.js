@@ -16,8 +16,7 @@ class Cart extends Component {
     // Set the initial state
     this.state = {
       // The cart items are yet to be completed orders and will be brought down from the App itself once the storage piece is worked out. The orderDetails are going to represent completed orders that are sent to the storage. For now it's static for testing.
-      orderDetails: {},
-      counter: 0
+      orderDetails: {}
     };
   }
 
@@ -36,15 +35,25 @@ class Cart extends Component {
   //Example from code pen: https://codepen.io/ajcbrown820/pen/eZdWaj?editors=0010#0
 
   increment(e, key) {
-    this.setState({
-      counter: this.state.counter + 1
-    });
+    const item = this.props.cartItems[key];
+    console.log(item);
+    const updatedItem = {
+      ...item,
+      quantity: item.quantity + 1
+    };
+    console.log(updatedItem.quantity);
+    this.props.updateItem(key, updatedItem);
   }
 
   decrement(e, key) {
-    this.setState({
-      counter: this.state.counter - 1
-    });
+    const item = this.props.cartItems[key];
+    console.log(item);
+    const updatedItem = {
+      ...item,
+      quantity: item.quantity + 1
+    };
+    console.log(updatedItem.quantity);
+    this.props.updateItem(key, updatedItem);
   }
 
   renderTable(key) {
@@ -56,7 +65,6 @@ class Cart extends Component {
         </th>
         <td className="cartDesc">{/* {cartItem.getDescription()} */}</td>
         <td className="cartQty ">
-          {/* <button onClick={(e) => this.props.incItemQty(cartItem.id)} className="btn vcenter"> */}
           <button
             // onClick={e => this.handleChange(e, key)}
             onClick={e => this.increment(e, key)}
@@ -98,11 +106,6 @@ class Cart extends Component {
           <h1 className="orderItems">Your Order</h1>
           {/* We should also include on the right the order number. Either that or upon completion of the order*/}
           {/* Begins Order Table */}
-          <div>
-            <div id="counter">{this.state.counter}</div>
-            <button onClick={this.increment}> Add 1 </button>
-            <button onClick={this.decrement}> Minus 1 </button>
-          </div>
           <table className="table table-striped table-hover table-sm table-sm">
             {/* Renders headings on the table */}
             <thead>
