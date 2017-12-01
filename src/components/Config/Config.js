@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Config.css';
 import Shirt from '../../components/Shirt/Shirt';
-import ShirtModel from '../../model/ShirtModel';
+import ShirtModel, {
+  SIZES,
+  STYLES,
+  COLORS,
+  LOGOS
+} from '../../model/ShirtModel';
 import ConfigButtonBar from './ConfigButtonBar';
-import ShopBar from '../ShopBar/ShopBar';
+//import ShopBar from '../ShopBar/ShopBar';
 
 class Config extends Component {
   saveHandler() {
@@ -33,13 +39,6 @@ class Config extends Component {
   };
 
   render() {
-    const newShirt = new ShirtModel(
-      -1,
-      'L',
-      true,
-      'this is an awesome caption',
-      'red'
-    );
     return (
       <div className="row">
         <div className="cell col-xs-12 col-s-12 col-m-12 col-l-3 col-xl-3">
@@ -51,7 +50,7 @@ class Config extends Component {
           />
         </div>
         <div className="cell col-xs-12 col-s-12 col-m-9 col-l-9 col-xl-9">
-          <Shirt shirt={newShirt} />
+          <Shirt shirt={this.props.shirt} />
         </div>
       </div>
       // <div className="main-column row">
@@ -80,3 +79,16 @@ class Config extends Component {
 }
 
 export default Config;
+
+Config.propTypes = {
+  shirt: PropTypes.instanceOf(ShirtModel).isRequired
+};
+Config.defaultProps = {
+  shirt: new ShirtModel(
+    -1,
+    SIZES.SMALL,
+    STYLES.MEN,
+    LOGOS.LAUGHING,
+    COLORS.NONE
+  )
+};

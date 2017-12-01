@@ -1,53 +1,30 @@
-html, body {
-  height: 100%;
-}
-
 body {
   margin: 0;
   padding: 0;
+  font-family: sans-serif;
 }
+
+.container {
+  border: 10px solid green;
+  background-color: lightblue;
+  padding: 4px;
+  bottom: 0px;
+}
+.row {
+  border: 1px solid yellow;
+  background-color: lightgray;
+  padding: 8px;
+}
+.cell {
+  border: 1px solid black;
+  background-color: lightgoldenrodyellow;
+}
+
+/* #root {
+  height: 100%;
+}
+
 
 div, button {
   border: 1px solid black;
-}
-
-/* This is containing along with the .main-column within the .container-fluid */
-/* nav {
-  height: 10%;
 } */
-
-/* This helps to solve our container problems */
-/* .col-md-3 {
-  display: flex;
-} */
-.container-fluid {
-  height: 100%;
-  margin: 0;
-  /* Testing to see if this solves our problem of height, but nothing yet. Definitely a better application */
-  /* padding-right:0;
-  padding-left:0;
-  margin-right:auto;
-  margin-left:auto; */
-}
-
-/* This is containing along with the nav within the .container-fluid */
-.main-column {
-  height: 90%;
-}
-
-/* This solves the overflow on the horizontal plane */
-.row {
-  margin: 0;
-}
-
-.content-row {
-  height: 15%;
-}
-
-.shirt-row {
-  height: 85%;
-}
-
-#root {
-  height: 100%;
-}

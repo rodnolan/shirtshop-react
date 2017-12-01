@@ -1,27 +1,27 @@
 export default class ShirtModel {
   id = '';
-  size = 's';
+  size = '';
   price = 0;
-  isMens = false;
-  caption = '';
+  style = '';
+  logo = '';
   color = '';
 
-  constructor(id, size, isMens, caption, color) {
+  constructor(id, size, style, logo, color) {
     this.id = id;
     this.size = size;
-    this.isMens = isMens;
-    this.caption = caption;
+    this.style = style;
+    this.logo = logo;
     this.color = color;
 
     let price = 0;
     switch (size) {
-      case 'S':
+      case SIZES.SMALL:
         price = 10;
         break;
-      case 'M':
+      case SIZES.MEDIUM:
         price = 11;
         break;
-      case 'L':
+      case SIZES.LARGE:
         price = 12;
         break;
       default:
@@ -32,23 +32,34 @@ export default class ShirtModel {
   }
 
   getDescription() {
-    let gender,
-      size = '';
-    gender = this.isMens ? 'men' : 'women';
-    switch (this.size) {
-      case 'S':
-        size = 'small';
-        break;
-      case 'M':
-        size = 'medium';
-        break;
-      case 'L':
-        size = 'large';
-        break;
-      default:
-        size = '';
-        break;
-    }
-    return gender + ', ' + size + ', ' + this.color + ', $' + this.price;
+    return (
+      this.style + ', ' + this.size + ', ' + this.color + ', $' + this.price
+    );
   }
 }
+
+export const SIZES = {
+  SMALL: 'small',
+  MEDIUM: 'medium',
+  LARGE: 'large'
+};
+
+export const STYLES = {
+  MEN: 'men',
+  WOMEN: 'women'
+};
+
+export const LOGOS = {
+  COOL: 'cool',
+  LAUGHING: 'laughing',
+  WORRIED: 'worried',
+  PLACEHOLDER: 'placeholder'
+};
+
+export const COLORS = {
+  RED: 'red',
+  BLUE: 'blue',
+  WHITE: 'white',
+  BLACK: 'black',
+  NONE: 'none'
+};

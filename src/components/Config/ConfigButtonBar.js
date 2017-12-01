@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './ConfigButtonBar.css';
+import { COLORS, SIZES, STYLES, LOGOS } from '../../model/ShirtModel';
 
 class ConfigButtonBar extends Component {
   render = props => (
@@ -9,9 +10,15 @@ class ConfigButtonBar extends Component {
         <p className="card-header">Size: Small</p>
         <div className="card-body">
           <div className="btn-group" role="group" aria-label="Basic example">
-            <button onClick={() => this.props.updateSize('S')}>S</button>
-            <button onClick={() => this.props.updateSize('M')}>M</button>
-            <button onClick={() => this.props.updateSize('L')}>L</button>
+            <button onClick={() => this.props.updateSize(SIZES.SMALL)}>
+              S
+            </button>
+            <button onClick={() => this.props.updateSize(SIZES.MEDIUM)}>
+              M
+            </button>
+            <button onClick={() => this.props.updateSize(SIZES.LARGE)}>
+              L
+            </button>
           </div>
         </div>
       </div>
@@ -19,8 +26,12 @@ class ConfigButtonBar extends Component {
         <p className="card-header">Style: Men's</p>
         <div className="card-body">
           <div className="btn-group" role="group" aria-label="Basic example">
-            <button onClick={() => this.props.updateStyle('M')}>M</button>
-            <button onClick={() => this.props.updateStyle('W')}>W</button>
+            <button onClick={() => this.props.updateStyle(STYLES.MEN)}>
+              M
+            </button>
+            <button onClick={() => this.props.updateStyle(STYLES.WOMEN)}>
+              W
+            </button>
           </div>
         </div>
       </div>
@@ -28,28 +39,28 @@ class ConfigButtonBar extends Component {
         <p className="card-header">Color: red</p>
         <div className="card-body">
           <div
-            onClick={() => this.props.updateColor('red')}
-            style={(styles.colorPickerBtn, styles.red)}
+            onClick={() => this.props.updateColor(COLORS.RED)}
+            style={Object.assign({}, styles.red, styles.colorPickerBtn)}
           >
-            &nbsp;red
+            &nbsp;
           </div>
           <div
-            onClick={() => this.props.updateColor('blue')}
-            style={(styles.colorPickerBtn, styles.blue)}
+            onClick={() => this.props.updateColor(COLORS.BLUE)}
+            style={Object.assign({}, styles.colorPickerBtn, styles.blue)}
           >
-            &nbsp;blue
+            &nbsp;
           </div>
           <div
-            onClick={() => this.props.updateColor('black')}
-            style={(styles.colorPickerBtn, styles.black)}
+            onClick={() => this.props.updateColor(COLORS.BLACK)}
+            style={Object.assign({}, styles.colorPickerBtn, styles.black)}
           >
-            &nbsp;black
+            &nbsp;
           </div>
           <div
-            onClick={() => this.props.updateColor('white')}
-            style={(styles.colorPickerBtn, styles.white)}
+            onClick={() => this.props.updateColor(COLORS.WHITE)}
+            style={Object.assign({}, styles.colorPickerBtn, styles.white)}
           >
-            &nbsp;white
+            &nbsp;
           </div>
         </div>
       </div>
@@ -57,19 +68,22 @@ class ConfigButtonBar extends Component {
         <p className="card-header">Logo</p>
         <div className="card-body">
           <img
-            src={logo1}
+            src={logoCool}
+            alt="logo cool"
             style={{ height: logoDimensions, width: logoDimensions }}
-            onClick={() => this.props.updateLogo(1)}
+            onClick={() => this.props.updateLogo(LOGOS.COOL)}
           />
           <img
-            src={logo2}
+            src={logoWorried}
+            alt="logo worried"
             style={{ height: logoDimensions, width: logoDimensions }}
-            onClick={() => this.props.updateLogo(2)}
+            onClick={() => this.props.updateLogo(LOGOS.WORRIED)}
           />
           <img
-            src={logo3}
+            src={logoLaughing}
+            alt="logo laughing"
             style={{ height: logoDimensions, width: logoDimensions }}
-            onClick={() => this.props.updateLogo(3)}
+            onClick={() => this.props.updateLogo(LOGOS.LAUGHING)}
           />
         </div>
       </div>
@@ -77,10 +91,10 @@ class ConfigButtonBar extends Component {
   );
 }
 
-const logo1 = require('../../images/logo1.png');
-const logo2 = require('../../images/logo2.png');
-const logo3 = require('../../images/logo3.png');
-const logoDimensions = 50;
+const logoCool = require('../../images/cool.png');
+const logoWorried = require('../../images/worried.png');
+const logoLaughing = require('../../images/laughing.png');
+const logoDimensions = 60;
 
 const styles = {
   colorPickerBtn: {
@@ -91,16 +105,16 @@ const styles = {
     border: '1px solid black'
   },
   red: {
-    backgroundColor: 'red'
+    backgroundColor: COLORS.RED
   },
   black: {
-    backgroundColor: 'black'
+    backgroundColor: COLORS.BLACK
   },
   white: {
-    backgroundColor: 'white'
+    backgroundColor: COLORS.WHITE
   },
   blue: {
-    backgroundColor: 'blue'
+    backgroundColor: COLORS.BLUE
   }
 };
 

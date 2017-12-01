@@ -7,10 +7,10 @@ import Cart from './components/Cart/Cart';
 import Config from './components/Config/Config';
 import NavBar from './components/NavBar/NavBar';
 import store from 'store';
-import ShirtModel from './model/ShirtModel';
+import ShirtModel, { SIZES, STYLES, LOGOS, COLORS } from './model/ShirtModel';
 import LineItemModel from './model/LineItemModel';
 
-class ShirtShop extends React.Component {
+export class ShirtShop extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -27,23 +27,29 @@ class ShirtShop extends React.Component {
 
   createSampleData = () => {
     console.log('App::createSampleData');
-    let sampleData = [
-      new ShirtModel(1, 'S', true, 'my shirt one', 'red'),
-      new ShirtModel(2, 'M', false, 'my shirt two', 'blue'),
-      new ShirtModel(3, 'L', false, 'my shirt three', 'black'),
-      new ShirtModel(4, 'L', true, 'my shirt four', 'white'),
-      new ShirtModel(5, 'S', false, 'my shirt five', 'black')
+    let sampleShirts = [
+      new ShirtModel(1, SIZES.SMALL, STYLES.MEN, LOGOS.COOL, COLORS.BLUE),
+      new ShirtModel(2, SIZES.MEDIUM, STYLES.WOMEN, LOGOS.WORRIED, COLORS.RED),
+      new ShirtModel(3, SIZES.LARGE, STYLES.MEN, LOGOS.COOL, COLORS.BLACK),
+      new ShirtModel(
+        4,
+        SIZES.SMALL,
+        STYLES.WOMEN,
+        LOGOS.LAUGHING,
+        COLORS.WHITE
+      ),
+      new ShirtModel(5, SIZES.MEDIUM, STYLES.MEN, LOGOS.COOL, COLORS.BLACK)
     ];
-    store.set('shirts', sampleData);
+    store.set('shirts', sampleShirts);
     let storedShirts = store.get('shirts');
     this.setState({ shirts: storedShirts });
     console.log(storedShirts.length + ' shirts found in storage');
 
     this.setState({
       cartItems: [
-        new LineItemModel(1, sampleData[0], 4),
-        new LineItemModel(2, sampleData[4], 3),
-        new LineItemModel(3, sampleData[2], 1)
+        new LineItemModel(1, sampleShirts[0], 4),
+        new LineItemModel(2, sampleShirts[4], 3),
+        new LineItemModel(3, sampleShirts[2], 1)
       ]
     });
   };
@@ -52,14 +58,17 @@ class ShirtShop extends React.Component {
     console.log('App::render');
     return (
       <Router>
-        <div className="container-fluid">
+        <div className="container">
           <NavBar />
           <Route
             exact
             path="/"
             render={() => <ShirtList shirts={this.state.shirts} />}
           />
-          <Route path="/config" component={Config} />
+          <Route
+            path="/config"
+            render={() => <Config shirt={this.state.shirts[0]} />}
+          />
           <Route
             path="/cart"
             render={() => <Cart cartItems={this.state.cartItems} />}
