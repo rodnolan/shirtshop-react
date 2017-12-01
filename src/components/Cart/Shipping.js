@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 class Shipping extends Component {
   constructor() {
     super();
+    // this.completeOrder = this.completeOrder.bind(this);
     this.updateShippingInfo = this.updateShippingInfo.bind(this);
     this.state = {
       // Sets the default country to "usa"

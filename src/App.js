@@ -15,6 +15,7 @@ class ShirtShop extends React.Component {
     super();
     // this.incItemQty = this.incItemQty.bind(this);
     this.updateItem = this.updateItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
     this.state = {
       shirts: [],
       cartItems: []
@@ -26,18 +27,19 @@ class ShirtShop extends React.Component {
     // this should trigger a re-render because it's being called from component *DID* Mount, not componentWillMount
     this.createSampleData();
   }
-  //Increments the quantity of the item by 1 when btn is clicked
-  // incItemQty(itemID){
-  //   console.log(itemID);
-  //   console.log("clicked");
-  //   let itemIndex = this.state.cartItems.findIndex((elem) => elem.id === itemID);
-  //   let cartItemToUpdate = this.state.cartItems[itemIndex];
-  //   cartItemToUpdate[itemIndex].quantity++;
-  // }
-
+  //Used in conjunction with the quantity buttons on the Cart.
   updateItem(key, updatedItem) {
     const cartItems = { ...this.state.cartItems };
     cartItems[key] = updatedItem;
+    this.setState({ cartItems });
+  }
+
+  //I'm keeping this as a separate function for now, so as not to interfere with the quantity. Can merge them later.
+  removeItem(key) {
+    const cartItems = { ...this.state.cartItems };
+    cartItems[key] = key;
+    //Getting an error on the splice (HOFunction like map) that it is not a function. I know we had this problem before. "TypeError: cartItems.splice is not a function"
+    cartItems.splice(cartItems[key], 1);
     this.setState({ cartItems });
   }
 
@@ -94,6 +96,7 @@ class ShirtShop extends React.Component {
               <Cart
                 cartItems={this.state.cartItems}
                 updateItem={this.updateItem}
+                removeItem={this.removeItem}
               />
             )}
           />

@@ -1,18 +1,16 @@
-// Just a thought: Perhaps this "page" should be broken up into two separate components.
 import React, { Component } from 'react';
 import './Cart.css';
-// import Shipping from './Shipping'; //Just working on the Cart for now. Limiting scope.
-
-//import ShirtListRow from './../ShirtListRow'; //For some reason I'm getting an error that it cannot find this component when I try to import it.
 
 class Cart extends Component {
   constructor() {
     super();
-    // this.completeOrder = this.completeOrder.bind(this);
+
     this.renderTable = this.renderTable.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
+    this.remove = this.remove.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+
     // Set the initial state
     this.state = {
       // The cart items are yet to be completed orders and will be brought down from the App itself once the storage piece is worked out. The orderDetails are going to represent completed orders that are sent to the storage. For now it's static for testing.
@@ -20,41 +18,42 @@ class Cart extends Component {
     };
   }
 
-  handleChange(e, key) {
-    const item = this.props.cartItems[key];
-    console.log(item);
-    const updatedItem = {
-      ...item,
-      //Maybe we can make this into a new function called Quantity + or -. Separate one for removing an item.
-      quantity: item.quantity + 1
-    };
-    console.log(updatedItem.quantity);
-    this.props.updateItem(key, updatedItem);
-  }
-
-  //Example from code pen: https://codepen.io/ajcbrown820/pen/eZdWaj?editors=0010#0
+  //Example from code pen for + and -: https://codepen.io/ajcbrown820/pen/eZdWaj?editors=0010#0
 
   increment(e, key) {
     const item = this.props.cartItems[key];
-    console.log(item);
     const updatedItem = {
       ...item,
       quantity: item.quantity + 1
     };
-    console.log(updatedItem.quantity);
     this.props.updateItem(key, updatedItem);
   }
 
   decrement(e, key) {
     const item = this.props.cartItems[key];
-    console.log(item);
     const updatedItem = {
       ...item,
-      quantity: item.quantity + 1
+      quantity: item.quantity - 1
     };
-    console.log(updatedItem.quantity);
     this.props.updateItem(key, updatedItem);
   }
+
+  remove(e, key) {
+    this.props.removeItem(key);
+  }
+
+  //This was from a previous assignment I did. I think the solution is here, such as taking a copy of the state, matching the key of the removeItem to the item in the state and pushing it out. Then reassign the array to the state. This might even belong in the App.js itself.
+  // clearComplete(){
+  // 	let newArray = [];
+  // 	for (let i=0; i <this.state.todos.length; i++){
+  // 		if (!this.state.todos[i].done){
+  // 			newArray.push(this.state.todos[i])
+  // 		}
+  // 	}
+  // 	this.setState({
+  // 		todos: newArray
+  // 	})
+  // }
 
   renderTable(key) {
     const cartItem = this.props.cartItems[key];
@@ -66,7 +65,6 @@ class Cart extends Component {
         <td className="cartDesc">{/* {cartItem.getDescription()} */}</td>
         <td className="cartQty ">
           <button
-            // onClick={e => this.handleChange(e, key)}
             onClick={e => this.increment(e, key)}
             className="btn vcenter"
             name="increment"
@@ -81,9 +79,9 @@ class Cart extends Component {
         <td className="cartCost">
           <h5>{cartItem.subTotal}</h5>
         </td>
-        <td className="cartCancel">
+        <td className="cartRemove">
           {/* This button will update the currentCartItems to remove the item by ID from the state. GitHub Issue #21 */}
-          <button className="btn btn-danger">
+          <button onClick={e => this.remove(e, key)} className="btn btn-danger">
             <i className="fa fa-trash" aria-hidden="true" />
           </button>
         </td>
@@ -154,3 +152,16 @@ class Cart extends Component {
 }
 
 export default Cart;
+
+//This might still be useful, if we can simply pass which button is clicked, to a conditional that determines what to do with it. Currently not in use.
+// handleChange(e, key) {
+//   const item = this.props.cartItems[key];
+//   console.log(item);
+//   const updatedItem = {
+//     ...item,
+//     //Maybe we can make this into a new function called Quantity + or -. Separate one for removing an item.
+//     quantity: item.quantity + 1
+//   };
+//   console.log(updatedItem.quantity);
+//   this.props.updateItem(key, updatedItem);
+// }
