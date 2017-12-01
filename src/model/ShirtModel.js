@@ -8,27 +8,15 @@ export default class ShirtModel {
 
   constructor(id, size, style, logo, color) {
     this.id = id;
-    this.size = size;
+    this.setSize(size);
     this.style = style;
     this.logo = logo;
     this.color = color;
+  }
 
-    let price = 0;
-    switch (size) {
-      case SIZES.SMALL:
-        price = 10;
-        break;
-      case SIZES.MEDIUM:
-        price = 11;
-        break;
-      case SIZES.LARGE:
-        price = 12;
-        break;
-      default:
-        price = 0;
-        break;
-    }
-    this.price = price;
+  setSize(size) {
+    this.size = size;
+    this.price = PRICES[this.size.toUpperCase()];
   }
 
   getDescription() {
@@ -37,6 +25,12 @@ export default class ShirtModel {
     );
   }
 }
+
+export const PRICES = {
+  SMALL: 10,
+  MEDIUM: 11,
+  LARGE: 12
+};
 
 export const SIZES = {
   SMALL: 'small',

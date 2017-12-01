@@ -7,7 +7,9 @@ class ConfigButtonBar extends Component {
   render = props => (
     <div>
       <div className="card">
-        <p className="card-header">Size: Small</p>
+        <p className="card-header">
+          Size: {this.props.shirt.size} Price: ${this.props.shirt.price}{' '}
+        </p>
         <div className="card-body">
           <div className="btn-group" role="group" aria-label="Basic example">
             <button onClick={() => this.props.updateSize(SIZES.SMALL)}>
@@ -23,7 +25,7 @@ class ConfigButtonBar extends Component {
         </div>
       </div>
       <div className="card">
-        <p className="card-header">Style: Men's</p>
+        <p className="card-header">Style: {this.props.shirt.style}</p>
         <div className="card-body">
           <div className="btn-group" role="group" aria-label="Basic example">
             <button onClick={() => this.props.updateStyle(STYLES.MEN)}>
@@ -36,7 +38,7 @@ class ConfigButtonBar extends Component {
         </div>
       </div>
       <div className="card">
-        <p className="card-header">Color: red</p>
+        <p className="card-header">Color: {this.props.shirt.color}</p>
         <div className="card-body">
           <div
             onClick={() => this.props.updateColor(COLORS.RED)}
@@ -65,7 +67,7 @@ class ConfigButtonBar extends Component {
         </div>
       </div>
       <div className="card">
-        <p className="card-header">Logo</p>
+        <p className="card-header">Logo: {this.props.shirt.logo}</p>
         <div className="card-body">
           <img
             src={logoCool}

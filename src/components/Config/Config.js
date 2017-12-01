@@ -38,7 +38,8 @@ class Config extends Component {
   };
 
   updateSize = newSize => {
-    this.updateShirt(Object.assign(this.state.shirt, { size: newSize }));
+    let newShirt = this.state.shirt.setSize(newSize);
+    this.updateShirt(Object.assign(this.state.shirt, newShirt));
   };
 
   updateLogo = newLogo => {
@@ -58,6 +59,7 @@ class Config extends Component {
             updateSize={this.updateSize}
             updateLogo={this.updateLogo}
             updateStyle={this.updateStyle}
+            shirt={this.state.shirt}
           />
         </div>
         <div className="cell col-xs-12 col-s-12 col-m-9 col-l-9 col-xl-9">
