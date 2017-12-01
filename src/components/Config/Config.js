@@ -9,9 +9,16 @@ import ShirtModel, {
   LOGOS
 } from '../../model/ShirtModel';
 import ConfigButtonBar from './ConfigButtonBar';
-//import ShopBar from '../ShopBar/ShopBar';
+import ShopBar from '../ShopBar/ShopBar';
 
 class Config extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      shirt: this.props.shirt
+    };
+  }
+
   saveHandler() {
     alert('saveHandler');
   }
@@ -22,20 +29,24 @@ class Config extends Component {
     alert('addToCartHandler');
   }
 
-  updateColor = color => {
-    alert('requested color is: ' + color);
+  updateColor = newColor => {
+    this.updateShirt(Object.assign(this.state.shirt, { color: newColor }));
   };
 
-  updateStyle = style => {
-    alert('requested style is: ' + style);
+  updateStyle = newStyle => {
+    this.updateShirt(Object.assign(this.state.shirt, { style: newStyle }));
   };
 
-  updateSize = size => {
-    alert('requested size is: ' + size);
+  updateSize = newSize => {
+    this.updateShirt(Object.assign(this.state.shirt, { size: newSize }));
   };
 
-  updateLogo = logo => {
-    alert('requested logo is: ' + logo);
+  updateLogo = newLogo => {
+    this.updateShirt(Object.assign(this.state.shirt, { logo: newLogo }));
+  };
+
+  updateShirt = newShirt => {
+    this.setState({ shirt: newShirt });
   };
 
   render() {
@@ -50,30 +61,14 @@ class Config extends Component {
           />
         </div>
         <div className="cell col-xs-12 col-s-12 col-m-9 col-l-9 col-xl-9">
-          <Shirt shirt={this.props.shirt} />
+          <ShopBar
+            saveHandler={this.saveHandler}
+            cancelHandler={this.cancelHandler}
+            addToCartHandler={this.addToCartHandler}
+          />
+          <Shirt shirt={this.state.shirt} />
         </div>
       </div>
-      // <div className="main-column row">
-      //   <div className="col-12 col-sm-12 col-md-6" classID="content">
-      //     <ShopBar
-      //       saveHandler={this.saveHandler}
-      //       cancelHandler={this.cancelHandler}
-      //       addToCartHandler={this.addToCartHandler}
-      //     />
-      //     <div className="row shirt-row" classID="shirt">
-      //       <Shirt shirt={newShirt} />
-      //     </div>
-      //   </div>
-
-      //   <div className="col-12 col-sm-12 col-md-3" classID="configbar">
-      //     <ConfigButtonBar
-      //       colorHandler={this.colorHandler}
-      //       sizeHandler={this.sizeHandler}
-      //       captionHandler={this.captionHandler}
-      //       styleHandler={this.styleHandler}
-      //     />
-      //   </div>
-      // </div>
     );
   }
 }
@@ -88,7 +83,7 @@ Config.defaultProps = {
     -1,
     SIZES.SMALL,
     STYLES.MEN,
-    LOGOS.LAUGHING,
+    LOGOS.PLACEHOLDER,
     COLORS.NONE
   )
 };

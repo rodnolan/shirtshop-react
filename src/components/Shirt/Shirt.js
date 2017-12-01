@@ -58,7 +58,7 @@ const logoImages = {
   laughing: require('../../images/laughing.png'),
   cool: require('../../images/cool.png'),
   worried: require('../../images/worried.png'),
-  blank: require('../../images/blank.png')
+  placeholder: require('../../images/blank.png')
 };
 
 const shirtImages = {

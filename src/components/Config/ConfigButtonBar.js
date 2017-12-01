@@ -11,13 +11,13 @@ class ConfigButtonBar extends Component {
         <div className="card-body">
           <div className="btn-group" role="group" aria-label="Basic example">
             <button onClick={() => this.props.updateSize(SIZES.SMALL)}>
-              S
+              {SIZES.SMALL}
             </button>
             <button onClick={() => this.props.updateSize(SIZES.MEDIUM)}>
-              M
+              {SIZES.MEDIUM}
             </button>
             <button onClick={() => this.props.updateSize(SIZES.LARGE)}>
-              L
+              {SIZES.LARGE}
             </button>
           </div>
         </div>
