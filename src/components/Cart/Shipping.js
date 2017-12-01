@@ -32,6 +32,15 @@ class Shipping extends Component {
     }
   };
 
+  // This function will take the items in the cart (the quantity, etc.), the form submission and send it to the storage. GitHub Issue #14. Depending on the data flow, this might move to the Shipping component.
+  completeOrder() {
+    //let permanentOrders = [] //This sets up the box that will ultimately be sent to the permanent storage. For now, we'll store it in state to get it working.
+    //Order will be made up of:
+    //  1. a randomly generated OrderID
+    //  2. details of the order as an array of objects that will be stored, including the total cost.
+    //  3. the shipping details, including when the order was completed, perhaps by formatted date stamp
+  }
+
   render() {
     let regionsForSelectedCountry = regions[this.state.country];
 
