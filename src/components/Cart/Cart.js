@@ -1,7 +1,8 @@
 // Just a thought: Perhaps this "page" should be broken up into two separate components.
 import React, { Component } from 'react';
 import './Cart.css';
-// import countries from './countries';
+import Shipping from './Shipping';
+
 //import ShirtListRow from './../ShirtListRow'; //For some reason I'm getting an error that it cannot find this component when I try to import it.
 
 class Cart extends Component {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Cart from './Cart';
+// import Cart from './Cart'; //Don't think we need to import this right now.
+// import countries from './countries';
 
 // The purpose of this is to move the shipping form to its own component from the Cart.js. This form will retain its own state.
 
