@@ -1,7 +1,7 @@
 // Just a thought: Perhaps this "page" should be broken up into two separate components.
 import React, { Component } from 'react';
 import './Cart.css';
-import Shipping from './Shipping';
+// import Shipping from './Shipping'; //Just working on the Cart for now. Limiting scope.
 
 //import ShirtListRow from './../ShirtListRow'; //For some reason I'm getting an error that it cannot find this component when I try to import it.
 
@@ -11,33 +11,40 @@ class Cart extends Component {
     // this.completeOrder = this.completeOrder.bind(this);
     this.renderTable = this.renderTable.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
     // Set the initial state
     this.state = {
       // The cart items are yet to be completed orders and will be brought down from the App itself once the storage piece is worked out. The orderDetails are going to represent completed orders that are sent to the storage. For now it's static for testing.
-      orderDetails: {}
+      orderDetails: {},
+      counter: 0
     };
-  }
-
-  // This function will take the items in the cart (the quantity, etc.), the form submission and send it to the storage. GitHub Issue #14. Depending on the data flow, this might move to the Shipping component.
-  completeOrder() {
-    //let permanentOrders = [] //This sets up the box that will ultimately be sent to the permanent storage. For now, we'll store it in state to get it working.
-    //Order will be made up of:
-    //  1. a randomly generated OrderID
-    //  2. details of the order as an array of objects that will be stored, including the total cost.
-    //  3. the shipping details, including when the order was completed, perhaps by formatted date stamp
   }
 
   handleChange(e, key) {
     const item = this.props.cartItems[key];
     console.log(item);
-    // take a copy of that fish and update it with the new data
     const updatedItem = {
       ...item,
+      //Maybe we can make this into a new function called Quantity + or -. Separate one for removing an item.
       quantity: item.quantity + 1
     };
     console.log(updatedItem.quantity);
     this.props.updateItem(key, updatedItem);
+  }
+
+  //Example from code pen: https://codepen.io/ajcbrown820/pen/eZdWaj?editors=0010#0
+
+  increment() {
+    this.setState({
+      counter: this.state.counter + 1
+    });
+  }
+
+  decrement() {
+    this.setState({
+      counter: this.state.counter - 1
+    });
   }
 
   renderTable(key) {
@@ -89,6 +96,11 @@ class Cart extends Component {
           <h1 className="orderItems">Your Order</h1>
           {/* We should also include on the right the order number. Either that or upon completion of the order*/}
           {/* Begins Order Table */}
+          <div>
+            <div id="counter">{this.state.counter}</div>
+            <button onClick={this.increment}> Add 1 </button>
+            <button onClick={this.decrement}> Minus 1 </button>
+          </div>
           <table className="table table-striped table-hover table-sm table-sm">
             {/* Renders headings on the table */}
             <thead>
@@ -128,7 +140,7 @@ class Cart extends Component {
           {/*  SHIPPING FORM - Currently rendering here, but we can always send it over to a separate page with routing.*/}
           <h2 classID="shipHeader">Shipping Details</h2>
           {/* Shipping form moved to its own component, Shipping.js */}
-          <Shipping />
+          {/* <Shipping /> - Have just hidden for now while I work on the cart itself. */}
           {/* End Shipping form. */}
         </div>
       </div>
