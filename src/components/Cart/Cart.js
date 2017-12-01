@@ -35,13 +35,13 @@ class Cart extends Component {
 
   //Example from code pen: https://codepen.io/ajcbrown820/pen/eZdWaj?editors=0010#0
 
-  increment() {
+  increment(e, key) {
     this.setState({
       counter: this.state.counter + 1
     });
   }
 
-  decrement() {
+  decrement(e, key) {
     this.setState({
       counter: this.state.counter - 1
     });
@@ -58,13 +58,15 @@ class Cart extends Component {
         <td className="cartQty ">
           {/* <button onClick={(e) => this.props.incItemQty(cartItem.id)} className="btn vcenter"> */}
           <button
-            onClick={e => this.handleChange(e, key)}
+            // onClick={e => this.handleChange(e, key)}
+            onClick={e => this.increment(e, key)}
             className="btn vcenter"
+            name="increment"
           >
             <i className="fa fa-plus-circle" aria-hidden="true" />
           </button>
           <h5 className="vcenter">{cartItem.quantity}</h5>
-          <button className="btn vcenter">
+          <button onClick={e => this.decrement(e, key)} className="btn vcenter">
             <i className="fa fa-minus-circle" aria-hidden="true" />
           </button>
         </td>
