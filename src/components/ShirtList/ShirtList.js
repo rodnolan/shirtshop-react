@@ -14,7 +14,6 @@ class ShirtList extends React.Component {
   renderShirtItem(item) {
     return (
       <div key={item.id}>
-        {' '}
         <ShirtListRow shirt={item} />
       </div>
     );

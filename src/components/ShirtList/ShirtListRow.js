@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import './ShirtListRow.css';
+import { Link } from 'react-router-dom';
 
 class ShirtListRow extends Component {
   render = props => {
     return (
       <div>
-        id: {this.props.shirt.id} caption: {this.props.shirt.caption} color:{' '}
-        {this.props.shirt.color} size: {this.props.shirt.size} price:{' '}
-        {this.props.shirt.price}
+        <div>id: {this.props.shirt.id}</div>
+        <div>logo: {this.props.shirt.logo}</div>
+        <div>color: {this.props.shirt.color}</div>
+        <div>size: {this.props.shirt.size}</div>
+        <div>price: {this.props.shirt.price}</div>
+        <div>
+          <Link to={`/config/${this.props.shirt.id}`}>edit</Link>
+        </div>
       </div>
     );
   };
