@@ -37,9 +37,7 @@ class ShirtShop extends React.Component {
   //I'm keeping this as a separate function for now, so as not to interfere with the quantity. Can merge them later.
   removeItem(key) {
     const cartItems = { ...this.state.cartItems };
-    cartItems[key] = key;
-    //Getting an error on the splice (HOFunction like map) that it is not a function. I know we had this problem before. "TypeError: cartItems.splice is not a function"
-    cartItems.splice(cartItems[key], 1);
+    delete cartItems[key];
     this.setState({ cartItems });
   }
 
