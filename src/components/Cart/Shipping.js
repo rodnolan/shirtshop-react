@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 // import Cart from './Cart'; //Don't think we need to import this right now.
-// import countries from './countries';
+// import countries from './countries'; //Ideally, the items at the bottom should be in their own file.
 
 // The purpose of this is to move the shipping form to its own component from the Cart.js. This form will retain its own state.
 
 class Shipping extends Component {
   constructor() {
     super();
-    // this.completeOrder = this.completeOrder.bind(this);
+    // this.completeOrder = this.completeOrder.bind(this); //This is the function that should run onClick.
     this.updateShippingInfo = this.updateShippingInfo.bind(this);
     this.state = {
       // Sets the default country to "usa"
@@ -33,14 +33,11 @@ class Shipping extends Component {
     }
   };
 
-  // This function will take the items in the cart (the quantity, etc.), the form submission and send it to the storage. GitHub Issue #14. Depending on the data flow, this might move to the Shipping component.
-  completeOrder() {
-    //let permanentOrders = [] //This sets up the box that will ultimately be sent to the permanent storage. For now, we'll store it in state to get it working.
-    //Order will be made up of:
-    //  1. a randomly generated OrderID
-    //  2. details of the order as an array of objects that will be stored, including the total cost.
-    //  3. the shipping details, including when the order was completed, perhaps by formatted date stamp
-  }
+  //completeOrder will be made up of:
+  //  1. a randomly generated OrderID
+  //  2. details of the order as an array of objects that will be stored, including the total cost.
+  //  3. the shipping details. For now, the object should only contain the shipping details.
+  completeOrder() {}
 
   render() {
     let regionsForSelectedCountry = regions[this.state.country];
@@ -78,7 +75,23 @@ class Shipping extends Component {
             onChange={this.updateShippingInfo}
             className="form-control col-form-label"
             id="email"
-            placeholder="Email"
+            placeholder="me@something.ca"
+            required
+            pattern="/^[^@]*@[^\.]*\..{2,}/"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phone">Phone number with area code</label>
+          {/* Setting the required pattern helps with the input mask - to be tested */}
+          <input
+            type="text"
+            value={this.state[this.id]}
+            onChange={this.updateShippingInfo}
+            className="form-control col-form-label"
+            id="phone"
+            placeholder="123-555-6789"
+            required
+            pattern="/[0-9]{3}[ -][0-9]{3}[ -][0-9]{4}/"
           />
         </div>
         <div className="form-group">
