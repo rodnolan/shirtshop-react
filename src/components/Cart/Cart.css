@@ -1,4 +1,22 @@
 p.Cart {
-    color: darkcyan;
-    background-color: lightblue;
+  color: darkcyan;
+  background-color: lightblue;
+}
+
+/* Provides some space between the table and the form */
+table {
+  margin-bottom: 30px;
+}
+
+th,
+td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Used on the Quantity rendering to allow for space on the + and - buttons around the number. */
+.vcenter {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
 }

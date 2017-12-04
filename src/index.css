@@ -10,6 +10,25 @@ body {
   padding: 4px;
   bottom: 0px;
 }
+
+div,
+button,
+table,
+th,
+tfoot,
+tr,
+td {
+  border: 1px solid black;
+}
+
+table {
+  width: 100%;
+}
+
+.container-fluid {
+  margin: 0;
+}
+
 .row {
   border: 1px solid yellow;
   background-color: lightgray;
@@ -20,11 +39,10 @@ body {
   background-color: lightgoldenrodyellow;
 }
 
-/* #root {
-  height: 100%;
+.myshirt {
+  align-content: center;
 }
 
-
-div, button {
-  border: 1px solid black;
-} */
+#root {
+  height: 100%;
+}
