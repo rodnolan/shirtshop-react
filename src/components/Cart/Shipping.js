@@ -293,6 +293,29 @@ class Shipping extends Component {
           </FieldFeedbacks>
         </div>
 
+        <div className="form-group">
+          <label htmlFor="provState">
+            {this.state.country === 'canada' ? 'Province' : 'State'}
+          </label>
+          <select
+            className="form-control col-5"
+            value={this.state.region}
+            onChange={this.updateShippingInfo}
+            id="region"
+          >
+            <option value="">
+              Select a {this.state.country === 'canada' ? 'province' : 'state'}
+            </option>
+            {regionsForSelectedCountry.map(region => (
+              <option value={region}>{region}</option>
+            ))}
+          </select>
+          <FieldFeedbacks for="country">
+            <FieldFeedback when="*" />
+          </FieldFeedbacks>
+          <p>The selected region is {this.state.region}</p>
+        </div>
+
         <FormGroup for="zipCode">
           <FormControlLabel htmlFor="zipCode">
             Zip Code (5 digits or 5+4 digits)
