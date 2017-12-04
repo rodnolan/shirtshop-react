@@ -37,7 +37,7 @@ class Shipping extends Component {
       regions: regions,
       zipPostCode: '',
 
-      //Form Validation Test
+      //Form Validation
       email: '',
       phone: '',
       submitButtonDisabled: false
@@ -62,7 +62,7 @@ class Shipping extends Component {
   //  3. the shipping details. For now, the object should only contain the shipping details.
   completeOrder() {}
 
-  //Form Validation Test
+  //Form Validation
   handleChange(e) {
     const target = e.currentTarget;
     this.form.validateFields(target);
@@ -70,11 +70,6 @@ class Shipping extends Component {
       [target.name]: target.value,
       submitButtonDisabled: !this.form.isValid()
     });
-  }
-
-  handlePasswordChange(e) {
-    this.form.validateFields('passwordConfirm');
-    this.handleChange(e);
   }
 
   handleSubmit(e) {
@@ -97,11 +92,11 @@ class Shipping extends Component {
     let minLength = this.state.country === 'canada' ? 6 : 5;
 
     return (
-      //Form Validation Test
+      //Form Validation
+      // Need to add some more feedback to this if it doesn't meet the pattern.
       <FormWithConstraints
         ref={formWithConstraints => (this.form = formWithConstraints)}
         onSubmit={this.handleSubmit}
-        // noValidate - removed because we want this form to validate
       >
         <FormGroup for="firstName">
           <FormControlLabel htmlFor="firstName">First Name: </FormControlLabel>
@@ -109,8 +104,8 @@ class Shipping extends Component {
             type="text"
             value={this.state[this.id]}
             onChange={this.updateShippingInfo}
-            className="form-control col-form-label col-4"
             id="firstName"
+            required
             placeholder="First Name"
           />
         </FormGroup>
@@ -120,13 +115,13 @@ class Shipping extends Component {
             type="text"
             value={this.state[this.id]}
             onChange={this.updateShippingInfo}
-            className="form-control col-form-label col-4"
             id="lastName"
+            required
             placeholder="Last Name"
           />
         </FormGroup>
         <FormGroup for="email">
-          <FormControlLabel htmlFor="email">Email Address</FormControlLabel>
+          <FormControlLabel htmlFor="email">Email Address: </FormControlLabel>
           <FormControlInput
             type="email"
             id="email"
@@ -134,6 +129,7 @@ class Shipping extends Component {
             value={this.state.email}
             onChange={this.handleChange}
             required
+            placeholder="Email"
             minLength={3}
           />
           <FieldFeedbacks for="email">
@@ -155,6 +151,7 @@ class Shipping extends Component {
             onChange={this.handleChange}
             required
             minLength={12}
+            placeholder="ex. 123-456-7890"
           />
           <FieldFeedbacks for="phone">
             <FieldFeedback when="tooShort">Too short</FieldFeedback>
@@ -162,35 +159,30 @@ class Shipping extends Component {
             <FieldFeedback when="*" />
           </FieldFeedbacks>
         </FormGroup>
-        <FormGroup for="">
+        <FormGroup for="address">
           <FormControlLabel htmlFor="address">Address</FormControlLabel>
           <FormControlInput
             type="text"
             value={this.state[this.id]}
             onChange={this.updateShippingInfo}
-            className="form-control col-form-label"
-            id="cddress"
+            id="address"
             placeholder="Street Address"
           />
         </FormGroup>
-        <FormGroup for="">
+        <FormGroup for="city">
           <FormControlLabel htmlFor="city">City </FormControlLabel>
           <FormControlInput
             type="text"
             value={this.state[this.id]}
             onChange={this.updateShippingInfo}
-            className="form-control col-form-label col-6"
             id="city"
             placeholder="City"
           />
         </FormGroup>
-
-        {/* His example is a select with colors. Going to test this first */}
-        <div className="form-group">
-          <label htmlFor="country">Country</label>
-          {/* <input type="text" className="form-control col-form-label" id="country"  placeholder="Country" /> */}
+        <FormGroup>
+          <FormControlLabel htmlFor="country">Country</FormControlLabel>
           <select
-            className="form-control col-5"
+            className="form-control"
             value={this.state.country}
             onChange={this.updateShippingInfo}
             id="country"
@@ -203,14 +195,14 @@ class Shipping extends Component {
           <FieldFeedbacks for="country">
             <FieldFeedback when="*" />
           </FieldFeedbacks>
-        </div>
+        </FormGroup>
 
-        <div className="form-group">
-          <label htmlFor="provState">
+        <FormGroup>
+          <FormControlLabel htmlFor="provState">
             {this.state.country === 'canada' ? 'Province' : 'State'}
-          </label>
+          </FormControlLabel>
           <select
-            className="form-control col-5"
+            className="form-control"
             value={this.state.region}
             onChange={this.updateShippingInfo}
             id="region"
@@ -225,7 +217,7 @@ class Shipping extends Component {
           <FieldFeedbacks for="country">
             <FieldFeedback when="*" />
           </FieldFeedbacks>
-        </div>
+        </FormGroup>
 
         <FormGroup for="zipPostCode">
           <FormControlLabel htmlFor="zipPostCode">
@@ -242,10 +234,10 @@ class Shipping extends Component {
             value={this.state.zipPostCode}
             required
             minLength={minLength}
+            placeholder="Postal or Zip Code"
           />
           <FieldFeedbacks for="zipPostCode">
             <FieldFeedback when="tooShort">Too short</FieldFeedback>
-            {/* Need to add some more feedback to this if it doesn't meet the pattern. */}
             <FieldFeedback when="*" />
           </FieldFeedbacks>
         </FormGroup>
