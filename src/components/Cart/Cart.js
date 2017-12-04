@@ -6,8 +6,7 @@ class Cart extends Component {
     super();
 
     this.renderTable = this.renderTable.bind(this);
-    this.increment = this.increment.bind(this);
-    this.decrement = this.decrement.bind(this);
+    this.updateQuantity = this.updateQuantity.bind(this);
     this.remove = this.remove.bind(this);
     // this.handleChange = this.handleChange.bind(this);
 
@@ -20,21 +19,16 @@ class Cart extends Component {
 
   //Example from code pen for + and -: https://codepen.io/ajcbrown820/pen/eZdWaj?editors=0010#0
 
-  increment(e, key) {
+  updateQuantity(e, key) {
     const item = this.props.cartItems[key];
+    const newQuantity =
+      e.currentTarget.id === 'increment'
+        ? item.quantity + 1
+        : item.quantity - 1;
     const updatedItem = {
       ...item,
-      quantity: item.quantity + 1,
-      subTotal: item.shirt.price * (item.quantity + 1)
-    };
-    this.props.updateItem(key, updatedItem);
-  }
-
-  decrement(e, key) {
-    const item = this.props.cartItems[key];
-    const updatedItem = {
-      ...item,
-      quantity: item.quantity - 1
+      quantity: newQuantity,
+      subTotal: item.shirt.price * newQuantity
     };
     this.props.updateItem(key, updatedItem);
   }
@@ -66,14 +60,18 @@ class Cart extends Component {
         <td className="cartDesc">{/* {cartItem.getDescription()} */}</td>
         <td className="cartQty ">
           <button
-            onClick={e => this.increment(e, key)}
+            onClick={e => this.updateQuantity(e, key)}
             className="btn vcenter"
-            name="increment"
+            id="increment"
           >
             <i className="fa fa-plus-circle" aria-hidden="true" />
           </button>
           <h5 className="vcenter">{cartItem.quantity}</h5>
-          <button onClick={e => this.decrement(e, key)} className="btn vcenter">
+          <button
+            onClick={e => this.updateQuantity(e, key)}
+            className="btn vcenter"
+            id="decrement"
+          >
             <i className="fa fa-minus-circle" aria-hidden="true" />
           </button>
         </td>
