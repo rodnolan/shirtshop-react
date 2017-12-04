@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 // import Cart from './Cart'; //Don't think we need to import this right now.
 // import countries from './countries'; //Ideally, the items at the bottom should be in their own file.
 
-// The purpose of this is to move the shipping form to its own component from the Cart.js. This form will retain its own state.
-
 //Import the react form validation
 import {
   FormWithConstraints,
@@ -22,7 +20,7 @@ class Shipping extends Component {
     // this.completeOrder = this.completeOrder.bind(this); //This is the function that should run onClick.
     this.updateShippingInfo = this.updateShippingInfo.bind(this);
 
-    //Form Validation Test
+    //Form Validation
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
