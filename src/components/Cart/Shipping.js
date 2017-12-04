@@ -24,7 +24,6 @@ class Shipping extends Component {
 
     //Form Validation Test
     this.handleChange = this.handleChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
