@@ -7,9 +7,6 @@ const NavBar = () => (
     <Link to="/">
       <button className="btn btn-primary">Home</button>
     </Link>
-    <Link to="/config">
-      <button className="btn btn-primary">Config</button>
-    </Link>
     <Link to="/cart">
       <button className="btn btn-primary">Cart</button>
     </Link>
