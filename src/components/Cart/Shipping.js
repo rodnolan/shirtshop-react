@@ -35,11 +35,10 @@ class Shipping extends Component {
       // Imports the countries from the countries.js file and assigns it to the countries variable.
       countries: countries,
       regions: regions,
+      zipPostCode: '',
 
       //Form Validation Test
-      username: '',
-      zipCode: '',
-      postCode: '',
+      email: '',
       phone: '',
       submitButtonDisabled: false
     }; //End of the state
@@ -57,7 +56,6 @@ class Shipping extends Component {
       this.setState({ region: '' });
     }
   };
-
   //completeOrder will be made up of:
   //  1. a randomly generated OrderID
   //  2. details of the order as an array of objects that will be stored, including the total cost.
@@ -92,6 +90,11 @@ class Shipping extends Component {
 
   render() {
     let regionsForSelectedCountry = regions[this.state.country];
+    let pattern =
+      this.state.country === 'canada'
+        ? '([A-Za-z][0-9][A-Za-z][0-9][A-Za-z][0-9])'
+        : `(\\d{5})`;
+    let minLength = this.state.country === 'canada' ? 6 : 5;
 
     return (
       //Temporarily removed this to test the Form Validation - SN
@@ -202,8 +205,8 @@ class Shipping extends Component {
       //     <p>The selected region is {this.state.region}</p>
       //   </div>
       //   <div className="form-group">
-      //     {/* The postal or zip code needs to be conditional upon the country to determine postal vs. zip */}
-      //     <label htmlFor="postZip">Postal or Zip Code</label>
+      //     {/* The postal or post code needs to be conditional upon the country to determine postal vs. zip */}
+      //     <label htmlFor="postpost">Postal or Zip Code</label>
       //     <input
       //       type="text"
       //       value={this.state[this.id]}
@@ -313,45 +316,37 @@ class Shipping extends Component {
           <FieldFeedbacks for="country">
             <FieldFeedback when="*" />
           </FieldFeedbacks>
-          <p>The selected region is {this.state.region}</p>
         </div>
 
-        <FormGroup for="zipCode">
-          <FormControlLabel htmlFor="zipCode">
-            Zip Code (5 digits or 5+4 digits)
+        <FormGroup for="zipPostCode">
+          <FormControlLabel htmlFor="zipPostCode">
+            {this.state.country === 'canada'
+              ? 'Postal Code (A0A0A0)'
+              : 'Zip Code (11111)'}
           </FormControlLabel>
           <FormControlInput
             type="text"
-            id="zipCode"
-            name="zipCode"
-            pattern="(\d{5}([\-]\d{4})?)"
-            value={this.state.zipCode}
             onChange={this.handleChange}
+            id="zipPostCode"
+            name="zipPostCode"
+            pattern={pattern}
+            value={this.state.zipPostCode}
             required
-            minLength={5}
+            minLength={minLength}
           />
-          <FieldFeedbacks for="zipCode">
-            <FieldFeedback when="tooShort">Too short</FieldFeedback>
-            {/* Need to add some more feedback to this if it doesn't meet the pattern. */}
-            <FieldFeedback when="*" />
-          </FieldFeedbacks>
-        </FormGroup>
 
-        <FormGroup for="postCode">
-          <FormControlLabel htmlFor="postCode">
-            Postal Code (similar to: A0A 0A0)
-          </FormControlLabel>
-          <FormControlInput
+          {/* <FormControlInput
             type="text"
             id="postCode"
             name="postCode"
-            pattern="([A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9])"
+            pattern="([A-Za-z][0-9][A-Za-z][0-9][A-Za-z][0-9])"
             value={this.state.postCode}
             onChange={this.handleChange}
             required
-            minLength={7}
-          />
-          <FieldFeedbacks for="postCode">
+            minLength={6}
+          /> */}
+
+          <FieldFeedbacks for="zipPostCode">
             <FieldFeedback when="tooShort">Too short</FieldFeedback>
             {/* Need to add some more feedback to this if it doesn't meet the pattern. */}
             <FieldFeedback when="*" />
