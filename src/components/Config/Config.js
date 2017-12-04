@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './Config.css';
 import Shirt from '../../components/Shirt/Shirt';
 import ShirtModel, {
   SIZES,
   STYLES,
   COLORS,
-  LOGOS
+  LOGOS,
+  PRICES
 } from '../../model/ShirtModel';
 import ConfigButtonBar from './ConfigButtonBar';
 import ShopBar from '../ShopBar/ShopBar';
+import store from 'store';
 
 class Config extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      shirt: this.props.shirt
-    };
+    let shirts = store.get('shirts');
+    let shirt = shirts[this.props.match.params.shirtId];
+    this.state = { shirt: shirt };
   }
 
   saveHandler() {
@@ -38,16 +39,20 @@ class Config extends Component {
   };
 
   updateSize = newSize => {
-    let newShirt = this.state.shirt.setSize(newSize);
-    this.updateShirt(Object.assign(this.state.shirt, newShirt));
+    this.updateShirt(
+      Object.assign(this.state.shirt, {
+        size: newSize,
+        price: PRICES[newSize.toUpperCase()]
+      })
+    );
   };
 
   updateLogo = newLogo => {
     this.updateShirt(Object.assign(this.state.shirt, { logo: newLogo }));
   };
 
-  updateShirt = newShirt => {
-    this.setState({ shirt: newShirt });
+  updateShirt = updatedShirt => {
+    this.setState({ shirt: updatedShirt });
   };
 
   render() {
@@ -76,16 +81,3 @@ class Config extends Component {
 }
 
 export default Config;
-
-Config.propTypes = {
-  shirt: PropTypes.instanceOf(ShirtModel).isRequired
-};
-Config.defaultProps = {
-  shirt: new ShirtModel(
-    -1,
-    SIZES.SMALL,
-    STYLES.MEN,
-    LOGOS.PLACEHOLDER,
-    COLORS.NONE
-  )
-};

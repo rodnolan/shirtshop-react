@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import './Shirt.css';
 import ShirtModel from '../../model/ShirtModel';
 
@@ -78,11 +78,11 @@ const shirtImages = {
   }
 };
 
-Shirt.propTypes = {
-  shirt: PropTypes.instanceOf(ShirtModel)
-};
-Shirt.defaultProps = {
-  shirt: null
-};
+// Shirt.propTypes = {
+//   shirt: PropTypes.instanceOf(ShirtModel)
+// };
+// Shirt.defaultProps = {
+//   shirt: null
+// };
 
 export default Shirt;

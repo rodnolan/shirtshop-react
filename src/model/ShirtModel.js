@@ -8,15 +8,11 @@ export default class ShirtModel {
 
   constructor(id, size, style, logo, color) {
     this.id = id;
-    this.setSize(size);
+    this.size = size;
+    this.price = PRICES[size.toUpperCase()];
     this.style = style;
     this.logo = logo;
     this.color = color;
-  }
-
-  setSize(size) {
-    this.size = size;
-    this.price = PRICES[this.size.toUpperCase()];
   }
 
   getDescription() {

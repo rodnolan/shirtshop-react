@@ -11,6 +11,7 @@ class ShirtListRow extends Component {
         <div>color: {this.props.shirt.color}</div>
         <div>size: {this.props.shirt.size}</div>
         <div>price: {this.props.shirt.price}</div>
+        <div>style: {this.props.shirt.style}</div>
         <div>
           <Link to={`/config/${this.props.shirt.id}`}>edit</Link>
         </div>

@@ -17,7 +17,7 @@ export class ShirtShop extends React.Component {
     this.updateItem = this.updateItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.state = {
-      shirts: [],
+      shirts: {},
       cartItems: []
     };
   }
@@ -45,7 +45,7 @@ export class ShirtShop extends React.Component {
     console.log('App::createSampleData');
 
     let ids = [guid(), guid(), guid()];
-    let sampleShirts = [];
+    let sampleShirts = {};
     sampleShirts[ids[0]] = new ShirtModel(
       ids[0],
       SIZES.SMALL,
@@ -93,10 +93,7 @@ export class ShirtShop extends React.Component {
             path="/"
             render={() => <ShirtList shirts={this.state.shirts} />}
           />
-          <Route
-            path="/config"
-            render={() => <Config shirt={this.state.shirts[0]} />}
-          />
+          <Route path="/config/:shirtId" component={Config} />
           <Route
             path="/cart"
             render={() => (
