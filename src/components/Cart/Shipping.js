@@ -97,147 +97,34 @@ class Shipping extends Component {
     let minLength = this.state.country === 'canada' ? 6 : 5;
 
     return (
-      //Temporarily removed this to test the Form Validation - SN
-      // <form className="form-ship form-horizontal">
-      //   {/* form-horizontal from Bootstrap is a decent choice, provided that we add some padding both on the inside of the form container, as well as on the elements. Maybe on the .form-control, which is applied to each of the form elements*/}
-      //   <div className="form-group col">
-      //     <label htmlFor="firstName">First Name: </label>
-      //     <input
-      //       type="text"
-      //       value={this.state[this.id]}
-      //       onChange={this.updateShippingInfo}
-      //       className="form-control col-form-label col-4"
-      //       id="firstName"
-      //       placeholder="First Name"
-      //     />
-      //   </div>
-      //   <div className="form-group">
-      //     <label htmlFor="lastName">Last Name: </label>
-      //     <input
-      //       type="text"
-      //       value={this.state[this.id]}
-      //       onChange={this.updateShippingInfo}
-      //       className="form-control col-form-label col-4"
-      //       id="lastName"
-      //       placeholder="Last Name"
-      //     />
-      //   </div>
-      //   <div className="form-group">
-      //     <label htmlFor="email">Email address</label>
-      //     <input
-      //       type="email"
-      //       value={this.state[this.id]}
-      //       onChange={this.updateShippingInfo}
-      //       className="form-control col-form-label"
-      //       id="email"
-      //       placeholder="me@something.ca"
-      //       required
-      //       pattern="/^[^@]*@[^\.]*\..{2,}/"
-      //     />
-      //   </div>
-      //   <div className="form-group">
-      //     <label htmlFor="phone">Phone number with area code</label>
-      //     {/* Setting the required pattern helps with the input mask - to be tested */}
-      //     <input
-      //       type="tel"
-      //       value={this.state[this.id]}
-      //       onChange={this.updateShippingInfo}
-      //       className="form-control col-form-label"
-      //       id="phone"
-      //       placeholder="123-555-6789"
-      //       required
-      //       pattern="/[0-9]{3}[ -][0-9]{3}[ -][0-9]{4}/"
-      //     />
-      //   </div>
-      //   <div className="form-group">
-      //     <label htmlFor="address">Address</label>
-      //     <input
-      //       type="text"
-      //       value={this.state[this.id]}
-      //       onChange={this.updateShippingInfo}
-      //       className="form-control col-form-label"
-      //       id="cddress"
-      //       placeholder="Street Address"
-      //     />
-      //   </div>
-      //   <div className="form-group">
-      //     <label htmlFor="city" />City<input
-      //       type="text"
-      //       value={this.state[this.id]}
-      //       onChange={this.updateShippingInfo}
-      //       className="form-control col-form-label col-6"
-      //       id="city"
-      //       placeholder="City"
-      //     />
-      //   </div>
-      //   <div className="form-group">
-      //     <label htmlFor="country">Country</label>
-      //     {/* <input type="text" className="form-control col-form-label" id="country"  placeholder="Country" /> */}
-      //     <select
-      //       className="form-control col-5"
-      //       value={this.state.country}
-      //       onChange={this.updateShippingInfo}
-      //       id="country"
-      //     >
-      //       <option value="">Select a country</option>
-      //       {countries.map(country => (
-      //         <option value={country.id}>{country.name}</option>
-      //       ))}
-      //     </select>
-      //     <p>The id for the selected country is {this.state.country}</p>
-
-      //     <label htmlFor="provState">
-      //       {this.state.country === 'canada' ? 'Province' : 'State'}
-      //     </label>
-      //     <select
-      //       className="form-control col-5"
-      //       value={this.state.region}
-      //       onChange={this.updateShippingInfo}
-      //       id="region"
-      //     >
-      //       <option value="">
-      //         Select a {this.state.country === 'canada' ? 'province' : 'state'}
-      //       </option>
-      //       {regionsForSelectedCountry.map(region => (
-      //         <option value={region}>{region}</option>
-      //       ))}
-      //     </select>
-      //     <p>The selected region is {this.state.region}</p>
-      //   </div>
-      //   <div className="form-group">
-      //     {/* The postal or post code needs to be conditional upon the country to determine postal vs. zip */}
-      //     <label htmlFor="postpost">Postal or Zip Code</label>
-      //     <input
-      //       type="text"
-      //       value={this.state[this.id]}
-      //       onChange={this.updateShippingInfo}
-      //       className="form-control col-form-label col-4"
-      //       id="postZip"
-      //       placeholder="Postal or Zip Code"
-      //     />
-      //   </div>
-      //   <div className="form-group">
-      //     <label htmlFor="specialInstructions">Special Instructions</label>
-      //     <textarea
-      //       value={this.state[this.id]}
-      //       onChange={this.updateShippingInfo}
-      //       className="form-control col-form-label"
-      //       id="specialInstructions"
-      //       rows="3"
-      //       placeholder="Anything we should know about?"
-      //     />
-      //     <button type="submit" className="btn btn-primary">
-      //       Ship It!
-      //     </button>
-      //   </div>
-      // </form>
-
       //Form Validation Test
       <FormWithConstraints
         ref={formWithConstraints => (this.form = formWithConstraints)}
         onSubmit={this.handleSubmit}
         // noValidate - removed because we want this form to validate
       >
+        <FormGroup for="firstName">
+          <FormControlLabel htmlFor="firstName">First Name: </FormControlLabel>
+          <FormControlInput
+            type="text"
+            value={this.state[this.id]}
+            onChange={this.updateShippingInfo}
+            className="form-control col-form-label col-4"
+            id="firstName"
+            placeholder="First Name"
+          />
+        </FormGroup>
+        <FormGroup for="lastName">
+          <FormControlLabel htmlFor="lastName">Last Name: </FormControlLabel>
+          <FormControlInput
+            type="text"
+            value={this.state[this.id]}
+            onChange={this.updateShippingInfo}
+            className="form-control col-form-label col-4"
+            id="lastName"
+            placeholder="Last Name"
+          />
+        </FormGroup>
         <FormGroup for="email">
           <FormControlLabel htmlFor="email">Email Address</FormControlLabel>
           <FormControlInput
@@ -274,6 +161,28 @@ class Shipping extends Component {
             {/* Need to add some more feedback to this if it doesn't meet the pattern. */}
             <FieldFeedback when="*" />
           </FieldFeedbacks>
+        </FormGroup>
+        <FormGroup for="">
+          <FormControlLabel htmlFor="address">Address</FormControlLabel>
+          <FormControlInput
+            type="text"
+            value={this.state[this.id]}
+            onChange={this.updateShippingInfo}
+            className="form-control col-form-label"
+            id="cddress"
+            placeholder="Street Address"
+          />
+        </FormGroup>
+        <FormGroup for="">
+          <FormControlLabel htmlFor="city">City </FormControlLabel>
+          <FormControlInput
+            type="text"
+            value={this.state[this.id]}
+            onChange={this.updateShippingInfo}
+            className="form-control col-form-label col-6"
+            id="city"
+            placeholder="City"
+          />
         </FormGroup>
 
         {/* His example is a select with colors. Going to test this first */}
@@ -334,25 +243,27 @@ class Shipping extends Component {
             required
             minLength={minLength}
           />
-
-          {/* <FormControlInput
-            type="text"
-            id="postCode"
-            name="postCode"
-            pattern="([A-Za-z][0-9][A-Za-z][0-9][A-Za-z][0-9])"
-            value={this.state.postCode}
-            onChange={this.handleChange}
-            required
-            minLength={6}
-          /> */}
-
           <FieldFeedbacks for="zipPostCode">
             <FieldFeedback when="tooShort">Too short</FieldFeedback>
             {/* Need to add some more feedback to this if it doesn't meet the pattern. */}
             <FieldFeedback when="*" />
           </FieldFeedbacks>
         </FormGroup>
+        <FormGroup>
+          <FormControlLabel htmlFor="specialInstructions">
+            Special Instructions
+          </FormControlLabel>
+          <textarea
+            value={this.state[this.id]}
+            onChange={this.updateShippingInfo}
+            className="form-control col-form-label"
+            id="specialInstructions"
+            rows="3"
+            placeholder="Anything we should know about?"
+          />
+        </FormGroup>
 
+        {/* Button remains disabled until the form is valid */}
         <button
           disabled={this.state.submitButtonDisabled}
           className="btn btn-primary"
