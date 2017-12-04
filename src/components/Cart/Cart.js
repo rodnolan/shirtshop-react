@@ -57,7 +57,7 @@ class Cart extends Component {
         <th className="cartID" scope="row">
           {cartItem.id}
         </th>
-        <td className="cartDesc">{/* {cartItem.getDescription()} */}</td>
+        <td className="cartDesc">{cartItem.shirt.getDescription()}</td>
         <td className="cartQty ">
           <button
             onClick={e => this.updateQuantity(e, key)}
