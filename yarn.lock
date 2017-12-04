@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@types/prop-types@latest":
+  version "15.5.2"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.2.tgz#3c6b8dceb2906cc87fe4358e809f9d20c8d59be1"
+
 abab@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -5246,7 +5250,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@latest:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -5411,6 +5415,13 @@ react-easy-swipe@^0.0.13:
 react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
+
+react-form-with-constraints@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-form-with-constraints/-/react-form-with-constraints-0.7.0.tgz#5f3b441b9233239fcc4d490d90428bf86eabc6d8"
+  dependencies:
+    "@types/prop-types" latest
+    prop-types latest
 
 react-responsive-carousel@^3.1.28:
   version "3.1.28"
