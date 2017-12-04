@@ -91,9 +91,10 @@ class Cart extends Component {
   render() {
     // Solves Issue #18 of the Total. Other items in issue #18 were solved through props.
     let total = 0;
-    if (this.props.cartItems.length > 0) {
-      total = this.props.cartItems
-        .map(lim => lim.subTotal)
+    let cartKeys = Object.keys(this.props.cartItems);
+    if (cartKeys.length > 0) {
+      total = cartKeys
+        .map(key => this.props.cartItems[key].subTotal)
         .reduce((previous, current) => previous + current);
     }
 
