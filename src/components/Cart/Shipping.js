@@ -233,7 +233,7 @@ class Shipping extends Component {
       <FormWithConstraints
         ref={formWithConstraints => (this.form = formWithConstraints)}
         onSubmit={this.handleSubmit}
-        noValidate
+        // noValidate - removed because we want this form to validate
       >
         <FormGroup for="email">
           <FormControlLabel htmlFor="email">Email Address</FormControlLabel>
@@ -272,6 +272,26 @@ class Shipping extends Component {
             <FieldFeedback when="*" />
           </FieldFeedbacks>
         </FormGroup>
+
+        {/* His example is a select with colors. Going to test this first */}
+        <div className="form-group">
+          <label htmlFor="country">Country</label>
+          {/* <input type="text" className="form-control col-form-label" id="country"  placeholder="Country" /> */}
+          <select
+            className="form-control col-5"
+            value={this.state.country}
+            onChange={this.updateShippingInfo}
+            id="country"
+          >
+            <option value="">Select a country</option>
+            {countries.map(country => (
+              <option value={country.id}>{country.name}</option>
+            ))}
+          </select>
+          <FieldFeedbacks for="country">
+            <FieldFeedback when="*" />
+          </FieldFeedbacks>
+        </div>
 
         <FormGroup for="zipCode">
           <FormControlLabel htmlFor="zipCode">
