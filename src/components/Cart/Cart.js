@@ -24,7 +24,8 @@ class Cart extends Component {
     const item = this.props.cartItems[key];
     const updatedItem = {
       ...item,
-      quantity: item.quantity + 1
+      quantity: item.quantity + 1,
+      subTotal: item.shirt.price * (item.quantity + 1)
     };
     this.props.updateItem(key, updatedItem);
   }
