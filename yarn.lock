@@ -5416,6 +5416,10 @@ react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
 
+react-form-with-constraints-bootstrap4@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/react-form-with-constraints-bootstrap4/-/react-form-with-constraints-bootstrap4-0.7.1.tgz#0b1663ad7b72b7c00ab70e16d3317113ee04be6b"
+
 react-form-with-constraints@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/react-form-with-constraints/-/react-form-with-constraints-0.7.0.tgz#5f3b441b9233239fcc4d490d90428bf86eabc6d8"
