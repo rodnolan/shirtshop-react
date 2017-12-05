@@ -26,7 +26,9 @@ class Cart extends Component {
       quantity: newQuantity,
       subTotal: item.shirt.price * newQuantity
     };
-    this.props.updateItem(key, updatedItem);
+    if (newQuantity !== 0) {
+      this.props.updateItem(key, updatedItem);
+    }
   }
 
   remove(e, key) {
@@ -52,6 +54,7 @@ class Cart extends Component {
           <h5 className="vcenter">{cartItem.quantity}</h5>
           <button
             onClick={e => this.updateQuantity(e, key)}
+            disabled={this.state.decrementButtonDisabled}
             className="btn vcenter"
             id="decrement"
           >
@@ -114,6 +117,7 @@ class Cart extends Component {
               </tr>
             </tfoot>
             <tbody>
+              {/* Render each of the shirts in the table */}
               {Object.keys(this.props.cartItems).map(this.renderTableRow)}
             </tbody>
           </table>
