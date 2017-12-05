@@ -1,6 +1,7 @@
 import React from 'react';
 import ShirtListRow from './ShirtListRow';
 import './ShirtList.css';
+import { Link } from 'react-router-dom';
 
 class ShirtList extends React.Component {
   constructor() {
@@ -8,8 +9,20 @@ class ShirtList extends React.Component {
     this.renderShirtItem = this.renderShirtItem.bind(this);
   }
   render = props => (
-    <div>{this.props.shirts.length === 0 ? null : this.renderShirts()}</div>
+    <div>
+      {Object.keys(this.props.shirts).length === 0
+        ? this.renderAddButton()
+        : this.renderShirts()}
+    </div>
   );
+
+  renderAddButton() {
+    return (
+      <div>
+        <Link to="/config/new">Add a new shirt</Link>
+      </div>
+    );
+  }
 
   renderShirts() {
     return (

@@ -11,24 +11,37 @@ import ShirtModel, {
 import ConfigButtonBar from './ConfigButtonBar';
 import ShopBar from '../ShopBar/ShopBar';
 import store from 'store';
+import { guid } from './../../utils/utils';
 
 class Config extends Component {
   constructor(props) {
     super(props);
+    this.saveHandler = this.saveHandler.bind(this);
+    this.cancelHandler = this.cancelHandler.bind(this);
+    this.addToCartHandler = this.addToCartHandler.bind(this);
     let shirts = store.get('shirts');
     let shirt = shirts[this.props.match.params.shirtId];
+    if (shirt === undefined) {
+      shirt = new ShirtModel(
+        guid(),
+        SIZES.SMALL,
+        STYLES.MEN,
+        LOGOS.PLACEHOLDER,
+        COLORS.NONE
+      );
+    }
     this.state = { shirt: shirt };
   }
 
-  saveHandler() {
-    alert('saveHandler');
-  }
-  cancelHandler() {
+  saveHandler = () => {
+    alert('saveHandler for ' + this.state.shirt.id);
+  };
+  cancelHandler = () => {
     alert('cancelHandler');
-  }
-  addToCartHandler() {
+  };
+  addToCartHandler = () => {
     alert('addToCartHandler');
-  }
+  };
 
   updateColor = newColor => {
     this.updateShirt(Object.assign(this.state.shirt, { color: newColor }));

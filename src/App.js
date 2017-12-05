@@ -44,42 +44,42 @@ export class ShirtShop extends React.Component {
   createSampleData = () => {
     console.log('App::createSampleData');
 
-    let ids = [guid(), guid(), guid()];
-    let sampleShirts = {};
-    sampleShirts[ids[0]] = new ShirtModel(
-      ids[0],
-      SIZES.SMALL,
-      STYLES.MEN,
-      LOGOS.WORRIED,
-      COLORS.BLUE
-    );
-    sampleShirts[ids[1]] = new ShirtModel(
-      ids[1],
-      SIZES.MEDIUM,
-      STYLES.WOMEN,
-      LOGOS.COOL,
-      COLORS.WHITE
-    );
-    sampleShirts[ids[2]] = new ShirtModel(
-      ids[2],
-      SIZES.LARGE,
-      STYLES.MEN,
-      LOGOS.LAUGHING,
-      COLORS.RED
-    );
-    store.set('shirts', sampleShirts);
+    // let ids = [guid(), guid(), guid()];
+    // let sampleShirts = {};
+    // sampleShirts[ids[0]] = new ShirtModel(
+    //   ids[0],
+    //   SIZES.SMALL,
+    //   STYLES.MEN,
+    //   LOGOS.WORRIED,
+    //   COLORS.BLUE
+    // );
+    // sampleShirts[ids[1]] = new ShirtModel(
+    //   ids[1],
+    //   SIZES.MEDIUM,
+    //   STYLES.WOMEN,
+    //   LOGOS.COOL,
+    //   COLORS.WHITE
+    // );
+    // sampleShirts[ids[2]] = new ShirtModel(
+    //   ids[2],
+    //   SIZES.LARGE,
+    //   STYLES.MEN,
+    //   LOGOS.LAUGHING,
+    //   COLORS.RED
+    // );
+    // store.set('shirts', sampleShirts);
 
-    let storedShirts = store.get('shirts');
-    this.setState({ shirts: storedShirts });
-    console.log(Object.keys(storedShirts).length + ' shirts found in storage');
+    // let storedShirts = store.get('shirts');
+    // this.setState({ shirts: storedShirts });
+    // console.log(Object.keys(storedShirts).length + ' shirts found in storage');
 
-    this.setState({
-      cartItems: {
-        'my-1': new LineItemModel(1, sampleShirts[ids[0]], 4),
-        'my-2': new LineItemModel(2, sampleShirts[ids[1]], 3),
-        'my-3': new LineItemModel(3, sampleShirts[ids[2]], 1)
-      }
-    });
+    // this.setState({
+    //   cartItems: {
+    //     'my-1': new LineItemModel(1, sampleShirts[ids[0]], 4),
+    //     'my-2': new LineItemModel(2, sampleShirts[ids[1]], 3),
+    //     'my-3': new LineItemModel(3, sampleShirts[ids[2]], 1)
+    //   }
+    // });
   };
 
   render() {
