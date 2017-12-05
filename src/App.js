@@ -19,7 +19,7 @@ export class ShirtShop extends React.Component {
     this.removeItem = this.removeItem.bind(this);
     this.state = {
       shirts: {},
-      cartItems: []
+      cartItems: {}
     };
   }
 
