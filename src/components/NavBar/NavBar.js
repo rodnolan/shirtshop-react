@@ -10,6 +10,10 @@ const NavBar = () => (
     <Link to="/cart">
       <button className="btn btn-primary">Cart</button>
     </Link>
+
+    <Link to="/shipping">
+      <button className="btn btn-primary">Shipping</button>
+    </Link>
   </nav>
 );
 

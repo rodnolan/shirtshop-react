@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import ShirtList from './components/ShirtList/ShirtList';
+import Shipping from './components/Shipping/Shipping';
 import Cart from './components/Cart/Cart';
 import Config from './components/Config/Config';
 import NavBar from './components/NavBar/NavBar';
@@ -94,6 +95,7 @@ export class ShirtShop extends React.Component {
             render={() => <ShirtList shirts={this.state.shirts} />}
           />
           <Route path="/config/:shirtId" component={Config} />
+          <Route path="/shipping" component={Shipping} />
           <Route
             path="/cart"
             render={() => (
