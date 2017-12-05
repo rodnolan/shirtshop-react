@@ -26,7 +26,7 @@ class Config extends Component {
     this.updateLogo = this.updateLogo.bind(this);
 
     let shirts = store.get('shirts');
-    let shirt = shirts[this.props.match.params.shirtId];
+    let shirt = shirts[props.shirtId];
     if (shirt === undefined) {
       shirt = new ShirtModel(
         guid(),
@@ -40,13 +40,14 @@ class Config extends Component {
   }
 
   saveHandler = () => {
-    alert('saveHandler for ' + this.state.shirt.id);
+    //alert('Config::saveHandler: ' + JSON.stringify(this.state.shirt));
+    this.props.saveShirt(this.state.shirt);
   };
   cancelHandler = () => {
-    alert('cancelHandler');
+    alert('Config::cancelHandler');
   };
   addToCartHandler = () => {
-    alert('addToCartHandler');
+    alert('Config::addToCartHandler');
   };
 
   updateColor = newColor => {
