@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ShirtList from './components/ShirtList/ShirtList';
 import Shipping from './components/Shipping/Shipping';
 import Cart from './components/Cart/Cart';
-import Thanks from './components/Thanks/Thanks';
 import Config from './components/Config/Config';
 import NavBar from './components/NavBar/NavBar';
 import store from 'store';
@@ -19,6 +18,7 @@ export class ShirtShop extends React.Component {
     this.updateItem = this.updateItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.saveShippingInfo = this.saveShippingInfo.bind(this);
+    this.saveShirt = this.saveShirt.bind(this);
     this.state = {
       shirts: {},
       cartItems: {},
@@ -28,9 +28,33 @@ export class ShirtShop extends React.Component {
 
   componentDidMount() {
     console.log('App::componentDidMount');
+    this.loadShirtsFromStorage();
     // this should trigger a re-render because it's being called from component *DID* Mount, not componentWillMount
-    this.createSampleData();
+    //this.createSampleData();
+    //this.clearSampleData();
   }
+
+  loadShirtsFromStorage() {
+    let storedShirts = store.get('shirts');
+    this.setState({ shirts: storedShirts });
+    console.log(
+      'App::loadShirtsFromStorage: ' +
+        Object.keys(store.get('shirts')).length +
+        ' shirts loaded from storage into state'
+    );
+  }
+
+  saveShirt(shirt) {
+    const shirts = { ...this.state.shirts };
+    shirts[shirt.id] = shirt;
+    this.setState({ shirts });
+    store.set('shirts', shirts);
+
+    console.log(
+      Object.keys(store.get('shirts')).length + ' shirts found in storage'
+    );
+  }
+
   //Used in conjunction with the quantity buttons on the Cart.
   updateItem(key, updatedItem) {
     const cartItems = { ...this.state.cartItems };
@@ -38,7 +62,6 @@ export class ShirtShop extends React.Component {
     this.setState({ cartItems });
   }
 
-  //I'm keeping this as a separate function for now, so as not to interfere with the quantity. Can merge them later.
   removeItem(key) {
     const cartItems = { ...this.state.cartItems };
     delete cartItems[key];
@@ -52,6 +75,10 @@ export class ShirtShop extends React.Component {
     shippingInfo = shippingData;
     this.setState({ shippingInfo });
   }
+  clearSampleData = () => {
+    store.set('shirts', {});
+    store.set('cartItems', {});
+  };
 
   createSampleData = () => {
     console.log('App::createSampleData');
@@ -105,12 +132,21 @@ export class ShirtShop extends React.Component {
             path="/"
             render={() => <ShirtList shirts={this.state.shirts} />}
           />
-          <Route path="/config/:shirtId" component={Config} />
           <Route
             path="/shipping"
             render={() => <Shipping saveShippingInfo={this.saveShippingInfo} />}
           />
-          <Route path="/thanks" component={Thanks} />
+
+          <Route
+            exact
+            path="/config/:shirtId"
+            render={({ match }) => (
+              <Config
+                shirtId={match.params.shirtId}
+                saveShirt={this.saveShirt}
+              />
+            )}
+          />
           <Route
             path="/cart"
             render={() => (
