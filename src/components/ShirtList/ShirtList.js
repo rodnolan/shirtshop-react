@@ -10,9 +10,8 @@ class ShirtList extends React.Component {
   }
   render = props => (
     <div>
-      {Object.keys(this.props.shirts).length === 0
-        ? this.renderAddButton()
-        : this.renderShirts()}
+      {this.renderAddButton()}
+      {Object.keys(this.props.shirts).length > 0 ? this.renderShirts() : null}
     </div>
   );
 

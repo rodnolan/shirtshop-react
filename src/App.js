@@ -26,9 +26,20 @@ export class ShirtShop extends React.Component {
 
   componentDidMount() {
     console.log('App::componentDidMount');
+    this.loadShirtsFromStorage();
     // this should trigger a re-render because it's being called from component *DID* Mount, not componentWillMount
     //this.createSampleData();
     //this.clearSampleData();
+  }
+
+  loadShirtsFromStorage() {
+    let storedShirts = store.get('shirts');
+    this.setState({ shirts: storedShirts });
+    console.log(
+      'App::loadShirtsFromStorage: ' +
+        Object.keys(store.get('shirts')).length +
+        ' shirts loaded from storage into state'
+    );
   }
 
   saveShirt(shirt) {
