@@ -20,6 +20,7 @@ export class ShirtShop extends React.Component {
     this.removeItem = this.removeItem.bind(this);
     this.saveShippingInfo = this.saveShippingInfo.bind(this);
     this.saveShirt = this.saveShirt.bind(this);
+    this.deleteShirt = this.deleteShirt.bind(this);
     this.state = {
       shirts: {},
       cartItems: {},
@@ -30,9 +31,6 @@ export class ShirtShop extends React.Component {
   componentDidMount() {
     console.log('App::componentDidMount');
     this.loadShirtsFromStorage();
-    // this should trigger a re-render because it's being called from component *DID* Mount, not componentWillMount
-    //this.createSampleData();
-    //this.clearSampleData();
   }
 
   loadShirtsFromStorage() {
@@ -40,7 +38,7 @@ export class ShirtShop extends React.Component {
     this.setState({ shirts: storedShirts });
     console.log(
       'App::loadShirtsFromStorage: ' +
-        Object.keys(store.get('shirts')).length +
+        Object.keys(storedShirts).length +
         ' shirts loaded from storage into state'
     );
   }
@@ -52,7 +50,18 @@ export class ShirtShop extends React.Component {
     store.set('shirts', shirts);
 
     console.log(
-      Object.keys(store.get('shirts')).length + ' shirts found in storage'
+      Object.keys(store.get('shirts')).length + ' shirts now live in storage'
+    );
+  }
+
+  deleteShirt(key) {
+    const shirts = { ...this.state.shirts };
+    delete shirts[key];
+    this.setState({ shirts });
+    store.set('shirts', shirts);
+
+    console.log(
+      Object.keys(store.get('shirts')).length + ' shirts now live in storage'
     );
   }
 
@@ -162,6 +171,7 @@ export class ShirtShop extends React.Component {
               <Config
                 shirtId={match.params.shirtId}
                 saveShirt={this.saveShirt}
+                deleteShirt={this.deleteShirt}
               />
             )}
           />

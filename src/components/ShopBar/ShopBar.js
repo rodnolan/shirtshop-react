@@ -18,9 +18,9 @@ class ShopBar extends Component {
       <button
         type="button"
         className="btn btn-primary"
-        onClick={this.props.cancelHandler}
+        onClick={this.props.deleteHandler}
       >
-        <i className="fa fa-ban" aria-hidden="true" /> Cancel
+        <i className="fa fa-trash" aria-hidden="true" /> Delete
       </button>
       <button
         type="button"
@@ -35,12 +35,12 @@ class ShopBar extends Component {
 
 ShopBar.propTypes = {
   saveHandler: PropTypes.function,
-  cancelHandler: PropTypes.function,
+  deleteHandler: PropTypes.function,
   addToCartHandler: PropTypes.function
 };
 ShopBar.defaultProps = {
   saveHandler: null,
-  cancelHandler: null,
+  deleteHandler: null,
   addToCartHandler: null
 };
 
