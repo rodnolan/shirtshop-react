@@ -123,7 +123,7 @@ class Cart extends Component {
             </tbody>
           </table>
           <Link to="/shipping">
-            <button className="btn btn-primary">NEXT</button>
+            <button className="btn btn-primary">NEXT →</button>
           </Link>
         </div>
       </div>

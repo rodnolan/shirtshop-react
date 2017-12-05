@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import { Link } from 'react-router-dom';
+// import PropTypes from 'prop-types';
 
 //Import the react form validation
 import {
@@ -24,15 +26,10 @@ class Shipping extends Component {
 
     this.state = {
       // Sets the default country to "usa"
+      //Form Validation
       country: 'usa',
       region: '',
-
-      // Imports the countries from the countries.js file and assigns it to the countries variable.
-      countries: countries,
-      regions: regions,
       zipPostCode: '',
-
-      //Form Validation
       email: '',
       phone: '',
       submitButtonDisabled: false
@@ -73,9 +70,10 @@ class Shipping extends Component {
     this.form.validateFields();
     this.setState({ submitButtonDisabled: !this.form.isValid() });
     if (this.form.isValid()) {
-      alert(
-        `Valid form\n\nthis.state =\n${JSON.stringify(this.state, null, 2)}`
-      );
+      let shippingInfo = this.state;
+      delete shippingInfo.submitButtonDisabled;
+      this.props.saveShippingInfo(this.state);
+      // this.context.router.transitionTo('/thanks');
     }
   }
 
@@ -136,18 +134,18 @@ class Shipping extends Component {
 
         <FormGroup for="phone">
           <FormControlLabel htmlFor="phone">
-            Phone Number incl. area code (123-555-6789)
+            Phone Number incl. area code (1235556789)
           </FormControlLabel>
           <FormControlInput
             type="text"
             id="phone"
             name="phone"
-            pattern="\d{3}[\-]\d{3}[\-]\d{4}"
+            pattern="\d{10}"
             value={this.state.phone}
             onChange={this.handleChange}
             required
-            minLength={12}
-            placeholder="ex. 123-456-7890"
+            minLength={10}
+            placeholder="ex. 1234567890"
           />
           <FieldFeedbacks for="phone">
             <FieldFeedback when="tooShort">Too short</FieldFeedback>
@@ -255,8 +253,9 @@ class Shipping extends Component {
         <button
           disabled={this.state.submitButtonDisabled}
           className="btn btn-primary"
+          type="submit"
         >
-          Submit
+          Complete Order
         </button>
       </FormWithConstraints>
     );
@@ -264,6 +263,10 @@ class Shipping extends Component {
 }
 
 export default Shipping;
+
+// Shipping.contextTypes = {
+//   router: PropTypes.object
+// }
 
 //There is a separate file that contains this, but it didn't seem to work properly. Ideally, this belongs in countries.js
 const countries = [

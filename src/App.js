@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ShirtList from './components/ShirtList/ShirtList';
 import Shipping from './components/Shipping/Shipping';
 import Cart from './components/Cart/Cart';
+import Thanks from './components/Thanks/Thanks';
 import Config from './components/Config/Config';
 import NavBar from './components/NavBar/NavBar';
 import store from 'store';
@@ -17,9 +18,11 @@ export class ShirtShop extends React.Component {
     super();
     this.updateItem = this.updateItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
+    this.saveShippingInfo = this.saveShippingInfo.bind(this);
     this.state = {
       shirts: {},
-      cartItems: {}
+      cartItems: {},
+      shippingInfo: {}
     };
   }
 
@@ -40,6 +43,14 @@ export class ShirtShop extends React.Component {
     const cartItems = { ...this.state.cartItems };
     delete cartItems[key];
     this.setState({ cartItems });
+  }
+
+  //Used to update the shippingInfo from the form.
+  saveShippingInfo(shippingData) {
+    // Had to change 'const' to 'let' otherwise it was read only. Right now, it's only capturing one set of shipping data at a time, so it can overwrite everytime without concern. Persistent data would change this.
+    let shippingInfo = { ...this.state.shippingInfo };
+    shippingInfo = shippingData;
+    this.setState({ shippingInfo });
   }
 
   createSampleData = () => {
@@ -95,7 +106,11 @@ export class ShirtShop extends React.Component {
             render={() => <ShirtList shirts={this.state.shirts} />}
           />
           <Route path="/config/:shirtId" component={Config} />
-          <Route path="/shipping" component={Shipping} />
+          <Route
+            path="/shipping"
+            render={() => <Shipping saveShippingInfo={this.saveShippingInfo} />}
+          />
+          <Route path="/thanks" component={Thanks} />
           <Route
             path="/cart"
             render={() => (
