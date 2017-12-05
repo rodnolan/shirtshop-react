@@ -17,7 +17,7 @@ class Config extends Component {
   constructor(props) {
     super(props);
     this.saveHandler = this.saveHandler.bind(this);
-    this.cancelHandler = this.cancelHandler.bind(this);
+    this.deleteHandler = this.deleteHandler.bind(this);
     this.addToCartHandler = this.addToCartHandler.bind(this);
 
     this.updateColor = this.updateColor.bind(this);
@@ -40,11 +40,11 @@ class Config extends Component {
   }
 
   saveHandler = () => {
-    //alert('Config::saveHandler: ' + JSON.stringify(this.state.shirt));
     this.props.saveShirt(this.state.shirt);
   };
-  cancelHandler = () => {
-    alert('Config::cancelHandler');
+  deleteHandler = () => {
+    alert('Config::deleteHandler' + this.state.shirt.id);
+    this.props.deleteShirt(this.state.shirt.id);
   };
   addToCartHandler = () => {
     alert('Config::addToCartHandler');
@@ -90,7 +90,7 @@ class Config extends Component {
         <div className="cell col-xs-12 col-s-12 col-m-9 col-l-9 col-xl-9">
           <ShopBar
             saveHandler={this.saveHandler}
-            cancelHandler={this.cancelHandler}
+            deleteHandler={this.deleteHandler}
             addToCartHandler={this.addToCartHandler}
           />
           <Shirt shirt={this.state.shirt} />
