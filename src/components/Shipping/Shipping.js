@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 //Import the react form validation
 import {
@@ -73,7 +73,7 @@ class Shipping extends Component {
       let shippingInfo = this.state;
       delete shippingInfo.submitButtonDisabled;
       this.props.saveShippingInfo(this.state);
-      // this.context.router.transitionTo('/thanks');
+      this.props.history.push(`/thanks`);
     }
   }
 
@@ -264,9 +264,9 @@ class Shipping extends Component {
 
 export default Shipping;
 
-// Shipping.contextTypes = {
-//   router: PropTypes.object
-// }
+Shipping.contextTypes = {
+  router: PropTypes.object
+};
 
 //There is a separate file that contains this, but it didn't seem to work properly. Ideally, this belongs in countries.js
 const countries = [
