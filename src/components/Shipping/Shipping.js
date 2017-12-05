@@ -49,6 +49,7 @@ class Shipping extends Component {
 
     if (field === 'country') {
       this.setState({ region: '' });
+      this.setState({ zipPostCode: '' });
     }
   };
   //completeOrder will be made up of:
