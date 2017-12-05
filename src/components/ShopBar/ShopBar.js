@@ -4,7 +4,10 @@ import './ShopBar.css';
 
 class ShopBar extends Component {
   render = props => (
-    <div style={{ width: '100%', padding: '10px' }} className="row">
+    <div
+      style={{ width: '100%', padding: '10px', margin: 'auto' }}
+      className="row"
+    >
       <button
         type="button"
         className="btn btn-primary"
