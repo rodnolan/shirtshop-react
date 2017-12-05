@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Cart.css';
 
 class Cart extends Component {
@@ -121,6 +122,9 @@ class Cart extends Component {
               {Object.keys(this.props.cartItems).map(this.renderTableRow)}
             </tbody>
           </table>
+          <Link to="/shipping">
+            <button className="btn btn-primary">NEXT</button>
+          </Link>
         </div>
       </div>
     );
