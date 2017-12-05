@@ -19,6 +19,12 @@ class Config extends Component {
     this.saveHandler = this.saveHandler.bind(this);
     this.cancelHandler = this.cancelHandler.bind(this);
     this.addToCartHandler = this.addToCartHandler.bind(this);
+
+    this.updateColor = this.updateColor.bind(this);
+    this.updateStyle = this.updateStyle.bind(this);
+    this.updateSize = this.updateSize.bind(this);
+    this.updateLogo = this.updateLogo.bind(this);
+
     let shirts = store.get('shirts');
     let shirt = shirts[this.props.match.params.shirtId];
     if (shirt === undefined) {
