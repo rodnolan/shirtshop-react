@@ -121,10 +121,10 @@ const styles = {
 };
 
 ConfigButtonBar.propTypes = {
-  updateColor: PropTypes.function,
-  updateStyle: PropTypes.function,
-  updateSize: PropTypes.function,
-  updateLogo: PropTypes.function
+  updateColor: PropTypes.func.isRequired,
+  updateStyle: PropTypes.func.isRequired,
+  updateSize: PropTypes.func.isRequired,
+  updateLogo: PropTypes.func.isRequired
 };
 ConfigButtonBar.defaultProps = {
   updateColor: null,

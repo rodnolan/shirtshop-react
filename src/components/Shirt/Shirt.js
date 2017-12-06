@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './Shirt.css';
-import ShirtModel from '../../model/ShirtModel';
 
 class Shirt extends Component {
   render() {
@@ -78,11 +77,17 @@ const shirtImages = {
   }
 };
 
-// Shirt.propTypes = {
-//   shirt: PropTypes.instanceOf(ShirtModel)
-// };
-// Shirt.defaultProps = {
-//   shirt: null
-// };
+Shirt.propTypes = {
+  shirt: PropTypes.shape({
+    id: PropTypes.string,
+    size: PropTypes.string,
+    price: PropTypes.number,
+    logo: PropTypes.string,
+    color: PropTypes.string
+  }).isRequired
+};
+Shirt.defaultProps = {
+  shirt: null
+};
 
 export default Shirt;
