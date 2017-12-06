@@ -11,6 +11,10 @@ class Shirt extends Component {
       <div style={styles.outerContainer}>
         <div style={styles.shirtContainer}>
           <img src={shirtImagePath} alt="shirt" style={styles.shirtImage} />
+          <div style={styles.sizeContainer}>
+            {this.props.shirt.size[0].toUpperCase()}
+          </div>
+          <div style={styles.priceContainer}>${this.props.shirt.price}</div>
           <div style={styles.logoContainer}>
             <img
               src={logoImages[this.props.shirt.logo]}
@@ -50,6 +54,24 @@ const styles = {
   logoImage: {
     maxHeight: '100%',
     maxWidth: '100%'
+  },
+  sizeContainer: {
+    position: 'absolute',
+    top: '6%',
+    left: '45%',
+    right: '45%',
+    border: '2px solid blue',
+    textAlign: 'center',
+    backgroundColor: 'lightblue'
+  },
+  priceContainer: {
+    position: 'absolute',
+    top: '10%',
+    left: '25%',
+    width: '10%',
+    border: '3px dashed red',
+    textAlign: 'center',
+    backgroundColor: 'lightgray'
   }
 };
 
