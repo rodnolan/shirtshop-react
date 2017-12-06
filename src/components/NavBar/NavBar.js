@@ -14,6 +14,9 @@ const NavBar = () => (
     <Link to="/shipping">
       <button className="btn btn-primary">Shipping</button>
     </Link>
+    <Link to="/thanks">
+      <button className="btn btn-primary">Thanks</button>
+    </Link>
   </nav>
 );
 

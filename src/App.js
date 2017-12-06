@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import ShirtList from './components/ShirtList/ShirtList';
 import Shipping from './components/Shipping/Shipping';
+import Thanks from './components/Thanks/Thanks';
 import Cart from './components/Cart/Cart';
 import Config from './components/Config/Config';
 import NavBar from './components/NavBar/NavBar';
@@ -111,9 +112,26 @@ export class ShirtShop extends React.Component {
             path="/"
             render={() => <ShirtList shirts={this.state.shirts} />}
           />
+
           <Route
             path="/shipping"
-            render={() => <Shipping saveShippingInfo={this.saveShippingInfo} />}
+            render={({ history }) => (
+              <Shipping
+                saveShippingInfo={this.saveShippingInfo}
+                history={history}
+              />
+            )}
+          />
+
+          <Route
+            exact
+            path="/thanks"
+            render={() => (
+              <Thanks
+                shippingInfo={this.state.shippingInfo}
+                cartItems={this.state.cartItems}
+              />
+            )}
           />
 
           <Route
