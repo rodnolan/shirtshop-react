@@ -59,6 +59,7 @@ export class ShirtShop extends React.Component {
   }
 
   saveShirt(shirt) {
+    console.log('App::saveShirt: ' + JSON.stringify(shirt));
     const shirts = { ...this.state.shirts };
     shirts[shirt.id] = shirt;
     this.setState({ shirts });
@@ -67,6 +68,7 @@ export class ShirtShop extends React.Component {
   }
 
   deleteShirt(key) {
+    console.log('App::deleteShirt with id: ' + key);
     const shirts = { ...this.state.shirts };
     delete shirts[key];
     this.setState({ shirts });
