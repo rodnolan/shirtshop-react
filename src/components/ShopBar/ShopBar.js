@@ -34,9 +34,9 @@ class ShopBar extends Component {
 }
 
 ShopBar.propTypes = {
-  saveHandler: PropTypes.function,
-  deleteHandler: PropTypes.function,
-  addToCartHandler: PropTypes.function
+  saveHandler: PropTypes.func.isRequired,
+  deleteHandler: PropTypes.func.isRequired,
+  addToCartHandler: PropTypes.func.isRequired
 };
 ShopBar.defaultProps = {
   saveHandler: null,
