@@ -5,89 +5,72 @@ import { COLORS, SIZES, STYLES, LOGOS } from '../../model/ShirtModel';
 
 class ConfigButtonBar extends Component {
   render = props => (
-    <div>
-      <div className="card">
-        <p className="card-header">
-          Size: {this.props.shirt.size} Price: ${this.props.shirt.price}{' '}
-        </p>
-        <div className="card-body">
-          <div className="btn-group" role="group" aria-label="Basic example">
-            <button onClick={() => this.props.updateSize(SIZES.SMALL)}>
-              {SIZES.SMALL}
-            </button>
-            <button onClick={() => this.props.updateSize(SIZES.MEDIUM)}>
-              {SIZES.MEDIUM}
-            </button>
-            <button onClick={() => this.props.updateSize(SIZES.LARGE)}>
-              {SIZES.LARGE}
-            </button>
-          </div>
-        </div>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+      }}
+    >
+      <div>
+        <button onClick={() => this.props.updateSize(SIZES.SMALL)}>
+          {SIZES.SMALL}
+        </button>
+        <button onClick={() => this.props.updateSize(SIZES.MEDIUM)}>
+          {SIZES.MEDIUM}
+        </button>
+        <button onClick={() => this.props.updateSize(SIZES.LARGE)}>
+          {SIZES.LARGE}
+        </button>
       </div>
-      <div className="card">
-        <p className="card-header">Style: {this.props.shirt.style}</p>
-        <div className="card-body">
-          <div className="btn-group" role="group" aria-label="Basic example">
-            <button onClick={() => this.props.updateStyle(STYLES.MEN)}>
-              M
-            </button>
-            <button onClick={() => this.props.updateStyle(STYLES.WOMEN)}>
-              W
-            </button>
-          </div>
-        </div>
+
+      <div>
+        <button onClick={() => this.props.updateStyle(STYLES.MEN)}>
+          {STYLES.MEN}
+        </button>
+        <button onClick={() => this.props.updateStyle(STYLES.WOMEN)}>
+          {STYLES.WOMEN}
+        </button>
       </div>
-      <div className="card">
-        <p className="card-header">Color: {this.props.shirt.color}</p>
-        <div className="card-body">
-          <div
-            onClick={() => this.props.updateColor(COLORS.RED)}
-            style={Object.assign({}, styles.red, styles.colorPickerBtn)}
-          >
-            &nbsp;
-          </div>
-          <div
-            onClick={() => this.props.updateColor(COLORS.BLUE)}
-            style={Object.assign({}, styles.colorPickerBtn, styles.blue)}
-          >
-            &nbsp;
-          </div>
-          <div
-            onClick={() => this.props.updateColor(COLORS.BLACK)}
-            style={Object.assign({}, styles.colorPickerBtn, styles.black)}
-          >
-            &nbsp;
-          </div>
-          <div
-            onClick={() => this.props.updateColor(COLORS.WHITE)}
-            style={Object.assign({}, styles.colorPickerBtn, styles.white)}
-          >
-            &nbsp;
-          </div>
-        </div>
+
+      <div style={{ display: 'flex' }}>
+        <div
+          onClick={() => this.props.updateColor(COLORS.RED)}
+          style={Object.assign({}, styles.red, styles.colorPickerBtn)}
+        />
+        <div
+          onClick={() => this.props.updateColor(COLORS.BLUE)}
+          style={Object.assign({}, styles.colorPickerBtn, styles.blue)}
+        />
+        <div
+          onClick={() => this.props.updateColor(COLORS.BLACK)}
+          style={Object.assign({}, styles.colorPickerBtn, styles.black)}
+        />
+        <div
+          onClick={() => this.props.updateColor(COLORS.WHITE)}
+          style={Object.assign({}, styles.colorPickerBtn, styles.white)}
+        />
       </div>
-      <div className="card">
-        <p className="card-header">Logo: {this.props.shirt.logo}</p>
-        <div className="card-body">
-          <img
-            src={logoCool}
-            alt="logo cool"
-            style={{ height: logoDimensions, width: logoDimensions }}
-            onClick={() => this.props.updateLogo(LOGOS.COOL)}
-          />
-          <img
-            src={logoWorried}
-            alt="logo worried"
-            style={{ height: logoDimensions, width: logoDimensions }}
-            onClick={() => this.props.updateLogo(LOGOS.WORRIED)}
-          />
-          <img
-            src={logoLaughing}
-            alt="logo laughing"
-            style={{ height: logoDimensions, width: logoDimensions }}
-            onClick={() => this.props.updateLogo(LOGOS.LAUGHING)}
-          />
-        </div>
+
+      <div>
+        <img
+          src={logoCool}
+          alt="logo cool"
+          style={{ height: logoDimensions, width: logoDimensions }}
+          onClick={() => this.props.updateLogo(LOGOS.COOL)}
+        />
+        <img
+          src={logoWorried}
+          alt="logo worried"
+          style={{ height: logoDimensions, width: logoDimensions }}
+          onClick={() => this.props.updateLogo(LOGOS.WORRIED)}
+        />
+        <img
+          src={logoLaughing}
+          alt="logo laughing"
+          style={{ height: logoDimensions, width: logoDimensions }}
+          onClick={() => this.props.updateLogo(LOGOS.LAUGHING)}
+        />
       </div>
     </div>
   );
@@ -96,14 +79,13 @@ class ConfigButtonBar extends Component {
 const logoCool = require('../../images/cool.png');
 const logoWorried = require('../../images/worried.png');
 const logoLaughing = require('../../images/laughing.png');
-const logoDimensions = 60;
+const logoDimensions = 50;
 
 const styles = {
   colorPickerBtn: {
     margin: '1px',
-    height: '100%',
-    width: '20%',
-    float: 'left',
+    minWidth: '30px',
+    minHeight: '30px',
     border: '1px solid black'
   },
   red: {

@@ -5,28 +5,21 @@ import './ShopBar.css';
 class ShopBar extends Component {
   render = props => (
     <div
-      style={{ width: '100%', padding: '10px', margin: 'auto' }}
-      className="row"
+      style={{
+        width: '50%',
+        padding: '10px',
+        margin: 'auto',
+        display: 'flex',
+        justifyContent: 'space-around'
+      }}
     >
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={this.props.saveHandler}
-      >
+      <button type="button" onClick={this.props.saveHandler}>
         <i className="fa fa-floppy-o" aria-hidden="true" /> Save
       </button>
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={this.props.deleteHandler}
-      >
+      <button type="button" onClick={this.props.deleteHandler}>
         <i className="fa fa-trash" aria-hidden="true" /> Delete
       </button>
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={this.props.addToCartHandler}
-      >
+      <button type="button" onClick={this.props.addToCartHandler}>
         <i className="fa fa-cart-plus" aria-hidden="true" /> + Cart
       </button>
     </div>

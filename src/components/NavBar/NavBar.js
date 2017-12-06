@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = () => (
-  <nav className="row navbar">
+  <nav style={{ display: 'flex', justifyContent: 'space-around' }}>
     <Link to="/">
-      <button className="btn btn-primary">Home</button>
+      <button>Home</button>
     </Link>
     <Link to="/cart">
-      <button className="btn btn-primary">Cart</button>
+      <button>Cart</button>
     </Link>
 
     <Link to="/shipping">
-      <button className="btn btn-primary">Shipping</button>
+      <button>Shipping</button>
     </Link>
     <Link to="/thanks">
-      <button className="btn btn-primary">Thanks</button>
+      <button>Thanks</button>
     </Link>
   </nav>
 );

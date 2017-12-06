@@ -30,12 +30,15 @@ class Shirt extends Component {
 
 const styles = {
   outerContainer: {
-    width: '100%',
+    width: '50%',
     maxHeight: '100vh',
     margin: '0px auto'
   },
   shirtContainer: {
-    position: 'relative'
+    position: 'relative',
+    maxHeight: 'auto',
+    maxWidth: 'auto',
+    display: 'block'
   },
   shirtImage: {
     position: 'relative',
@@ -66,8 +69,8 @@ const styles = {
   },
   priceContainer: {
     position: 'absolute',
-    top: '10%',
-    left: '25%',
+    top: '50%',
+    left: '50%',
     width: '10%',
     border: '3px dashed red',
     textAlign: 'center',

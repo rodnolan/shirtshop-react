@@ -78,8 +78,8 @@ class Config extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="cell col-xs-12 col-s-12 col-m-12 col-l-3 col-xl-3">
+      <div>
+        <div className="cell">
           <ConfigButtonBar
             updateColor={this.updateColor}
             updateSize={this.updateSize}
@@ -88,7 +88,7 @@ class Config extends Component {
             shirt={this.state.shirt}
           />
         </div>
-        <div className="cell col-xs-12 col-s-12 col-m-9 col-l-9 col-xl-9">
+        <div className="cell">
           <ShopBar
             saveHandler={this.saveHandler}
             deleteHandler={this.deleteHandler}

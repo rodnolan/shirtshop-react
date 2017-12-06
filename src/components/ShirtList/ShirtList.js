@@ -1,5 +1,6 @@
 import React from 'react';
 import ShirtListRow from './ShirtListRow';
+import Shirt from './../Shirt/Shirt';
 import './ShirtList.css';
 import { Link } from 'react-router-dom';
 
@@ -25,15 +26,25 @@ class ShirtList extends React.Component {
 
   renderShirts() {
     return (
-      <div>{Object.keys(this.props.shirts).map(this.renderShirtItem)}</div>
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {Object.keys(this.props.shirts).map(this.renderShirtItem)}
+      </div>
     );
   }
 
   renderShirtItem(key) {
     let shirt = this.props.shirts[key];
     return (
-      <div key={shirt.id}>
-        <ShirtListRow shirt={shirt} />
+      <div
+        key={shirt.id}
+        style={{
+          maxHeight: '350px',
+          maxWidth: '350px',
+          padding: '10px',
+          margin: '10px'
+        }}
+      >
+        <Shirt shirt={shirt} />
       </div>
     );
   }
