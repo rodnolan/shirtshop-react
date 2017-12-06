@@ -9,10 +9,6 @@ class Cart extends Component {
     this.renderTableRow = this.renderTableRow.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
     this.remove = this.remove.bind(this);
-
-    this.state = {
-      orderDetails: {}
-    };
   }
 
   updateQuantity(e, key) {
@@ -117,9 +113,11 @@ class Cart extends Component {
             <tfoot>
               <tr>
                 <th colSpan="3" scope="row">
-                  Total
+                  <h6>Total</h6>
                 </th>
-                <th colSpan="2">{total}</th>
+                <th colSpan="2">
+                  <h6>{total}</h6>
+                </th>
               </tr>
             </tfoot>
           </table>
