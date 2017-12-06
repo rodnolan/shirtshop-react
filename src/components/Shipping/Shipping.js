@@ -40,8 +40,6 @@ class Shipping extends Component {
     let field = event.target.id;
     let val = event.target.value;
     this.setState({ [field]: val });
-    console.log('Field: ' + field);
-    console.log('Value: ' + val);
 
     if (field === 'country') {
       this.setState({ region: '' });
@@ -182,7 +180,9 @@ class Shipping extends Component {
           >
             <option value="">Select a country</option>
             {countries.map(country => (
-              <option value={country.id}>{country.name}</option>
+              <option key={country.id} value={country.id}>
+                {country.name}
+              </option>
             ))}
           </select>
           <FieldFeedbacks for="country">
@@ -204,7 +204,9 @@ class Shipping extends Component {
               Select a {this.state.country === 'canada' ? 'province' : 'state'}
             </option>
             {regionsForSelectedCountry.map(region => (
-              <option value={region}>{region}</option>
+              <option key={region} value={region}>
+                {region}
+              </option>
             ))}
           </select>
           <FieldFeedbacks for="country">
