@@ -14,12 +14,6 @@ export default class ShirtModel {
     this.logo = logo;
     this.color = color;
   }
-
-  getDescription() {
-    return (
-      this.style + ', ' + this.size + ', ' + this.color + ', $' + this.price
-    );
-  }
 }
 
 export const PRICES = {

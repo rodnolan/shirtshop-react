@@ -1,4 +1,4 @@
-export default class LineItemModel {
+export default class CartItemModel {
   id = '';
   shirt = null;
   quantity = 0;

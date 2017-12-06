@@ -12,6 +12,7 @@ import ConfigButtonBar from './ConfigButtonBar';
 import ShopBar from '../ShopBar/ShopBar';
 import store from 'store';
 import { guid } from './../../utils/utils';
+import CartItemModel from './../../model/CartItemModel';
 
 class Config extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Config extends Component {
     this.updateSize = this.updateSize.bind(this);
     this.updateLogo = this.updateLogo.bind(this);
 
-    let shirts = store.get('shirts');
+    let shirts = store.get('shirts') || {};
     let shirt = shirts[props.shirtId];
     if (shirt === undefined) {
       shirt = new ShirtModel(
@@ -43,11 +44,11 @@ class Config extends Component {
     this.props.saveShirt(this.state.shirt);
   };
   deleteHandler = () => {
-    alert('Config::deleteHandler' + this.state.shirt.id);
     this.props.deleteShirt(this.state.shirt.id);
   };
   addToCartHandler = () => {
-    alert('Config::addToCartHandler');
+    let cartItem = new CartItemModel(guid(), this.state.shirt, 1);
+    this.props.addShirtToCart(cartItem);
   };
 
   updateColor = newColor => {

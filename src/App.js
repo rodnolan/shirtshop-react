@@ -8,9 +8,6 @@ import Cart from './components/Cart/Cart';
 import Config from './components/Config/Config';
 import NavBar from './components/NavBar/NavBar';
 import store from 'store';
-import ShirtModel, { SIZES, STYLES, LOGOS, COLORS } from './model/ShirtModel';
-import LineItemModel from './model/LineItemModel';
-import { guid } from './utils/utils';
 
 export class ShirtShop extends React.Component {
   constructor() {
@@ -20,6 +17,7 @@ export class ShirtShop extends React.Component {
     this.saveShippingInfo = this.saveShippingInfo.bind(this);
     this.saveShirt = this.saveShirt.bind(this);
     this.deleteShirt = this.deleteShirt.bind(this);
+    this.addShirtToCart = this.addShirtToCart.bind(this);
     this.state = {
       shirts: {},
       cartItems: {},
@@ -33,7 +31,7 @@ export class ShirtShop extends React.Component {
   }
 
   loadShirtsFromStorage() {
-    let storedShirts = store.get('shirts');
+    let storedShirts = store.get('shirts') || {};
     this.setState({ shirts: storedShirts });
     console.log(
       'App::loadShirtsFromStorage: ' +
@@ -64,6 +62,19 @@ export class ShirtShop extends React.Component {
     );
   }
 
+  addShirtToCart(cartItem) {
+    console.log('App::addShirtToCart: ' + JSON.stringify(cartItem));
+    const cartItems = { ...this.state.cartItems };
+    cartItems[cartItem.id] = cartItem;
+    this.setState({ cartItems });
+    store.set('cartItems', cartItems);
+
+    console.log(
+      Object.keys(store.get('cartItems')).length +
+        ' cartItems now live in storage'
+    );
+  }
+
   //Used in conjunction with the quantity buttons on the Cart.
   updateItem(key, updatedItem) {
     const cartItems = { ...this.state.cartItems };
@@ -87,47 +98,6 @@ export class ShirtShop extends React.Component {
   clearSampleData = () => {
     store.set('shirts', {});
     store.set('cartItems', {});
-  };
-
-  createSampleData = () => {
-    console.log('App::createSampleData');
-
-    // let ids = [guid(), guid(), guid()];
-    // let sampleShirts = {};
-    // sampleShirts[ids[0]] = new ShirtModel(
-    //   ids[0],
-    //   SIZES.SMALL,
-    //   STYLES.MEN,
-    //   LOGOS.WORRIED,
-    //   COLORS.BLUE
-    // );
-    // sampleShirts[ids[1]] = new ShirtModel(
-    //   ids[1],
-    //   SIZES.MEDIUM,
-    //   STYLES.WOMEN,
-    //   LOGOS.COOL,
-    //   COLORS.WHITE
-    // );
-    // sampleShirts[ids[2]] = new ShirtModel(
-    //   ids[2],
-    //   SIZES.LARGE,
-    //   STYLES.MEN,
-    //   LOGOS.LAUGHING,
-    //   COLORS.RED
-    // );
-    // store.set('shirts', sampleShirts);
-
-    // let storedShirts = store.get('shirts');
-    // this.setState({ shirts: storedShirts });
-    // console.log(Object.keys(storedShirts).length + ' shirts found in storage');
-
-    // this.setState({
-    //   cartItems: {
-    //     'my-1': new LineItemModel(1, sampleShirts[ids[0]], 4),
-    //     'my-2': new LineItemModel(2, sampleShirts[ids[1]], 3),
-    //     'my-3': new LineItemModel(3, sampleShirts[ids[2]], 1)
-    //   }
-    // });
   };
 
   render() {
@@ -154,6 +124,7 @@ export class ShirtShop extends React.Component {
                 shirtId={match.params.shirtId}
                 saveShirt={this.saveShirt}
                 deleteShirt={this.deleteShirt}
+                addShirtToCart={this.addShirtToCart}
               />
             )}
           />

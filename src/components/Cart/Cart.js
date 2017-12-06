@@ -10,7 +10,6 @@ class Cart extends Component {
     this.updateQuantity = this.updateQuantity.bind(this);
     this.remove = this.remove.bind(this);
 
-    // Set the initial state
     this.state = {
       orderDetails: {}
     };
@@ -43,7 +42,12 @@ class Cart extends Component {
         <th className="cartID" scope="row">
           {cartItem.id}
         </th>
-        <td className="cartDesc">{cartItem.shirt.getDescription()}</td>
+        <td className="cartDesc">
+          {cartItem.shirt.style} - {cartItem.shirt.color} -{' '}
+          {cartItem.shirt.size} - {cartItem.shirt.logo} - ${
+            cartItem.shirt.price
+          }
+        </td>
         <td className="cartQty ">
           <button
             onClick={e => this.updateQuantity(e, key)}
@@ -75,7 +79,6 @@ class Cart extends Component {
   }
 
   render() {
-    // Solves Issue #18 of the Total. Other items in issue #18 were solved through props.
     let total = 0;
     let cartKeys = Object.keys(this.props.cartItems);
     if (cartKeys.length > 0) {
@@ -108,7 +111,9 @@ class Cart extends Component {
                 </th>
               </tr>
             </thead>
-
+            <tbody>
+              {Object.keys(this.props.cartItems).map(this.renderTableRow)}
+            </tbody>
             <tfoot>
               <tr>
                 <th colSpan="3" scope="row">
@@ -117,10 +122,6 @@ class Cart extends Component {
                 <th colSpan="2">{total}</th>
               </tr>
             </tfoot>
-            <tbody>
-              {/* Render each of the shirts in the table */}
-              {Object.keys(this.props.cartItems).map(this.renderTableRow)}
-            </tbody>
           </table>
           <Link to="/shipping">
             <button className="btn btn-primary">NEXT →</button>
