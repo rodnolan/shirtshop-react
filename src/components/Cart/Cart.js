@@ -9,10 +9,6 @@ class Cart extends Component {
     this.renderTableRow = this.renderTableRow.bind(this);
     this.updateQuantity = this.updateQuantity.bind(this);
     this.remove = this.remove.bind(this);
-
-    this.state = {
-      orderDetails: {}
-    };
   }
 
   updateQuantity(e, key) {
@@ -59,7 +55,6 @@ class Cart extends Component {
           <h5 className="vcenter">{cartItem.quantity}</h5>
           <button
             onClick={e => this.updateQuantity(e, key)}
-            disabled={this.state.decrementButtonDisabled}
             className="btn vcenter"
             id="decrement"
           >
@@ -116,10 +111,12 @@ class Cart extends Component {
             </tbody>
             <tfoot>
               <tr>
-                <th colSpan="3" scope="row">
-                  Total
+                <th colSpan="4" scope="row">
+                  <h6>Total</h6>
                 </th>
-                <th colSpan="2">{total}</th>
+                <th>
+                  <h6>{total}</h6>
+                </th>
               </tr>
             </tfoot>
           </table>
