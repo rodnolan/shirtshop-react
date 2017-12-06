@@ -13,8 +13,8 @@ import store from 'store';
 export class ShirtShop extends React.Component {
   constructor() {
     super();
-    this.updateItem = this.updateItem.bind(this);
-    this.removeItem = this.removeItem.bind(this);
+    this.updateCartItem = this.updateCartItem.bind(this);
+    this.removeCartItem = this.removeCartItem.bind(this);
     this.saveShippingInfo = this.saveShippingInfo.bind(this);
     this.saveShirt = this.saveShirt.bind(this);
     this.deleteShirt = this.deleteShirt.bind(this);
@@ -28,17 +28,34 @@ export class ShirtShop extends React.Component {
 
   componentDidMount() {
     console.log('App::componentDidMount');
-    this.loadShirtsFromStorage();
+    this.loadDataFromStorage();
   }
 
-  loadShirtsFromStorage() {
+  loadDataFromStorage() {
+    console.log('App::loadDataFromStorage');
+
     let storedShirts = store.get('shirts') || {};
     this.setState({ shirts: storedShirts });
+
+    let storedCartItems = store.get('cartItems') || {};
+    this.setState({ cartItems: storedCartItems });
+
+    let storedShippingInfo = store.get('shippingInfo') || {};
+    this.setState({ shippingInfo: storedShippingInfo });
+
+    console.log(Object.keys(storedShirts).length + ' shirts loaded into state');
     console.log(
-      'App::loadShirtsFromStorage: ' +
-        Object.keys(storedShirts).length +
-        ' shirts loaded from storage into state'
+      Object.keys(storedCartItems).length + ' cart loaded into state'
     );
+    console.log(
+      Object.keys(storedShippingInfo).length +
+        ' shipping fields loaded into state'
+    );
+  }
+
+  logQuantity(itemToCount) {
+    let numFields = Object.keys(store.get(itemToCount)).length;
+    console.log(numFields + ' ' + itemToCount + ' items now live in storage');
   }
 
   saveShirt(shirt) {
@@ -46,10 +63,7 @@ export class ShirtShop extends React.Component {
     shirts[shirt.id] = shirt;
     this.setState({ shirts });
     store.set('shirts', shirts);
-
-    console.log(
-      Object.keys(store.get('shirts')).length + ' shirts now live in storage'
-    );
+    this.logQuantity('shirts');
   }
 
   deleteShirt(key) {
@@ -57,10 +71,7 @@ export class ShirtShop extends React.Component {
     delete shirts[key];
     this.setState({ shirts });
     store.set('shirts', shirts);
-
-    console.log(
-      Object.keys(store.get('shirts')).length + ' shirts now live in storage'
-    );
+    this.logQuantity('shirts');
   }
 
   addShirtToCart(cartItem) {
@@ -69,33 +80,33 @@ export class ShirtShop extends React.Component {
     cartItems[cartItem.id] = cartItem;
     this.setState({ cartItems });
     store.set('cartItems', cartItems);
-
-    console.log(
-      Object.keys(store.get('cartItems')).length +
-        ' cartItems now live in storage'
-    );
+    this.logQuantity('cartItems');
   }
 
-  //Used in conjunction with the quantity buttons on the Cart.
-  updateItem(key, updatedItem) {
+  updateCartItem(key, updatedItem) {
+    console.log('App::updateCartItem: ' + JSON.stringify(updatedItem));
     const cartItems = { ...this.state.cartItems };
     cartItems[key] = updatedItem;
     this.setState({ cartItems });
+    store.set('cartItems', cartItems);
+    this.logQuantity('cartItems');
   }
 
-  removeItem(key) {
+  removeCartItem(key) {
+    console.log('App::removeCartItem');
     const cartItems = { ...this.state.cartItems };
     delete cartItems[key];
     this.setState({ cartItems });
+    store.set('cartItems', cartItems);
+    this.logQuantity('cartItems');
   }
 
-  //Used to update the shippingInfo from the form.
-  saveShippingInfo(shippingData) {
-    // Had to change 'const' to 'let' otherwise it was read only. Right now, it's only capturing one set of shipping data at a time, so it can overwrite everytime without concern. Persistent data would change this.
-    let shippingInfo = { ...this.state.shippingInfo };
-    shippingInfo = shippingData;
+  saveShippingInfo(shippingInfo) {
+    console.log('App::saveShippingInfo');
     this.setState({ shippingInfo });
+    store.set('shippingInfo', shippingInfo);
   }
+
   clearSampleData = () => {
     store.set('shirts', {});
     store.set('cartItems', {});
@@ -151,8 +162,8 @@ export class ShirtShop extends React.Component {
             render={() => (
               <Cart
                 cartItems={this.state.cartItems}
-                updateItem={this.updateItem}
-                removeItem={this.removeItem}
+                updateItem={this.updateCartItem}
+                removeItem={this.removeCartItem}
               />
             )}
           />
