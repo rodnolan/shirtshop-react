@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Shipping.css';
 
 //Import the react form validation
 import {
@@ -26,7 +27,7 @@ class Shipping extends Component {
     this.state = {
       // Sets the default country to "usa"
       //Form Validation
-      country: 'usa',
+      country: '',
       region: '',
       zipPostCode: '',
       email: '',
@@ -69,7 +70,7 @@ class Shipping extends Component {
     if (this.form.isValid()) {
       let shippingInfo = this.state;
       delete shippingInfo.submitButtonDisabled;
-      this.props.saveShippingInfo(this.state);
+      this.props.saveShippingInfo(shippingInfo);
       this.props.history.push(`/thanks`);
     }
   }
@@ -156,6 +157,7 @@ class Shipping extends Component {
             type="text"
             value={this.state[this.id]}
             onChange={this.updateShippingInfo}
+            required
             id="address"
             placeholder="Street Address"
           />
@@ -166,6 +168,7 @@ class Shipping extends Component {
             type="text"
             value={this.state[this.id]}
             onChange={this.updateShippingInfo}
+            required
             id="city"
             placeholder="City"
           />
@@ -176,6 +179,8 @@ class Shipping extends Component {
             className="form-control"
             value={this.state.country}
             onChange={this.updateShippingInfo}
+            required
+            name="country"
             id="country"
           >
             <option value="">Select a country</option>
@@ -197,17 +202,18 @@ class Shipping extends Component {
           <select
             className="form-control"
             value={this.state.region}
+            required
             onChange={this.updateShippingInfo}
             id="region"
           >
             <option value="">
               Select a {this.state.country === 'canada' ? 'province' : 'state'}
             </option>
-            {regionsForSelectedCountry.map(region => (
-              <option key={region} value={region}>
-                {region}
-              </option>
-            ))}
+            {regionsForSelectedCountry && regionsForSelectedCountry.length > 0
+              ? regionsForSelectedCountry.map(region => (
+                  <option value={region}>{region}</option>
+                ))
+              : null}
           </select>
           <FieldFeedbacks for="country">
             <FieldFeedback when="*" />

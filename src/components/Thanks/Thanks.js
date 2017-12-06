@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './Thanks.css';
 
 class Thanks extends Component {
   constructor() {
@@ -7,6 +8,7 @@ class Thanks extends Component {
     this.renderTableRow = this.renderTableRow.bind(this);
   }
 
+  //I'd like to put both the renderTableRow and a new function of renderTable into a separate area and conditionally render the buttons if needed or not, adjust the number of columns to be 4 or 5, and adjust the colspan on the total to be either 3 or 4 depending on the number of columns for the total in the footer of the table. This is to be done AFTER we get it all working.
   renderTableRow(key) {
     const cartItem = this.props.cartItems[key];
     return (
@@ -14,32 +16,12 @@ class Thanks extends Component {
         <th className="cartID" scope="row">
           {cartItem.id}
         </th>
-        <td className="cartDesc">{cartItem.shirt.getDescription()}</td>
+        <td className="cartDesc">{cartItem.shirt.size}</td>
         <td className="cartQty ">
-          <button
-            onClick={e => this.updateQuantity(e, key)}
-            className="btn vcenter"
-            id="increment"
-          >
-            <i className="fa fa-plus-circle" aria-hidden="true" />
-          </button>
           <h5 className="vcenter">{cartItem.quantity}</h5>
-          <button
-            onClick={e => this.updateQuantity(e, key)}
-            disabled={this.state.decrementButtonDisabled}
-            className="btn vcenter"
-            id="decrement"
-          >
-            <i className="fa fa-minus-circle" aria-hidden="true" />
-          </button>
         </td>
         <td className="cartCost">
           <h5>{cartItem.subTotal}</h5>
-        </td>
-        <td className="cartRemove">
-          <button onClick={e => this.remove(e, key)} className="btn btn-danger">
-            <i className="fa fa-trash" aria-hidden="true" />
-          </button>
         </td>
       </tr>
     );
@@ -54,6 +36,13 @@ class Thanks extends Component {
         .reduce((previous, current) => previous + current);
     }
 
+    let country = this.props.shippingInfo.country;
+    if (country === 'canada') {
+      country = 'Canada';
+    } else {
+      country = 'United States of America';
+    }
+
     return (
       <div className="row">
         <div className="col">
@@ -64,22 +53,22 @@ class Thanks extends Component {
             <thead>
               <tr>
                 <th>
-                  <h6 />
+                  <h6>Item No. </h6>
                 </th>
                 <th>
-                  <h6 />
+                  <h6>Description </h6>
                 </th>
                 <th>
-                  <h6 />
+                  <h6>Quantity</h6>
                 </th>
                 <th>
-                  <h6 />
+                  <h6>Subtotal </h6>
                 </th>
               </tr>
             </thead>
             <tfoot>
               <tr>
-                <th colspan="3" scope="row">
+                <th colSpan="3" scope="row">
                   <h6>Total</h6>
                 </th>
                 <th>
@@ -94,6 +83,34 @@ class Thanks extends Component {
               {Object.keys(this.props.cartItems).map(this.renderTableRow)}
             </tbody>
           </table>
+
+          <div className="row">
+            <div className="col">
+              <h2>Shipping Information</h2>
+              <address>
+                {this.props.shippingInfo.firstName}{' '}
+                {this.props.shippingInfo.lastName}
+                <br />
+                {this.props.shippingInfo.address}
+                <br />
+                {this.props.shippingInfo.city}
+                {', '}
+                {this.props.shippingInfo.region}{' '}
+                {this.props.shippingInfo.zipPostCode} <br />
+                {country}
+              </address>
+              <p>
+                <strong>Email:</strong> {this.props.shippingInfo.email}
+              </p>
+              <p>
+                <strong>Phone:</strong> {this.props.shippingInfo.phone}
+              </p>
+              <p>
+                <strong>Special Instructions (if any):</strong>{' '}
+                {this.props.shippingInfo.specialInstructions}
+              </p>
+            </div>
+          </div>
           <Link to="/">
             <button className="btn btn-primary">Return to Home →</button>
           </Link>
