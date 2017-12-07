@@ -4,3 +4,9 @@
   padding: 4px;
   bottom: 0px;
 }
+
+.mainPageBody {
+  border: 1px solid yellow;
+  background-color: lightgray;
+  padding: 8px;
+}
