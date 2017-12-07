@@ -78,24 +78,20 @@ class Config extends Component {
 
   render() {
     return (
-      <div>
-        <div className="cell">
-          <ConfigButtonBar
-            updateColor={this.updateColor}
-            updateSize={this.updateSize}
-            updateLogo={this.updateLogo}
-            updateStyle={this.updateStyle}
-            shirt={this.state.shirt}
-          />
-        </div>
-        <div className="cell">
-          <ShopBar
-            saveHandler={this.saveHandler}
-            deleteHandler={this.deleteHandler}
-            addToCartHandler={this.addToCartHandler}
-          />
-          <Shirt shirt={this.state.shirt} />
-        </div>
+      <div className="configBody">
+        <ConfigButtonBar
+          updateColor={this.updateColor}
+          updateSize={this.updateSize}
+          updateLogo={this.updateLogo}
+          updateStyle={this.updateStyle}
+          shirt={this.state.shirt}
+        />
+        <ShopBar
+          saveHandler={this.saveHandler}
+          deleteHandler={this.deleteHandler}
+          addToCartHandler={this.addToCartHandler}
+        />
+        <Shirt shirt={this.state.shirt} />
       </div>
     );
   }

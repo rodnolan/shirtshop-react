@@ -17,11 +17,6 @@ table {
   width: 100%;
 }
 
-.cell {
-  border: 1px solid black;
-  background-color: lightgoldenrodyellow;
-}
-
 #root {
   height: 100%;
 }

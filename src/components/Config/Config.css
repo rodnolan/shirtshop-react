@@ -1,4 +1,4 @@
-p.Config {
-    color: lightgray;
-    background-color: green;
+.configBody {
+  border: 1px solid black;
+  background-color: lightgoldenrodyellow;
 }
