@@ -34,41 +34,28 @@ class Cart extends Component {
   renderTableRow(key) {
     const cartItem = this.props.cartItems[key];
     return (
-      <tr className="cartRow" key={key}>
-        <th className="cartID" scope="row">
-          {cartItem.id}
-        </th>
-        <td className="cartDesc">
-          {cartItem.shirt.style} - {cartItem.shirt.color} -{' '}
-          {cartItem.shirt.size} - {cartItem.shirt.logo} - ${
-            cartItem.shirt.price
-          }
-        </td>
-        <td className="cartQty ">
-          <button
-            onClick={e => this.updateQuantity(e, key)}
-            className="btn vcenter"
-            id="increment"
-          >
-            <i className="fa fa-plus-circle" aria-hidden="true" />
-          </button>
-          <h5 className="vcenter">{cartItem.quantity}</h5>
-          <button
-            onClick={e => this.updateQuantity(e, key)}
-            className="btn vcenter"
-            id="decrement"
-          >
-            <i className="fa fa-minus-circle" aria-hidden="true" />
-          </button>
-        </td>
-        <td className="cartCost">
-          <h5>{cartItem.subTotal}</h5>
-        </td>
-        <td className="cartRemove">
-          <button onClick={e => this.remove(e, key)} className="btn btn-danger">
+      <tr key={key}>
+        <td>
+          <button onClick={e => this.remove(e, key)}>
             <i className="fa fa-trash" aria-hidden="true" />
           </button>
         </td>
+        <td>{cartItem.id.substring(0, 8)}</td>
+        <td className="left">
+          ${cartItem.shirt.price} - {cartItem.shirt.size} -{' '}
+          {cartItem.shirt.style} - {cartItem.shirt.color} -{' '}
+          {cartItem.shirt.logo}
+        </td>
+        <td>
+          <button onClick={e => this.updateQuantity(e, key)} id="increment">
+            <i className="fa fa-plus-circle" aria-hidden="true" />
+          </button>
+          <span className="quantity">{cartItem.quantity}</span>
+          <button onClick={e => this.updateQuantity(e, key)} id="decrement">
+            <i className="fa fa-minus-circle" aria-hidden="true" />
+          </button>
+        </td>
+        <td>{cartItem.subTotal}</td>
       </tr>
     );
   }
@@ -83,47 +70,33 @@ class Cart extends Component {
     }
 
     return (
-      <div className="row">
-        <div className="col">
-          <h1 className="orderItems">Your Order</h1>
-          <table className="table table-striped table-hover table-sm table-sm">
-            <thead>
-              <tr>
-                <th>
-                  <h6>Item No.</h6>
-                </th>
-                <th>
-                  <h6>Description</h6>
-                </th>
-                <th>
-                  <h6>Quantity</h6>
-                </th>
-                <th>
-                  <h6>Subtotal</h6>
-                </th>
-                <th>
-                  <h6>Remove</h6>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.keys(this.props.cartItems).map(this.renderTableRow)}
-            </tbody>
-            <tfoot>
-              <tr>
-                <th colSpan="4" scope="row">
-                  <h6>Total</h6>
-                </th>
-                <th>
-                  <h6>{total}</h6>
-                </th>
-              </tr>
-            </tfoot>
-          </table>
-          <Link to="/shipping">
-            <button className="btn btn-primary">NEXT →</button>
-          </Link>
-        </div>
+      <div>
+        <h2>Your Cart</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Remove</th>
+              <th>Item No.</th>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.keys(this.props.cartItems).map(this.renderTableRow)}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colSpan="4" scope="row">
+                Total
+              </th>
+              <th>{total}</th>
+            </tr>
+          </tfoot>
+        </table>
+        <Link to="/shipping">
+          <button>NEXT</button>
+        </Link>
       </div>
     );
   }
