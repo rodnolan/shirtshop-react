@@ -4,19 +4,6 @@ body {
   font-family: sans-serif;
 }
 
-button,
-table,
-th,
-tfoot,
-tr,
-td {
-  border: 1px solid black;
-}
-
-table {
-  width: 100%;
-}
-
 #root {
   height: 100%;
 }
