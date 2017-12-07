@@ -1,13 +1,13 @@
 .shirtItemWrapper {
-  max-height: 350px;
-  max-width: 350px;
-  padding: 10px;
-  margin: 10px;
+  max-height: 200px;
+  max-width: 200px;
+  padding: 5px;
+  margin: 5px;
   display: flex;
   flex-direction: column-reverse;
   border: 1px solid steelblue;
 }
 
 .deleteBtn {
-  margin: 10px;
+  margin: 5px;
 }
