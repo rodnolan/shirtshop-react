@@ -5,12 +5,11 @@ import './ShopBar.css';
 class ShopBar extends Component {
   render = props => (
     <div
+      className="buttonWrapper"
       style={{
         width: '50%',
         padding: '10px',
-        margin: 'auto',
-        display: 'flex',
-        justifyContent: 'space-around'
+        margin: 'auto'
       }}
     >
       <button type="button" onClick={this.props.saveHandler}>
