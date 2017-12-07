@@ -47,12 +47,12 @@ class Cart extends Component {
           {cartItem.shirt.logo}
         </td>
         <td>
-          <button onClick={e => this.updateQuantity(e, key)} id="increment">
-            <i className="fa fa-plus-circle" aria-hidden="true" />
-          </button>
-          <span className="quantity">{cartItem.quantity}</span>
           <button onClick={e => this.updateQuantity(e, key)} id="decrement">
             <i className="fa fa-minus-circle" aria-hidden="true" />
+          </button>
+          <span className="quantity">{cartItem.quantity}</span>
+          <button onClick={e => this.updateQuantity(e, key)} id="increment">
+            <i className="fa fa-plus-circle" aria-hidden="true" />
           </button>
         </td>
         <td>{cartItem.subTotal}</td>
