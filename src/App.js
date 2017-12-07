@@ -9,6 +9,7 @@ import Cart from './components/Cart/Cart';
 import Config from './components/Config/Config';
 import NavBar from './components/NavBar/NavBar';
 import store from 'store';
+import './App.css';
 
 export class ShirtShop extends React.Component {
   constructor() {
