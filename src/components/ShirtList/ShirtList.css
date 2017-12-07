@@ -1,4 +1,4 @@
-p.ShirtList {
-    color:red;
-    background-color: #aaaaaa;
+.shirtListWrapper {
+  display: flex;
+  flex-wrap: wrap;
 }

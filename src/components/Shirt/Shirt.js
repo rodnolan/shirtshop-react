@@ -38,7 +38,8 @@ const styles = {
     position: 'relative',
     maxHeight: 'auto',
     maxWidth: 'auto',
-    display: 'block'
+    display: 'block',
+    border: '1px dashed black'
   },
   shirtImage: {
     position: 'relative',
@@ -60,6 +61,8 @@ const styles = {
   },
   sizeContainer: {
     position: 'absolute',
+    minWidth: '40px',
+    maxWidth: '40px',
     top: '6%',
     left: '45%',
     right: '45%',
@@ -72,6 +75,7 @@ const styles = {
     top: '50%',
     left: '50%',
     width: '10%',
+    minWidth: '50px',
     border: '3px dashed red',
     textAlign: 'center',
     backgroundColor: 'lightgray'

@@ -123,7 +123,12 @@ export class ShirtShop extends React.Component {
           <Route
             exact
             path="/"
-            render={() => <ShirtList shirts={this.state.shirts} />}
+            render={() => (
+              <ShirtList
+                shirts={this.state.shirts}
+                deleteShirt={this.deleteShirt}
+              />
+            )}
           />
 
           <Route
