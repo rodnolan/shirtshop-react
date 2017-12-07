@@ -5,35 +5,8 @@ import { COLORS, SIZES, STYLES, LOGOS } from '../../model/ShirtModel';
 
 class ConfigButtonBar extends Component {
   render = props => (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-around',
-        alignItems: 'center'
-      }}
-    >
-      <div>
-        <button onClick={() => this.props.updateSize(SIZES.SMALL)}>
-          {SIZES.SMALL}
-        </button>
-        <button onClick={() => this.props.updateSize(SIZES.MEDIUM)}>
-          {SIZES.MEDIUM}
-        </button>
-        <button onClick={() => this.props.updateSize(SIZES.LARGE)}>
-          {SIZES.LARGE}
-        </button>
-      </div>
-
-      <div>
-        <button onClick={() => this.props.updateStyle(STYLES.MEN)}>
-          {STYLES.MEN}
-        </button>
-        <button onClick={() => this.props.updateStyle(STYLES.WOMEN)}>
-          {STYLES.WOMEN}
-        </button>
-      </div>
-
-      <div style={{ display: 'flex' }}>
+    <div className="buttonBarWrapper">
+      <div className="colorBtnsWrapper">
         <div
           onClick={() => this.props.updateColor(COLORS.RED)}
           style={Object.assign({}, styles.red, styles.colorPickerBtn)}
@@ -71,6 +44,27 @@ class ConfigButtonBar extends Component {
           style={{ height: logoDimensions, width: logoDimensions }}
           onClick={() => this.props.updateLogo(LOGOS.LAUGHING)}
         />
+      </div>
+
+      <div>
+        <button onClick={() => this.props.updateSize(SIZES.SMALL)}>
+          {SIZES.SMALL}
+        </button>
+        <button onClick={() => this.props.updateSize(SIZES.MEDIUM)}>
+          {SIZES.MEDIUM}
+        </button>
+        <button onClick={() => this.props.updateSize(SIZES.LARGE)}>
+          {SIZES.LARGE}
+        </button>
+      </div>
+
+      <div>
+        <button onClick={() => this.props.updateStyle(STYLES.MEN)}>
+          {STYLES.MEN}
+        </button>
+        <button onClick={() => this.props.updateStyle(STYLES.WOMEN)}>
+          {STYLES.WOMEN}
+        </button>
       </div>
     </div>
   );

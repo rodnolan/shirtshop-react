@@ -1,4 +1,10 @@
-/* button.cnfgBarBtn {
-    padding: 10px;
-    margin: 10px 0px;
-} */
+.buttonBarWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.colorBtnsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
