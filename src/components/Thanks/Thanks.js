@@ -30,13 +30,6 @@ class Thanks extends Component {
         .reduce((previous, current) => previous + current);
     }
 
-    let country = si.country;
-    if (country === 'canada') {
-      country = 'Canada';
-    } else {
-      country = 'United States of America';
-    }
-
     return (
       <div>
         <h2>Thank you for your order</h2>
@@ -68,7 +61,7 @@ class Thanks extends Component {
             {si.address}
             <br />
             {si.city}, {si.region} {si.zipPostCode} <br />
-            {country}
+            {si.country ? si.country.toUpperCase() : ''}
           </address>
           <p>
             <strong>Email:</strong> {si.email}
