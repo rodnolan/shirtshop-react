@@ -12,13 +12,11 @@ import ConfigButtonBar from './ConfigButtonBar';
 import ShopBar from '../ShopBar/ShopBar';
 import store from 'store';
 import { guid } from './../../utils/utils';
-import CartItemModel from './../../model/CartItemModel';
 
 class Config extends Component {
   constructor(props) {
     super(props);
     this.saveHandler = this.saveHandler.bind(this);
-    this.deleteHandler = this.deleteHandler.bind(this);
     this.addToCartHandler = this.addToCartHandler.bind(this);
 
     this.updateColor = this.updateColor.bind(this);
@@ -43,12 +41,8 @@ class Config extends Component {
   saveHandler = () => {
     this.props.saveShirt(this.state.shirt);
   };
-  deleteHandler = () => {
-    this.props.deleteShirt(this.state.shirt.id);
-  };
   addToCartHandler = () => {
-    let cartItem = new CartItemModel(guid(), this.state.shirt, 1);
-    this.props.addShirtToCart(cartItem);
+    this.props.addShirtToCart(this.state.shirt);
   };
 
   updateColor = newColor => {
@@ -88,7 +82,6 @@ class Config extends Component {
         />
         <ShopBar
           saveHandler={this.saveHandler}
-          deleteHandler={this.deleteHandler}
           addToCartHandler={this.addToCartHandler}
         />
         <Shirt shirt={this.state.shirt} />

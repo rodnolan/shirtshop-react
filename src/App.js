@@ -9,6 +9,8 @@ import Cart from './components/Cart/Cart';
 import Config from './components/Config/Config';
 import NavBar from './components/NavBar/NavBar';
 import store from 'store';
+import { guid } from './utils/utils';
+import CartItemModel from './model/CartItemModel';
 import './App.css';
 
 export class ShirtShop extends React.Component {
@@ -77,8 +79,9 @@ export class ShirtShop extends React.Component {
     this.logQuantity('shirts');
   }
 
-  addShirtToCart(cartItem) {
-    console.log('App::addShirtToCart: ' + JSON.stringify(cartItem));
+  addShirtToCart(shirt) {
+    console.log('App::addShirtToCart: ' + JSON.stringify(shirt));
+    let cartItem = new CartItemModel(guid(), shirt, 1);
     const cartItems = { ...this.state.cartItems };
     cartItems[cartItem.id] = cartItem;
     this.setState({ cartItems });
@@ -129,6 +132,7 @@ export class ShirtShop extends React.Component {
                 <ShirtList
                   shirts={this.state.shirts}
                   deleteShirt={this.deleteShirt}
+                  addShirtToCart={this.addShirtToCart}
                 />
               )}
             />
@@ -161,7 +165,6 @@ export class ShirtShop extends React.Component {
                 <Config
                   shirtId={match.params.shirtId}
                   saveShirt={this.saveShirt}
-                  deleteShirt={this.deleteShirt}
                   addShirtToCart={this.addShirtToCart}
                 />
               )}

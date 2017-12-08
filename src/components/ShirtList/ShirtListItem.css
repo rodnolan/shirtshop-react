@@ -8,6 +8,11 @@
   border: 1px solid steelblue;
 }
 
-.deleteBtn {
+.shirtBtn {
   margin: 5px;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: center;
 }

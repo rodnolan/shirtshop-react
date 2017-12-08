@@ -16,7 +16,7 @@ class ShirtList extends React.Component {
   );
 
   renderAddButton() {
-    return <Link to="/config/new">Add a new shirt</Link>;
+    return <Link to="/config/new">Create a new shirt</Link>;
   }
 
   renderShirts() {
@@ -33,6 +33,7 @@ class ShirtList extends React.Component {
         key={key}
         shirt={this.props.shirts[key]}
         deleteShirt={this.props.deleteShirt}
+        addShirtToCart={this.props.addShirtToCart}
       />
     );
   }

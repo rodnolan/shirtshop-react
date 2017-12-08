@@ -7,14 +7,21 @@ class ShirtListItem extends Component {
   onDeleteClick = () => {
     this.props.deleteShirt(this.props.shirt.id);
   };
+  onAddClick = () => {
+    this.props.addShirtToCart(this.props.shirt);
+  };
 
   render = props => {
     return (
       <div className="shirtItemWrapper">
-        <button className="deleteBtn" onClick={this.onDeleteClick}>
-          {' '}
-          <i className="fa fa-trash" aria-hidden="true" /> delete{' '}
-        </button>
+        <div className="btnWrapper">
+          <button className="shirtBtn" onClick={this.onDeleteClick}>
+            <i className="fa fa-trash" aria-hidden="true" /> Delete
+          </button>
+          <button className="shirtBtn" onClick={this.onAddClick}>
+            <i className="fa fa-cart-plus" aria-hidden="true" /> Add
+          </button>
+        </div>
         <Link to={`/config/${this.props.shirt.id}`}>
           <Shirt shirt={this.props.shirt} />
         </Link>
