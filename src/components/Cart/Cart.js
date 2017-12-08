@@ -31,35 +31,6 @@ class Cart extends Component {
     this.props.removeItem(key);
   }
 
-  renderTableRow(key) {
-    const cartItem = this.props.cartItems[key];
-    return (
-      <tr key={key}>
-        <td>
-          <button onClick={e => this.remove(e, key)}>
-            <i className="fa fa-trash" aria-hidden="true" />
-          </button>
-        </td>
-        <td>{cartItem.id.substring(0, 8)}</td>
-        <td className="left">
-          ${cartItem.shirt.price} - {cartItem.shirt.size} -{' '}
-          {cartItem.shirt.style} - {cartItem.shirt.color} -{' '}
-          {cartItem.shirt.logo}
-        </td>
-        <td>
-          <button onClick={e => this.updateQuantity(e, key)} id="decrement">
-            <i className="fa fa-minus-circle" aria-hidden="true" />
-          </button>
-          <span className="quantity">{cartItem.quantity}</span>
-          <button onClick={e => this.updateQuantity(e, key)} id="increment">
-            <i className="fa fa-plus-circle" aria-hidden="true" />
-          </button>
-        </td>
-        <td>{cartItem.subTotal}</td>
-      </tr>
-    );
-  }
-
   render() {
     let total = 0;
     let cartKeys = Object.keys(this.props.cartItems);
@@ -110,6 +81,35 @@ class Cart extends Component {
           <button>NEXT</button>
         </Link>
       </div>
+    );
+  }
+
+  renderTableRow(key) {
+    const cartItem = this.props.cartItems[key];
+    return (
+      <tr key={key}>
+        <td>
+          <button onClick={e => this.remove(e, key)}>
+            <i className="fa fa-trash" aria-hidden="true" />
+          </button>
+        </td>
+        <td>{cartItem.id.substring(0, 8)}</td>
+        <td className="left">
+          ${cartItem.shirt.price} - {cartItem.shirt.size} -{' '}
+          {cartItem.shirt.style} - {cartItem.shirt.color} -{' '}
+          {cartItem.shirt.logo}
+        </td>
+        <td>
+          <button onClick={e => this.updateQuantity(e, key)} id="decrement">
+            <i className="fa fa-minus-circle" aria-hidden="true" />
+          </button>
+          <span className="quantity">{cartItem.quantity}</span>
+          <button onClick={e => this.updateQuantity(e, key)} id="increment">
+            <i className="fa fa-plus-circle" aria-hidden="true" />
+          </button>
+        </td>
+        <td>{cartItem.subTotal}</td>
+      </tr>
     );
   }
 }
