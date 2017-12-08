@@ -81,9 +81,24 @@ export class ShirtShop extends React.Component {
 
   addShirtToCart(shirt) {
     console.log('App::addShirtToCart: ' + JSON.stringify(shirt));
-    let cartItem = new CartItemModel(guid(), shirt, 1);
-    const cartItems = { ...this.state.cartItems };
-    cartItems[cartItem.id] = cartItem;
+    let cartItems = { ...this.state.cartItems };
+    // search for a cart item that already has a shirt with the incoming shirt's id
+    const itemsAsArray = Object.keys(cartItems).map(key => cartItems[key]);
+    const existingItem = itemsAsArray.find(
+      element => element.shirt.id === shirt.id
+    );
+
+    if (existingItem === undefined) {
+      console.log('adding a new cart item');
+      let newCartItem = new CartItemModel(guid(), shirt, 1);
+      cartItems[newCartItem.id] = newCartItem;
+    } else {
+      console.log('updating an existing cart item');
+      existingItem.quantity++;
+      this.updateCartItem(existingItem.id, existingItem);
+      return;
+    }
+
     this.setState({ cartItems });
     store.set('cartItems', cartItems);
     this.logQuantity('cartItems');
