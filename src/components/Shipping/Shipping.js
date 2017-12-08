@@ -194,7 +194,9 @@ class Shipping extends Component {
             </option>
             {regionsForSelectedCountry && regionsForSelectedCountry.length > 0
               ? regionsForSelectedCountry.map(region => (
-                  <option value={region}>{region}</option>
+                  <option key={region} value={region}>
+                    {region}
+                  </option>
                 ))
               : null}
           </select>
