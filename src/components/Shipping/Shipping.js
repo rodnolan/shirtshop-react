@@ -58,6 +58,7 @@ class Shipping extends Component {
       // submitButtonDisabled is UI state, not data, so it should not be submitted
       delete shippingInfo.submitButtonDisabled;
       this.props.saveShippingInfo(shippingInfo);
+      this.props.createOrder();
       this.props.history.push('/thanks');
     }
   }

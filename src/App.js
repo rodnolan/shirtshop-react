@@ -11,6 +11,7 @@ import NavBar from './components/NavBar/NavBar';
 import store from 'store';
 import { guid } from './utils/utils';
 import CartItemModel from './model/CartItemModel';
+import OrderModel from './model/OrderModel';
 import './App.css';
 
 export class ShirtShop extends React.Component {
@@ -22,10 +23,14 @@ export class ShirtShop extends React.Component {
     this.saveShirt = this.saveShirt.bind(this);
     this.deleteShirt = this.deleteShirt.bind(this);
     this.addShirtToCart = this.addShirtToCart.bind(this);
+    this.createOrder = this.createOrder.bind(this);
+    this.clearCart = this.clearCart.bind(this);
+
     this.state = {
       shirts: {},
       cartItems: {},
-      shippingInfo: {}
+      shippingInfo: {},
+      order: {}
     };
   }
 
@@ -128,10 +133,21 @@ export class ShirtShop extends React.Component {
     store.set('shippingInfo', shippingInfo);
   }
 
-  clearSampleData = () => {
-    store.set('shirts', {});
-    store.set('cartItems', {});
-  };
+  createOrder() {
+    let newOrder = new OrderModel(
+      guid(),
+      { ...this.state.cartItems },
+      { ...this.state.shippingInfo }
+    );
+    this.setState({ order: newOrder });
+    this.clearCart();
+  }
+
+  clearCart() {
+    let emptyCart = {};
+    this.setState({ cartItems: emptyCart });
+    store.set('cartItems', emptyCart);
+  }
 
   render() {
     console.log('App::render');
@@ -157,6 +173,7 @@ export class ShirtShop extends React.Component {
               render={({ history }) => (
                 <Shipping
                   saveShippingInfo={this.saveShippingInfo}
+                  createOrder={this.createOrder}
                   history={history}
                 />
               )}
@@ -165,12 +182,7 @@ export class ShirtShop extends React.Component {
             <Route
               exact
               path="/thanks"
-              render={() => (
-                <Thanks
-                  shippingInfo={this.state.shippingInfo}
-                  cartItems={this.state.cartItems}
-                />
-              )}
+              render={() => <Thanks order={this.state.order} />}
             />
 
             <Route

@@ -8,7 +8,7 @@ class Thanks extends Component {
   }
 
   renderTableRow(key) {
-    const cartItem = this.props.cartItems[key];
+    const cartItem = this.props.order.cartItems[key];
     return (
       <tr key={key}>
         <th>{cartItem.id}</th>
@@ -20,17 +20,27 @@ class Thanks extends Component {
   }
 
   render() {
-    let si = this.props.shippingInfo;
+    let si = this.props.order.shippingInfo;
+    let cartItems = this.props.order.cartItems;
+
+    if (si === undefined && cartItems === undefined) {
+      return (
+        <div>
+          To place a new order, visit the Home screen and add an item to your
+          cart.
+        </div>
+      );
+    }
 
     let total = 0;
     let quantities = 0;
-    let cartKeys = Object.keys(this.props.cartItems);
+    let cartKeys = Object.keys(cartItems);
     if (cartKeys.length > 0) {
       total = cartKeys
-        .map(key => this.props.cartItems[key].subTotal)
+        .map(key => cartItems[key].subTotal)
         .reduce((previous, current) => previous + current);
       quantities = cartKeys
-        .map(key => this.props.cartItems[key].quantity)
+        .map(key => cartItems[key].quantity)
         .reduce((previous, current) => previous + current);
     }
 
@@ -53,9 +63,7 @@ class Thanks extends Component {
               <th>{total}</th>
             </tr>
           </tfoot>
-          <tbody>
-            {Object.keys(this.props.cartItems).map(this.renderTableRow)}
-          </tbody>
+          <tbody>{Object.keys(cartItems).map(this.renderTableRow)}</tbody>
         </table>
 
         <div>
