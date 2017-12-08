@@ -72,6 +72,18 @@ class Cart extends Component {
     return (
       <div>
         <h2>Your Cart</h2>
+        {total > 0 ? this.renderCartTable(total) : this.renderEmpty()}
+      </div>
+    );
+  }
+
+  renderEmpty() {
+    return <h3>Your cart is empty</h3>;
+  }
+
+  renderCartTable(total) {
+    return (
+      <div>
         <table>
           <thead>
             <tr>
