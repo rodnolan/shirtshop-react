@@ -138,7 +138,7 @@ export class ShirtShop extends React.Component {
     return (
       <Router>
         <div className="container">
-          <NavBar />
+          <NavBar cartItems={this.state.cartItems} />
           <div className="mainPageBody">
             <Route
               exact
