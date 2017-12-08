@@ -33,17 +33,23 @@ class Cart extends Component {
 
   render() {
     let total = 0;
+    let quantities = 0;
     let cartKeys = Object.keys(this.props.cartItems);
     if (cartKeys.length > 0) {
       total = cartKeys
         .map(key => this.props.cartItems[key].subTotal)
+        .reduce((previous, current) => previous + current);
+      quantities = cartKeys
+        .map(key => this.props.cartItems[key].quantity)
         .reduce((previous, current) => previous + current);
     }
 
     return (
       <div>
         <h2>Your Cart</h2>
-        {total > 0 ? this.renderCartTable(total) : this.renderEmpty()}
+        {total > 0
+          ? this.renderCartTable(total, quantities)
+          : this.renderEmpty()}
       </div>
     );
   }
@@ -52,7 +58,7 @@ class Cart extends Component {
     return <h3>Your cart is empty</h3>;
   }
 
-  renderCartTable(total) {
+  renderCartTable(total, quantities) {
     return (
       <div>
         <table>
@@ -70,9 +76,10 @@ class Cart extends Component {
           </tbody>
           <tfoot>
             <tr>
-              <th colSpan="4" scope="row">
+              <th colSpan="3" scope="row">
                 Total
               </th>
+              <th>{quantities}</th>
               <th>{total}</th>
             </tr>
           </tfoot>
