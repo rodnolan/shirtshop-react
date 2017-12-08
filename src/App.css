@@ -10,3 +10,10 @@
   background-color: lightgray;
   padding: 8px;
 }
+
+.appTitle {
+  border: 1px solid green;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2rem;
+  text-align: center;
+}
