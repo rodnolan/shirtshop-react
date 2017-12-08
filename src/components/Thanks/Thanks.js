@@ -11,7 +11,7 @@ class Thanks extends Component {
     const cartItem = this.props.cartItems[key];
     return (
       <tr key={key}>
-        <th>{cartItem.id.substring(0, 8)}</th>
+        <th>{cartItem.id}</th>
         <td>{cartItem.shirt.size}</td>
         <td>{cartItem.quantity}</td>
         <td>{cartItem.subTotal}</td>
@@ -23,10 +23,14 @@ class Thanks extends Component {
     let si = this.props.shippingInfo;
 
     let total = 0;
+    let quantities = 0;
     let cartKeys = Object.keys(this.props.cartItems);
     if (cartKeys.length > 0) {
       total = cartKeys
         .map(key => this.props.cartItems[key].subTotal)
+        .reduce((previous, current) => previous + current);
+      quantities = cartKeys
+        .map(key => this.props.cartItems[key].quantity)
         .reduce((previous, current) => previous + current);
     }
 
@@ -44,7 +48,8 @@ class Thanks extends Component {
           </thead>
           <tfoot>
             <tr>
-              <th colSpan="3">Total</th>
+              <th colSpan="2">Total</th>
+              <th>{quantities}</th>
               <th>{total}</th>
             </tr>
           </tfoot>

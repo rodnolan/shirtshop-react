@@ -93,7 +93,7 @@ class Cart extends Component {
             <i className="fa fa-trash" aria-hidden="true" />
           </button>
         </td>
-        <td>{cartItem.id.substring(0, 8)}</td>
+        <td>{cartItem.id}</td>
         <td className="left">
           ${cartItem.shirt.price} - {cartItem.shirt.size} -{' '}
           {cartItem.shirt.style} - {cartItem.shirt.color} -{' '}
