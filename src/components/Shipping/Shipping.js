@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './Shipping.css';
-
-//Import the react form validation
 import {
   FormWithConstraints,
   FieldFeedback
@@ -17,26 +14,20 @@ import {
 class Shipping extends Component {
   constructor() {
     super();
-    // this.completeOrder = this.completeOrder.bind(this); //This is the function that should run onClick.
     this.updateShippingInfo = this.updateShippingInfo.bind(this);
-
-    //Form Validation
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
-      // Sets the default country to "usa"
-      //Form Validation
       country: '',
       region: '',
       zipPostCode: '',
       email: '',
       phone: '',
       submitButtonDisabled: false
-    }; //End of the state
-  } //End of the constructor
+    };
+  }
 
-  //form stuff moved from Cart.js.  Github Issue #14
   updateShippingInfo = event => {
     let field = event.target.id;
     let val = event.target.value;
@@ -47,13 +38,7 @@ class Shipping extends Component {
       this.setState({ zipPostCode: '' });
     }
   };
-  //completeOrder will be made up of:
-  //  1. a randomly generated OrderID
-  //  2. details of the order as an array of objects that will be stored, including the total cost.
-  //  3. the shipping details. For now, the object should only contain the shipping details.
-  completeOrder() {}
 
-  //Form Validation
   handleChange(e) {
     const target = e.currentTarget;
     this.form.validateFields(target);
@@ -69,9 +54,10 @@ class Shipping extends Component {
     this.setState({ submitButtonDisabled: !this.form.isValid() });
     if (this.form.isValid()) {
       let shippingInfo = this.state;
+      // submitButtonDisabled is UI state, not data, so it should not be submitted
       delete shippingInfo.submitButtonDisabled;
       this.props.saveShippingInfo(shippingInfo);
-      this.props.history.push(`/thanks`);
+      this.props.history.push('/thanks');
     }
   }
 
@@ -80,12 +66,10 @@ class Shipping extends Component {
     let pattern =
       this.state.country === 'canada'
         ? '([A-Za-z][0-9][A-Za-z][0-9][A-Za-z][0-9])'
-        : `(\\d{5})`;
+        : '(\\d{5})';
     let minLength = this.state.country === 'canada' ? 6 : 5;
 
     return (
-      //Form Validation
-      // Need to add some more feedback to this if it doesn't meet the pattern.
       <FormWithConstraints
         ref={formWithConstraints => (this.form = formWithConstraints)}
         onSubmit={this.handleSubmit}
@@ -132,7 +116,7 @@ class Shipping extends Component {
 
         <FormGroup for="phone">
           <FormControlLabel htmlFor="phone">
-            Phone Number incl. area code (1235556789)
+            Phone Number (example: 4165556789)
           </FormControlLabel>
           <FormControlInput
             type="text"
@@ -143,11 +127,10 @@ class Shipping extends Component {
             onChange={this.handleChange}
             required
             minLength={10}
-            placeholder="ex. 1234567890"
+            placeholder="example: 4165556789"
           />
           <FieldFeedbacks for="phone">
             <FieldFeedback when="tooShort">Too short</FieldFeedback>
-            {/* Need to add some more feedback to this if it doesn't meet the pattern. */}
             <FieldFeedback when="*" />
           </FieldFeedbacks>
         </FormGroup>
@@ -257,11 +240,7 @@ class Shipping extends Component {
         </FormGroup>
 
         {/* Button remains disabled until the form is valid */}
-        <button
-          disabled={this.state.submitButtonDisabled}
-          className="btn btn-primary"
-          type="submit"
-        >
+        <button disabled={this.state.submitButtonDisabled} type="submit">
           Complete Order
         </button>
       </FormWithConstraints>
@@ -271,11 +250,6 @@ class Shipping extends Component {
 
 export default Shipping;
 
-Shipping.contextTypes = {
-  router: PropTypes.object
-};
-
-//There is a separate file that contains this, but it didn't seem to work properly. Ideally, this belongs in countries.js
 const countries = [
   {
     id: 'canada',
