@@ -133,11 +133,11 @@ export class ShirtShop extends React.Component {
     store.set('shippingInfo', shippingInfo);
   }
 
-  createOrder() {
+  createOrder(shippingInfo) {
     let newOrder = new OrderModel(
       guid(),
       { ...this.state.cartItems },
-      { ...this.state.shippingInfo }
+      shippingInfo
     );
     this.setState({ order: newOrder });
     this.clearCart();
@@ -174,11 +174,7 @@ export class ShirtShop extends React.Component {
             <Route
               path="/shipping"
               render={({ history }) => (
-                <Shipping
-                  saveShippingInfo={this.saveShippingInfo}
-                  createOrder={this.createOrder}
-                  history={history}
-                />
+                <Shipping createOrder={this.createOrder} history={history} />
               )}
             />
 
