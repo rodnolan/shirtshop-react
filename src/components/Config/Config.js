@@ -17,6 +17,7 @@ class Config extends Component {
   constructor(props) {
     super(props);
     this.saveHandler = this.saveHandler.bind(this);
+    this.newHandler = this.newHandler.bind(this);
     this.addToCartHandler = this.addToCartHandler.bind(this);
 
     this.updateColor = this.updateColor.bind(this);
@@ -25,21 +26,25 @@ class Config extends Component {
     this.updateLogo = this.updateLogo.bind(this);
 
     let shirts = store.get('shirts') || {};
-    let shirt = shirts[props.shirtId];
-    if (shirt === undefined) {
-      shirt = new ShirtModel(
-        guid(),
-        SIZES.SMALL,
-        STYLES.MEN,
-        LOGOS.PLACEHOLDER,
-        COLORS.NONE
-      );
-    }
+    let shirt = shirts[this.props.shirtId] || this.makeNewShirt();
     this.state = { shirt: shirt };
+  }
+
+  makeNewShirt() {
+    return new ShirtModel(
+      guid(),
+      SIZES.SMALL,
+      STYLES.MEN,
+      LOGOS.PLACEHOLDER,
+      COLORS.NONE
+    );
   }
 
   saveHandler = () => {
     this.props.saveShirt(this.state.shirt);
+  };
+  newHandler = () => {
+    this.setState({ shirt: this.makeNewShirt() });
   };
   addToCartHandler = () => {
     this.props.addShirtToCart(this.state.shirt);
@@ -82,6 +87,7 @@ class Config extends Component {
         />
         <ShopBar
           saveHandler={this.saveHandler}
+          newHandler={this.newHandler}
           addToCartHandler={this.addToCartHandler}
         />
         <Shirt shirt={this.state.shirt} />

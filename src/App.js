@@ -53,7 +53,7 @@ export class ShirtShop extends React.Component {
 
     console.log(Object.keys(storedShirts).length + ' shirts loaded into state');
     console.log(
-      Object.keys(storedCartItems).length + ' cart loaded into state'
+      Object.keys(storedCartItems).length + ' cart items loaded into state'
     );
     console.log(
       Object.keys(storedShippingInfo).length +
@@ -157,7 +157,7 @@ export class ShirtShop extends React.Component {
           <div className="appTitle">
             <h1>React ShirtShop</h1>
           </div>
-          <NavBar cartItems={this.state.cartItems} />
+          <NavBar cartItems={this.state.cartItems} shirts={this.state.shirts} />
           <div className="mainPageBody">
             <Route
               exact

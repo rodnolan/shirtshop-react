@@ -15,6 +15,9 @@ class ShopBar extends Component {
       <button type="button" onClick={this.props.saveHandler}>
         <i className="fa fa-floppy-o" aria-hidden="true" /> Save
       </button>
+      <button type="button" onClick={this.props.newHandler}>
+        <i className="fa fa-plus-square-o" aria-hidden="true" /> New
+      </button>
       <button type="button" onClick={this.props.addToCartHandler}>
         <i className="fa fa-cart-plus" aria-hidden="true" /> Add
       </button>
@@ -24,10 +27,12 @@ class ShopBar extends Component {
 
 ShopBar.propTypes = {
   saveHandler: PropTypes.func.isRequired,
+  newHandler: PropTypes.func.isRequired,
   addToCartHandler: PropTypes.func.isRequired
 };
 ShopBar.defaultProps = {
   saveHandler: null,
+  newHandler: null,
   addToCartHandler: null
 };
 

@@ -10,13 +10,13 @@ class ShirtList extends React.Component {
   }
   render = props => (
     <div>
-      {this.renderAddButton()}
+      {this.renderAddLink()}
       {Object.keys(this.props.shirts).length > 0 ? this.renderShirts() : null}
     </div>
   );
 
-  renderAddButton() {
-    return <Link to="/config/new">Create a new shirt</Link>;
+  renderAddLink() {
+    return <Link to="/config/new">Create a new shirt for your catalog</Link>;
   }
 
   renderShirts() {
