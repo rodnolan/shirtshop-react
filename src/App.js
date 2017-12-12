@@ -19,7 +19,6 @@ export class ShirtShop extends React.Component {
     super();
     this.updateCartItem = this.updateCartItem.bind(this);
     this.removeCartItem = this.removeCartItem.bind(this);
-    this.saveShippingInfo = this.saveShippingInfo.bind(this);
     this.saveShirt = this.saveShirt.bind(this);
     this.deleteShirt = this.deleteShirt.bind(this);
     this.addShirtToCart = this.addShirtToCart.bind(this);
@@ -29,7 +28,6 @@ export class ShirtShop extends React.Component {
     this.state = {
       shirts: {},
       cartItems: {},
-      shippingInfo: {},
       order: {}
     };
   }
@@ -48,16 +46,9 @@ export class ShirtShop extends React.Component {
     let storedCartItems = store.get('cartItems') || {};
     this.setState({ cartItems: storedCartItems });
 
-    let storedShippingInfo = store.get('shippingInfo') || {};
-    this.setState({ shippingInfo: storedShippingInfo });
-
     console.log(Object.keys(storedShirts).length + ' shirts loaded into state');
     console.log(
       Object.keys(storedCartItems).length + ' cart items loaded into state'
-    );
-    console.log(
-      Object.keys(storedShippingInfo).length +
-        ' shipping fields loaded into state'
     );
   }
 
@@ -127,17 +118,11 @@ export class ShirtShop extends React.Component {
     this.logQuantity('cartItems');
   }
 
-  saveShippingInfo(shippingInfo) {
-    console.log('App::saveShippingInfo');
-    this.setState({ shippingInfo });
-    store.set('shippingInfo', shippingInfo);
-  }
-
-  createOrder() {
+  createOrder(shippingInfo) {
     let newOrder = new OrderModel(
       guid(),
       { ...this.state.cartItems },
-      { ...this.state.shippingInfo }
+      shippingInfo
     );
     this.setState({ order: newOrder });
     this.clearCart();
@@ -174,11 +159,7 @@ export class ShirtShop extends React.Component {
             <Route
               path="/shipping"
               render={({ history }) => (
-                <Shipping
-                  saveShippingInfo={this.saveShippingInfo}
-                  createOrder={this.createOrder}
-                  history={history}
-                />
+                <Shipping createOrder={this.createOrder} history={history} />
               )}
             />
 

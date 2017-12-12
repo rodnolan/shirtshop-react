@@ -57,19 +57,31 @@ class Shipping extends Component {
       let shippingInfo = this.state;
       // submitButtonDisabled is UI state, not data, so it should not be submitted
       delete shippingInfo.submitButtonDisabled;
-      this.props.saveShippingInfo(shippingInfo);
-      this.props.createOrder();
+      this.props.createOrder(shippingInfo);
       this.props.history.push('/thanks');
     }
   }
 
   render() {
     let regionsForSelectedCountry = regions[this.state.country];
-    let pattern =
-      this.state.country === 'canada'
-        ? '([A-Za-z][0-9][A-Za-z][0-9][A-Za-z][0-9])'
-        : '(\\d{5})';
-    let minLength = this.state.country === 'canada' ? 6 : 5;
+    let minLength = 0;
+    let pattern,
+      placeholder = '';
+    let zipPostCodeLabel = 'Code';
+    switch (this.state.country) {
+      case 'canada':
+        pattern = '([A-Za-z][0-9][A-Za-z]\\s?[0-9][A-Za-z][0-9])';
+        placeholder = 'A0A 0A0';
+        zipPostCodeLabel = 'Postal Code (A0A 0A0)';
+        minLength = 6;
+        break;
+      case 'usa':
+        pattern = '(\\d{5})';
+        placeholder = '11111';
+        zipPostCodeLabel = 'Zip Code (11111)';
+        minLength = 5;
+        break;
+    }
 
     return (
       <FormWithConstraints
@@ -107,8 +119,8 @@ class Shipping extends Component {
             value={this.state.email}
             onChange={this.handleChange}
             required
-            placeholder="Email"
-            minLength={3}
+            placeholder="you@company.com"
+            minLength="6"
           />
           <FieldFeedbacks for="email">
             <FieldFeedback when="tooShort">Too short</FieldFeedback>
@@ -118,7 +130,7 @@ class Shipping extends Component {
 
         <FormGroup for="phone">
           <FormControlLabel htmlFor="phone">
-            Phone Number (example: 4165556789)
+            Phone Number (4165556789)
           </FormControlLabel>
           <FormControlInput
             type="text"
@@ -128,8 +140,8 @@ class Shipping extends Component {
             value={this.state.phone}
             onChange={this.handleChange}
             required
-            minLength={10}
-            placeholder="example: 4165556789"
+            minLength="10"
+            placeholder="4165556789"
           />
           <FieldFeedbacks for="phone">
             <FieldFeedback when="tooShort">Too short</FieldFeedback>
@@ -144,7 +156,7 @@ class Shipping extends Component {
             onChange={this.updateShippingInfo}
             required
             id="address"
-            placeholder="Street Address"
+            placeholder="123 Main St."
           />
         </FormGroup>
         <FormGroup for="city">
@@ -209,9 +221,7 @@ class Shipping extends Component {
 
         <FormGroup for="zipPostCode">
           <FormControlLabel htmlFor="zipPostCode">
-            {this.state.country === 'canada'
-              ? 'Postal Code (A0A0A0)'
-              : 'Zip Code (11111)'}
+            {zipPostCodeLabel}
           </FormControlLabel>
           <FormControlInput
             type="text"
@@ -222,7 +232,7 @@ class Shipping extends Component {
             value={this.state.zipPostCode}
             required
             minLength={minLength}
-            placeholder="Postal or Zip Code"
+            placeholder={placeholder}
           />
           <FieldFeedbacks for="zipPostCode">
             <FieldFeedback when="tooShort">Too short</FieldFeedback>
