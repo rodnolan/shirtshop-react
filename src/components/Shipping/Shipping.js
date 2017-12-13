@@ -130,10 +130,10 @@ class Shipping extends Component {
 
         <FormGroup for="phone">
           <FormControlLabel htmlFor="phone">
-            Phone Number (4165556789)
+            Phone Number (4165556789):{' '}
           </FormControlLabel>
           <FormControlInput
-            type="text"
+            type="tel"
             id="phone"
             name="phone"
             pattern="\d{10}"
@@ -149,7 +149,7 @@ class Shipping extends Component {
           </FieldFeedbacks>
         </FormGroup>
         <FormGroup for="address">
-          <FormControlLabel htmlFor="address">Address</FormControlLabel>
+          <FormControlLabel htmlFor="address">Address: </FormControlLabel>
           <FormControlInput
             type="text"
             value={this.state[this.id]}
@@ -159,8 +159,9 @@ class Shipping extends Component {
             placeholder="123 Main St."
           />
         </FormGroup>
+
         <FormGroup for="city">
-          <FormControlLabel htmlFor="city">City </FormControlLabel>
+          <FormControlLabel htmlFor="city">City: </FormControlLabel>
           <FormControlInput
             type="text"
             value={this.state[this.id]}
@@ -171,7 +172,7 @@ class Shipping extends Component {
           />
         </FormGroup>
         <FormGroup>
-          <FormControlLabel htmlFor="country">Country</FormControlLabel>
+          <FormControlLabel htmlFor="country">Country: </FormControlLabel>
           <select
             className="form-control"
             value={this.state.country}
@@ -194,7 +195,7 @@ class Shipping extends Component {
 
         <FormGroup>
           <FormControlLabel htmlFor="provState">
-            {this.state.country === 'canada' ? 'Province' : 'State'}
+            {this.state.country === 'canada' ? 'Province' : 'State'}:{' '}
           </FormControlLabel>
           <select
             className="form-control"
@@ -221,7 +222,7 @@ class Shipping extends Component {
 
         <FormGroup for="zipPostCode">
           <FormControlLabel htmlFor="zipPostCode">
-            {zipPostCodeLabel}
+            {zipPostCodeLabel}:{' '}
           </FormControlLabel>
           <FormControlInput
             type="text"
@@ -241,7 +242,7 @@ class Shipping extends Component {
         </FormGroup>
         <FormGroup>
           <FormControlLabel htmlFor="specialInstructions">
-            Special Instructions
+            Special Instructions:
           </FormControlLabel>
           <textarea
             value={this.state[this.id]}
