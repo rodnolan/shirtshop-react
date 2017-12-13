@@ -66,27 +66,25 @@ class Thanks extends Component {
           <tbody>{Object.keys(cartItems).map(this.renderTableRow)}</tbody>
         </table>
 
-        <div>
-          <h2>Shipping Information</h2>
-          <address>
-            {si.firstName} {si.lastName}
-            <br />
-            {si.address}
-            <br />
-            {si.city}, {si.region} {si.zipPostCode} <br />
-            {si.country ? si.country.toUpperCase() : ''}
-          </address>
-          <p>
-            <strong>Email:</strong> {si.email}
-          </p>
-          <p>
-            <strong>Phone:</strong> {si.phone}
-          </p>
-          <p>
-            <strong>Special Instructions (if any):</strong>
-            {si.specialInstructions}
-          </p>
-        </div>
+        <h2>Shipping Information</h2>
+        <address>
+          {si.firstName} {si.lastName}
+          <br />
+          {si.address}
+          <br />
+          {si.city}, {si.region} {si.zipPostCode} <br />
+          {si.country ? si.country.toUpperCase() : ''}
+        </address>
+        <p>
+          <strong>Email:</strong> {si.email}
+        </p>
+        <p>
+          <strong>Phone:</strong> {si.phone}
+        </p>
+        <p>
+          <strong>Special Instructions (if any):</strong>
+          {si.specialInstructions}
+        </p>
       </div>
     );
   }
