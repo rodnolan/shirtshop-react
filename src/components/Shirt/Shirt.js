@@ -82,10 +82,10 @@ const styles = {
 };
 
 const logoImages = {
-  laughing: require('../../images/laughing.png'),
-  cool: require('../../images/cool.png'),
-  worried: require('../../images/worried.png'),
-  placeholder: require('../../images/blank.png')
+  laughing: require('../../images/logo-laughing.png'),
+  cool: require('../../images/logo-cool.png'),
+  worried: require('../../images/logo-worried.png'),
+  placeholder: require('../../images/logo-blank.png')
 };
 
 const shirtImages = {
