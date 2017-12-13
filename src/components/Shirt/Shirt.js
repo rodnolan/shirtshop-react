@@ -29,7 +29,7 @@ class Shirt extends Component {
 const styles = {
   outerContainer: {
     width: '50%',
-    maxHeight: '100vh',
+    maxWidth: '35vw',
     margin: '0px auto'
   },
   shirtContainer: {

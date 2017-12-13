@@ -8,6 +8,7 @@ class ShopBar extends Component {
       className="buttonWrapper"
       style={{
         width: '50%',
+        maxWidth: '35vw',
         padding: '10px',
         margin: 'auto'
       }}
