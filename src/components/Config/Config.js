@@ -9,7 +9,7 @@ import ShirtModel, {
   PRICES
 } from '../../model/ShirtModel';
 import ConfigButtonBar from './ConfigButtonBar';
-import ShopBar from '../ShopBar/ShopBar';
+import ShopBar from './ShopBar';
 import store from 'store';
 import { guid } from './../../utils/utils';
 

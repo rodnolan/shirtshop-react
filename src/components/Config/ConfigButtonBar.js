@@ -70,9 +70,9 @@ class ConfigButtonBar extends Component {
   );
 }
 
-const logoCool = require('../../images/cool.png');
-const logoWorried = require('../../images/worried.png');
-const logoLaughing = require('../../images/laughing.png');
+const logoCool = require('../../images/logo-cool.png');
+const logoWorried = require('../../images/logo-worried.png');
+const logoLaughing = require('../../images/logo-laughing.png');
 const logoDimensions = 50;
 
 const styles = {
