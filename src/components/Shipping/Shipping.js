@@ -174,7 +174,6 @@ class Shipping extends Component {
         <FormGroup>
           <FormControlLabel htmlFor="country">Country: </FormControlLabel>
           <select
-            className="form-control"
             value={this.state.country}
             onChange={this.updateShippingInfo}
             required
@@ -198,7 +197,6 @@ class Shipping extends Component {
             {this.state.country === 'canada' ? 'Province' : 'State'}:{' '}
           </FormControlLabel>
           <select
-            className="form-control"
             value={this.state.region}
             required
             onChange={this.updateShippingInfo}
@@ -247,7 +245,6 @@ class Shipping extends Component {
           <textarea
             value={this.state[this.id]}
             onChange={this.updateShippingInfo}
-            className="form-control col-form-label"
             id="specialInstructions"
             rows="3"
             placeholder="Anything we should know about?"

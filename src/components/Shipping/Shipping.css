@@ -1,3 +1,43 @@
+.form-group {
+  margin-bottom: 1em;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+input[type='text'],
+input[type='tel'],
+input[type='email'],
+select,
+textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: all ease-in-out 0.15s;
+}
+
+select:not([size]):not([multiple]) {
+  height: calc(2.25rem + 2px);
+}
+
+textarea {
+  padding-top: calc(0.375rem + 1px);
+  padding-bottom: calc(0.375rem + 1px);
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
 .error {
   color: red;
 }
