@@ -26,7 +26,6 @@ class Shirt extends Component {
     );
   }
 }
-
 const styles = {
   outerContainer: {
     width: '50%',
@@ -60,21 +59,25 @@ const styles = {
   },
   sizeContainer: {
     position: 'absolute',
-    minWidth: '40px',
+    width: '10%',
+    minWidth: '30px',
     maxWidth: '40px',
     top: '6%',
-    left: '45%',
-    right: '45%',
+    left: '50%',
+    padding: '2px 0',
+    transform: 'translateX(-50%)',
     border: '2px solid blue',
+    borderRadius: '2px',
     textAlign: 'center',
     backgroundColor: 'lightblue'
   },
   priceContainer: {
     position: 'absolute',
+    width: 'auto',
+    minWidth: '50px',
     top: '50%',
     left: '50%',
-    width: '10%',
-    minWidth: '50px',
+    transform: 'translateX(-50%)',
     border: '3px dashed red',
     textAlign: 'center',
     backgroundColor: 'lightgray'
