@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Shirt.css';
 
 class Shirt extends Component {
   render() {
