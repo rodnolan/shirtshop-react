@@ -42,18 +42,18 @@ class Shipping extends Component {
 
   handleChange(e) {
     const target = e.currentTarget;
-    this.form.validateFields(target);
+    this.shippingForm.validateFields(target);
     this.setState({
       [target.name]: target.value,
-      submitButtonDisabled: !this.form.isValid()
+      submitButtonDisabled: !this.shippingForm.isValid()
     });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.form.validateFields();
-    this.setState({ submitButtonDisabled: !this.form.isValid() });
-    if (this.form.isValid()) {
+    this.shippingForm.validateFields();
+    this.setState({ submitButtonDisabled: !this.shippingForm.isValid() });
+    if (this.shippingForm.isValid()) {
       let shippingInfo = this.state;
       // submitButtonDisabled is UI state, not data, so it should not be submitted
       delete shippingInfo.submitButtonDisabled;
@@ -64,28 +64,43 @@ class Shipping extends Component {
 
   render() {
     let regionsForSelectedCountry = regions[this.state.country];
-    let minLength = 0;
-    let pattern,
-      placeholder = '';
-    let zipPostCodeLabel = 'Code';
+    let postalZipProps = {};
     switch (this.state.country) {
       case 'canada':
-        pattern = '([A-Za-z][0-9][A-Za-z]\\s?[0-9][A-Za-z][0-9])';
-        placeholder = 'A0A 0A0';
-        zipPostCodeLabel = 'Postal Code (A0A 0A0)';
-        minLength = 6;
+        postalZipProps = {
+          label: 'Postal Code (A0A 0A0 or A0A0A0)',
+          minLength: 6,
+          maxLength: 7,
+          regex: '([A-Za-z][0-9][A-Za-z]\\s?[0-9][A-Za-z][0-9])',
+          title: 'Please provide a Canadian postal code (space is optional)',
+          placeholder: 'A0A 0A0 or A0A0A0'
+        };
         break;
       case 'usa':
-        pattern = '(\\d{5})';
-        placeholder = '11111';
-        zipPostCodeLabel = 'Zip Code (11111)';
-        minLength = 5;
+        postalZipProps = {
+          label: 'Zip Code (12345 or 12345-1234)',
+          minLength: 5,
+          maxLength: 10,
+          regex: '([0-9]{5}([-][0-9]{4})?)',
+          title: 'Please provide a 5-digit or 9-digit US zip code',
+          placeholder: '12345 or 12345-1234'
+        };
+        break;
+      default:
+        postalZipProps = {
+          label: 'Code',
+          minLength: 0,
+          maxLength: 0,
+          regex: '',
+          title: '',
+          placeholder: ''
+        };
         break;
     }
 
     return (
       <FormWithConstraints
-        ref={formWithConstraints => (this.form = formWithConstraints)}
+        ref={element => (this.shippingForm = element)}
         onSubmit={this.handleSubmit}
       >
         <FormGroup for="firstName">
@@ -130,18 +145,20 @@ class Shipping extends Component {
 
         <FormGroup for="phone">
           <FormControlLabel htmlFor="phone">
-            Phone Number (4165556789):{' '}
+            Phone Number (416-555-6789):{' '}
           </FormControlLabel>
           <FormControlInput
             type="tel"
             id="phone"
             name="phone"
-            pattern="\d{10}"
+            pattern="[0-9]{3}[ -.]?[0-9]{3}[ -.]?[0-9]{4}"
             value={this.state.phone}
             onChange={this.handleChange}
             required
             minLength="10"
-            placeholder="4165556789"
+            maxLength="12"
+            placeholder="416-555-6789"
+            title="10 digits with optional dash, dot, or space separator"
           />
           <FieldFeedbacks for="phone">
             <FieldFeedback when="tooShort">Too short</FieldFeedback>
@@ -171,6 +188,7 @@ class Shipping extends Component {
             placeholder="City"
           />
         </FormGroup>
+
         <FormGroup>
           <FormControlLabel htmlFor="country">Country: </FormControlLabel>
           <select
@@ -222,18 +240,20 @@ class Shipping extends Component {
 
         <FormGroup for="zipPostCode">
           <FormControlLabel htmlFor="zipPostCode">
-            {zipPostCodeLabel}:{' '}
+            {postalZipProps.label}:{' '}
           </FormControlLabel>
           <FormControlInput
             type="text"
             onChange={this.handleChange}
             id="zipPostCode"
             name="zipPostCode"
-            pattern={pattern}
+            pattern={postalZipProps.regex}
             value={this.state.zipPostCode}
             required
-            minLength={minLength}
-            placeholder={placeholder}
+            minLength={postalZipProps.minLength}
+            maxLength={postalZipProps.maxLength}
+            placeholder={postalZipProps.placeholder}
+            title={postalZipProps.title}
           />
           <FieldFeedbacks for="zipPostCode">
             <FieldFeedback when="tooShort">Too short</FieldFeedback>
